@@ -5,7 +5,7 @@
 Projet transpromotionnel (1A et 2A) de l'**École Nationale Supérieure de Cognitique**, réalisé au premier semestre 2026-2027.
 
 
----
+<img width="192" height="192" alt="logo (1)" src="https://github.com/user-attachments/assets/c8cb0ce1-cc57-4ac8-ba51-d1dcb1c1affd" />
 
 ## Sommaire
 
