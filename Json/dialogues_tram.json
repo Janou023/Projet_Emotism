@@ -1,0 +1,166 @@
+[
+  {
+    "num": 0,
+    "phrases": [],
+    "question": {
+      "question": "Qu'est-ce que je fais ?",
+      "paragraphe_2": "J'appuie sur le bouton pour ouvrir la porte, la personne a l'air de vouloir prendre ce tram.",
+      "paragraphe_10": "Je ne sais pas quoi faire, je panique, je fais comme si je ne l'avais pas vue."
+    },
+    "cartes": [],
+    "personnage": "",
+    "pensees": [
+      "J'entre dans le tram, je m'installe. Les portes commencent à se fermer mais une femme arrive et me fait signe de la main à travers la vitre."
+    ],
+    "fin": false
+  },
+  {
+    "num": 1,
+    "phrases": [],
+    "question": {},
+    "cartes": [],
+    "personnage": "",
+    "pensees": [
+      "Elle entre dans le tram."
+    ],
+    "fin": false
+  },
+  {
+    "num": 2,
+    "phrases": [
+      "Merci beaucoup. J'ai bien cru que j'allais rester sur le quai !",
+      "À vrai dire, tu m'as sauvé la vie, j'ai un examen super important dans 20 minutes."
+    ],
+    "question": {
+      "reponse_1": "Ah oui ?",
+      "reponse_2": "Hmmm",
+      "reponse_3": "..."
+    },
+    "cartes": [],
+    "personnage": "Manon",
+    "pensees": [],
+    "fin": false
+  },
+  {
+    "num": 3,
+    "phrases": [
+      "C'est mon examen final pour obtenir mon diplôme d'ingénieur.",
+      "Est-ce que je vais réussir à être à l'heure ?",
+      "Je ne sais pas ce qu'il se passera si jamais je ne me présente pas..."
+    ],
+    "question": {
+      "question": "Quelle émotion ressent Manon ? Glissez la carte émotion correspondante dans la bulle."
+    },
+    "cartes": [
+      "peur"
+    ],
+    "personnage": "Manon",
+    "pensees": [],
+    "fin": false
+  },
+  {
+    "num": 4,
+    "phrases": [
+      "Imagine si j'y arrive pas... j'ai tellement peur...",
+      "Tout ce stress à cause de l'administration en plus..."
+    ],
+    "question": {
+      "reponse_1": "L'administration ?",
+      "reponse_2": "Hmmm",
+      "reponse_3": "..."
+    },
+    "cartes": [],
+    "personnage": "Manon",
+    "pensees": [],
+    "fin": false
+  },
+  {
+    "num": 5,
+    "phrases": [
+      "Ils ne sont vraiment pas organisés, ils m'ont prévenue il y a seulement 3 jours pour cet examen !",
+      "Tu te rends compte ? 3 jours pour préparer l'un des moments les plus décisifs de ma vie...",
+      "C'est quand même pas bien compliqué de prévoir une date à l'avance !",
+      "J'ai essayé de leur dire que c'était trop court pour réviser. On n'a même pas daigné me répondre."
+    ],
+    "question": {
+      "question": "Quelle émotion ressent Manon ? Glissez la carte émotion correspondante dans la bulle."
+    },
+    "cartes": [
+      "colère"
+    ],
+    "personnage": "Manon",
+    "pensees": [],
+    "fin": false
+  },
+  {
+    "num": 6,
+    "phrases": [
+      "Nous les étudiants on parle dans le vent, personne ne nous écoute et on doit juste faire ce qu'on nous dit. 'Examen final dans 3 jours et débrouille-toi.'",
+      "Je te jure, c'est tellement injuste, ça m'énerve !",
+      "Oh là là, c'est mon arrêt, je dois descendre..."
+    ],
+    "question": {
+      "paragraphe_7": "Bon courage en tout cas",
+      "paragraphe_8": "Au revoir.",
+      "paragraphe_9": "..."
+    },
+    "cartes": [],
+    "personnage": "Manon",
+    "pensees": [],
+    "fin": false
+  },
+  {
+    "num": 7,
+    "phrases": [
+      "Merci beaucoup, et merci de m'avoir écoutée."
+    ],
+    "question": {},
+    "cartes": [],
+    "personnage": "Manon",
+    "pensees": [],
+    "fin": true
+  },
+  {
+    "num": 8,
+    "phrases": [
+      "Au revoir, merci de m'avoir écoutée."
+    ],
+    "question": {},
+    "cartes": [],
+    "personnage": "Manon",
+    "pensees": [],
+    "fin": true
+  },
+  {
+    "num": 9,
+    "phrases": [
+      "Désolée, j'espère ne pas t'avoir dérangé⸱e, j'avais besoin de vider mon sac.",
+      "Merci de m'avoir écoutée."
+    ],
+    "question": {},
+    "cartes": [],
+    "personnage": "Manon",
+    "pensees": [],
+    "fin": true
+  },
+
+
+
+
+
+
+  {
+    "num": 10,
+    "phrases": [],
+    "question": {},
+    "cartes": [],
+    "personnage": "",
+    "pensees": [
+      "Maria, une fille à côté de moi, est peinée par le fait que Manon n'ait pas pu rentrer dans le tram.",
+      "Elle me dit gentiment que j'aurais dû lui ouvrir.",
+      "Elle connaît Manon parce que c'est sa camarade de classe.",
+      "Elle a peur pour elle parce que l'examen est super important, et est très énervée car l'administration ne l'a pas prévenue."
+    ],
+    "fin": true
+  }
+]
