@@ -1,0 +1,522 @@
+fileFormatVersion: 2
+guid: 1f755caa6949c1a42a3fff4a05db3b2f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6169358182065708533
+    second: "Emotism-Id\xE9e__18_-removebg-preview_0"
+  - first:
+      213: 7684947089825332098
+    second: "Emotism-Id\xE9e__18_-removebg-preview_1"
+  - first:
+      213: -5443288264041422604
+    second: "Emotism-Id\xE9e__18_-removebg-preview_2"
+  - first:
+      213: -1769255297450466465
+    second: "Emotism-Id\xE9e__18_-removebg-preview_3"
+  - first:
+      213: -6502582520232029911
+    second: "Emotism-Id\xE9e__18_-removebg-preview_4"
+  - first:
+      213: -6017913998136135808
+    second: "Emotism-Id\xE9e__18_-removebg-preview_5"
+  - first:
+      213: -248466767254946752
+    second: "Emotism-Id\xE9e__18_-removebg-preview_6"
+  - first:
+      213: 7746225591022003205
+    second: "Emotism-Id\xE9e__18_-removebg-preview_7"
+  - first:
+      213: 6656005376626002567
+    second: "Emotism-Id\xE9e__18_-removebg-preview_8"
+  - first:
+      213: -7056215439775757380
+    second: "Emotism-Id\xE9e__18_-removebg-preview_9"
+  - first:
+      213: 3539786422485264939
+    second: "Emotism-Id\xE9e__18_-removebg-preview_10"
+  - first:
+      213: 8025290084693386869
+    second: "Emotism-Id\xE9e__18_-removebg-preview_11"
+  - first:
+      213: -7306029530707801593
+    second: "Emotism-Id\xE9e__18_-removebg-preview_12"
+  - first:
+      213: -8898260410302342776
+    second: "Emotism-Id\xE9e__18_-removebg-preview_13"
+  - first:
+      213: -6581710841873941784
+    second: "Emotism-Id\xE9e__18_-removebg-preview_14"
+  - first:
+      213: -930804012498218150
+    second: "Emotism-Id\xE9e__18_-removebg-preview_15"
+  - first:
+      213: -371077203505548754
+    second: "Emotism-Id\xE9e__18_-removebg-preview_16"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "Emotism-Id\xE9e__18_-removebg-preview_0"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 36
+        width: 12
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b02e2d98b69026aa0800000000000000
+      internalID: -6169358182065708533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Emotism-Id\xE9e__18_-removebg-preview_1"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 89
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28bf5be59aa66aa60800000000000000
+      internalID: 7684947089825332098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Emotism-Id\xE9e__18_-removebg-preview_2"
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 131
+        width: 107
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f022c3e92e8574b0800000000000000
+      internalID: -5443288264041422604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Emotism-Id\xE9e__18_-removebg-preview_3"
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 123
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f53ac7e4ea75277e0800000000000000
+      internalID: -1769255297450466465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Emotism-Id\xE9e__18_-removebg-preview_4"
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 115
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 921d7e666af22c5a0800000000000000
+      internalID: -6502582520232029911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Emotism-Id\xE9e__18_-removebg-preview_5"
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 107
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08fae3c5a131c7ca0800000000000000
+      internalID: -6017913998136135808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Emotism-Id\xE9e__18_-removebg-preview_6"
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 99
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04c7747aac44d8cf0800000000000000
+      internalID: -248466767254946752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Emotism-Id\xE9e__18_-removebg-preview_7"
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 91
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50428ee322f108b60800000000000000
+      internalID: 7746225591022003205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Emotism-Id\xE9e__18_-removebg-preview_8"
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 83
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78a02e000a1ee5c50800000000000000
+      internalID: 6656005376626002567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Emotism-Id\xE9e__18_-removebg-preview_9"
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 75
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbb0a856179431e90800000000000000
+      internalID: -7056215439775757380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Emotism-Id\xE9e__18_-removebg-preview_10"
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 67
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2a2cf42ff8df1130800000000000000
+      internalID: 3539786422485264939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Emotism-Id\xE9e__18_-removebg-preview_11"
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 59
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5762d9defce8f5f60800000000000000
+      internalID: 8025290084693386869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Emotism-Id\xE9e__18_-removebg-preview_12"
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 51
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70ac5afc9d4cb9a90800000000000000
+      internalID: -7306029530707801593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Emotism-Id\xE9e__18_-removebg-preview_13"
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 43
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 889d1054d47038480800000000000000
+      internalID: -8898260410302342776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Emotism-Id\xE9e__18_-removebg-preview_14"
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 35
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ea34c75cd019a4a0800000000000000
+      internalID: -6581710841873941784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Emotism-Id\xE9e__18_-removebg-preview_15"
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 27
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a531987aeae1513f0800000000000000
+      internalID: -930804012498218150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Emotism-Id\xE9e__18_-removebg-preview_16"
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 0
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e227eccdf3ba9daf0800000000000000
+      internalID: -371077203505548754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
