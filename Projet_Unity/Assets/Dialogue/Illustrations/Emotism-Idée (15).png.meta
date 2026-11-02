@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "Emotism-Id\xE9e (15)_0": 8989665300288981627
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
