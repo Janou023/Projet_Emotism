@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "Emotism-Id\xE9e__12_-removebg-preview_0": -5054778891235105108
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

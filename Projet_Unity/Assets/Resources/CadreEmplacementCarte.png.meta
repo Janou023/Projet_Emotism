@@ -514,7 +514,24 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CadreEmplacementCarte_0: -6013867981507996071
+      CadreEmplacementCarte_1: 1563109298873093590
+      CadreEmplacementCarte_10: 1849593877845475594
+      CadreEmplacementCarte_11: 8686133091655426998
+      CadreEmplacementCarte_12: 5097829201948775420
+      CadreEmplacementCarte_13: 1916991041661946531
+      CadreEmplacementCarte_14: 6130123531179720987
+      CadreEmplacementCarte_15: 83800932240004347
+      CadreEmplacementCarte_16: -4296582349512150715
+      CadreEmplacementCarte_2: -1941707577462605311
+      CadreEmplacementCarte_3: 7536384496076047853
+      CadreEmplacementCarte_4: 4177243633089987792
+      CadreEmplacementCarte_5: 6977905314093115170
+      CadreEmplacementCarte_6: -2313177210925160122
+      CadreEmplacementCarte_7: -9205965134347018543
+      CadreEmplacementCarte_8: -966371706635757830
+      CadreEmplacementCarte_9: 384692214570166612
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
