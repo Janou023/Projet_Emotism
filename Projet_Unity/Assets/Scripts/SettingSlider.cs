@@ -11,14 +11,17 @@ public enum SliderSetting
     LineSpacing
 }
 
-/// Se place sur un Slider. Choisis le réglage dans l'Inspector.
-/// Le slider lit sa valeur dans SettingsData à l'ouverture, et l'écrit quand on le bouge.
+/// <summary>
+/// Se place sur un Slider. Choisis le réglage dans l'Inspector (liste déroulante).
+/// Le slider lit sa valeur dans SettingsData et l'écrit quand on le bouge.
+/// Il se rafraîchit aussi quand un réglage change ailleurs (ex. réinitialisation).
 /// L'effet est appliqué par d'autres scripts qui écoutent OnSettingsChanged.
+/// </summary>
 [RequireComponent(typeof(Slider))]
 public class SettingSlider : MonoBehaviour
 {
     [SerializeField] SliderSetting setting;
-    [SerializeField] TMP_Text valueLabel;
+    [SerializeField] TMP_Text valueLabel; // optionnel : affiche "80 %"
 
     Slider slider;
 
@@ -30,12 +33,22 @@ public class SettingSlider : MonoBehaviour
         slider.onValueChanged.AddListener(OnSliderChanged);
     }
 
-    void OnEnable() => Refresh();
+    void OnEnable()
+    {
+        SettingsManager.Instance.OnSettingsChanged += Refresh;
+        Refresh();
+    }
+
+    void OnDisable()
+    {
+        if (SettingsManager.Instance != null)
+            SettingsManager.Instance.OnSettingsChanged -= Refresh;
+    }
 
     void Refresh()
     {
         float value = Read();
-        slider.SetValueWithoutNotify(value);
+        slider.SetValueWithoutNotify(value); // met à jour sans déclencher OnSliderChanged
         UpdateLabel(value);
     }
 
@@ -58,10 +71,10 @@ public class SettingSlider : MonoBehaviour
         switch (setting)
         {
             case SliderSetting.MasterVolume: return d.masterVolume;
-            case SliderSetting.MusicVolume:  return d.musicVolume;
-            case SliderSetting.SfxVolume:    return d.sfxVolume;
-            case SliderSetting.TextSpeed:    return d.textSpeed;
-            case SliderSetting.LineSpacing:  return d.lineSpacing;
+            case SliderSetting.MusicVolume: return d.musicVolume;
+            case SliderSetting.SfxVolume: return d.sfxVolume;
+            case SliderSetting.TextSpeed: return d.textSpeed;
+            case SliderSetting.LineSpacing: return d.lineSpacing;
             default: return 0f;
         }
     }
@@ -72,10 +85,10 @@ public class SettingSlider : MonoBehaviour
         switch (setting)
         {
             case SliderSetting.MasterVolume: d.masterVolume = v; break;
-            case SliderSetting.MusicVolume:  d.musicVolume = v; break;
-            case SliderSetting.SfxVolume:    d.sfxVolume = v; break;
-            case SliderSetting.TextSpeed:    d.textSpeed = v; break;
-            case SliderSetting.LineSpacing:  d.lineSpacing = v; break;
+            case SliderSetting.MusicVolume: d.musicVolume = v; break;
+            case SliderSetting.SfxVolume: d.sfxVolume = v; break;
+            case SliderSetting.TextSpeed: d.textSpeed = v; break;
+            case SliderSetting.LineSpacing: d.lineSpacing = v; break;
         }
     }
 }
