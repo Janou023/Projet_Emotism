@@ -5,6 +5,7 @@ using UnityEngine;
 /// À placer sur le TMP_Dropdown "Taille du texte".
 /// Les options doivent être dans cet ordre : Petit, Normal, Grand, Très grand
 /// (l'indice de l'option = textSizeLevel).
+/// Se rafraîchit aussi quand un réglage change ailleurs (ex. réinitialisation).
 /// </summary>
 [RequireComponent(typeof(TMP_Dropdown))]
 public class TextSizeDropdown : MonoBehaviour
@@ -17,8 +18,19 @@ public class TextSizeDropdown : MonoBehaviour
         dropdown.onValueChanged.AddListener(OnChanged);
     }
 
-    // À chaque ouverture du menu, on affiche la valeur sauvegardée
-    void OnEnable() =>
+    void OnEnable()
+    {
+        SettingsManager.Instance.OnSettingsChanged += Refresh;
+        Refresh();
+    }
+
+    void OnDisable()
+    {
+        if (SettingsManager.Instance != null)
+            SettingsManager.Instance.OnSettingsChanged -= Refresh;
+    }
+
+    void Refresh() =>
         dropdown.SetValueWithoutNotify(SettingsManager.Instance.Data.textSizeLevel);
 
     void OnChanged(int index)
