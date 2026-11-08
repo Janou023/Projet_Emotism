@@ -1,0 +1,143 @@
+[
+  {
+    "num": 0,
+    "phrases": [
+      "Bonjour, puis-je voir votre ticket ?"
+    ],
+    "pensees": [],
+    "question": {},
+    "indice": "",
+    "carte_obtenue": "",
+    "cartes": [],
+    "personnage": "Controleur",
+    "fin": false
+  },
+  {
+    "num": 1,
+    "phrases": [
+      "Mon ticket ?"
+    ],
+    "pensees": [],
+    "question": {},
+    "indice": "",
+    "carte_obtenue": "",
+    "cartes": [],
+    "personnage": "joueur",
+    "fin": false
+  },
+  {
+    "num": 2,
+    "phrases": [
+      "Oui, vous devez obligatoirement me présenter votre ticket, sinon vous avez une amende."
+    ],
+    "pensees": [],
+    "question": {},
+    "indice": "",
+    "carte_obtenue": "",
+    "cartes": [],
+    "personnage": "Controleur",
+    "fin": false
+  },
+  {
+    "num": 3,
+    "phrases": [
+      "Je ne sais pas où il est."
+    ],
+    "pensees": [
+      "Mince j'ai perdu mon ticket. Si je ne le présente pas, c'est maman qui va devoir payer, elle ne va pas être contente."
+    ],
+    "question": {
+      "question": "Quelle émotion peux-tu ressentir dans cette situation ? Glisse la carte émotion correspondante dans la bulle."
+    },
+    "indice": "",
+    "carte_obtenue": "",
+    "cartes": [
+      "peur"
+    ],
+    "personnage": "joueur",
+    "fin": false
+  },
+  {
+    "num": 4,
+    "phrases": [
+      "Bon, dépêche-toi."
+    ],
+    "pensees": [],
+    "question": {},
+    "indice": "",
+    "carte_obtenue": "",
+    "cartes": [],
+    "personnage": "Controleur",
+    "fin": false
+  },
+  {
+    "num": 5,
+    "phrases": [
+      "Pardon, je cherche... Ah c'est bon je l'ai trouvé, tenez."
+    ],
+    "pensees": [],
+    "question": {},
+    "indice": "",
+    "carte_obtenue": "",
+    "cartes": [],
+    "personnage": "joueur",
+    "fin": false
+  },
+  {
+    "num": 6,
+    "phrases": [
+      "Mouais... ok c'est vérifié. Mais tu as mis trop de temps à me le donner.",
+      "Tu n'as plus le droit de prendre ce tram, va voir ailleurs."
+    ],
+    "pensees": [],
+    "question": {},
+    "indice": "",
+    "carte_obtenue": "",
+    "cartes": [],
+    "personnage": "Controleur",
+    "fin": false
+  },
+  {
+    "num": 7,
+    "phrases": [
+      "Quoi ? Mais j'ai mon ticket, c'est injuste..."
+    ],
+    "pensees": [],
+    "question": {},
+    "indice": "",
+    "carte_obtenue": "",
+    "cartes": [],
+    "personnage": "joueur",
+    "fin": false
+  },
+  {
+    "num": 8,
+    "phrases": [
+      "J'ai décidé, va-t'en."
+    ],
+    "pensees": [],
+    "question": {
+      "question": "Quelle émotion peux-tu ressentir dans cette situation ? Glisse la carte émotion correspondante dans la bulle."
+    },
+    "indice": "",
+    "carte_obtenue": "",
+    "cartes": [
+      "colere"
+    ],
+    "personnage": "Controleur",
+    "fin": false
+  },
+  {
+    "num": 9,
+    "phrases": [],
+    "pensees": [
+      "Ce monsieur est super énervant, je m'en vais. Je n'ai pas envie de me laisser déborder par la colère..."
+    ],
+    "question": {},
+    "indice": "",
+    "carte_obtenue": "",
+    "cartes": [],
+    "personnage": "joueur",
+    "fin": true
+  }
+]

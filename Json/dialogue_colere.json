@@ -1,0 +1,76 @@
+[
+  {
+    "num": 0,
+    "phrases": [
+      "Oh noooooon, ça c’est vraiment pas cool !"
+    ],
+    "pensees": [],
+    "question": {
+      "reponse_1": "Julia ?",
+      "reponse_2": "Qu'est-ce qu'il y a ?",
+      "reponse_3": "Salut ?"
+    },
+    "indice": "",
+    "carte_obtenue": "",
+    "cartes": [],
+    "personnage": "Julia",
+    "fin": false
+  },
+  {
+    "num": 1,
+    "phrases": [
+      "Regarde notre cabane, elle est toute cassée ! Je venais de la finir, une semaine de travail. Elle était hyper jolie."
+    ],
+    "pensees": [],
+    "question": {
+      "reponse_1": "Mince.",
+      "reponse_2": "Qu'est-ce qu'il s'est passé ?",
+      "reponse_3": "Qui a fait ça ?"
+    },
+    "indice": "",
+    "carte_obtenue": "",
+    "cartes": [],
+    "personnage": "Julia",
+    "fin": false
+  },
+  {
+    "num": 2,
+    "phrases": [
+      "C'est Violette et Robert les petits voisins. Ils sont venus et ils ont tout détruit !",
+      "Je vais aller les voir pour leur dire que c'était pas sympa, je suis vraiment énervée !"
+    ],
+    "pensees": [],
+    "question": {},
+    "indice": "",
+    "carte_obtenue": "colere",
+    "cartes": [],
+    "personnage": "Julia",
+    "fin": false
+  },
+  {
+    "num": 3,
+    "phrases": [
+      "Maman te cherche, il faut que tu rentres à la maison."
+    ],
+    "pensees": [],
+    "question": {},
+    "indice": "",
+    "carte_obtenue": "",
+    "cartes": [],
+    "personnage": "joueur",
+    "fin": false
+  },
+  {
+    "num": 4,
+    "phrases": [
+      "D'accord j'y vais."
+    ],
+    "pensees": [],
+    "question": {},
+    "indice": "",
+    "carte_obtenue": "",
+    "cartes": [],
+    "personnage": "Julia",
+    "fin": true
+  }
+]
