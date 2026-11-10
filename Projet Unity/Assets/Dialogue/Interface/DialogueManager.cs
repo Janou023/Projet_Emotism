@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using TMPro;
 
 /// <summary>
 /// Affichage des dialogues : boîte de texte (machine à écrire), sprites, historique, boutons de choix.
@@ -15,6 +16,8 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; }
     /// <summary>Vrai pendant un dialogue ou une question : sert à bloquer le joueur.</summary>
+     
+    public string sceneName;
     public static bool IsActive { get; private set; }
 
     [Header("Boîte de texte")]
@@ -340,5 +343,6 @@ public class DialogueManager : MonoBehaviour
         AfficherElements(false);
         if (portraitGauche != null) portraitGauche.Hide();
         if (portraitDroit != null) portraitDroit.Hide();
+        FadeManager.Instance.LoadSceneWithFade(sceneName);
     }
 }
