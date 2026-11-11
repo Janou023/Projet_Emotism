@@ -3,10 +3,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DialogueUIBootstrap : MonoBehaviour
 {
     public TextAsset dialoguesJson;
+    [Header("Scène")]
+    public Sprite fondScene;
     public Sprite portraitManon;
     public UIClasseur classeurPrefab;
     public string nomJoueur = "Moi";
@@ -24,6 +27,14 @@ public class DialogueUIBootstrap : MonoBehaviour
         {
             Debug.LogError("DialogueUIBootstrap : ajoute le Canvas et DialogueUI dans la scène.");
             return;
+        }
+        if (fondScene != null)
+        {
+            Image imageFond = Composant<Image>(canvas.transform, "Fond");
+            if (imageFond == null)
+                Debug.LogError("DialogueUIBootstrap : l'image UI nommée Fond est absente du Canvas.");
+            else
+                imageFond.sprite = fondScene;
         }
         if (canvas.GetComponent<GraphicRaycaster>() == null)
             Debug.LogError("DialogueUIBootstrap : le Canvas doit avoir un Graphic Raycaster.");
@@ -139,12 +150,45 @@ public class DialogueUIBootstrap : MonoBehaviour
 
     public void LancerDialogue()
     {
-        if (dialoguesJson == null)
+        LancerDialogue(dialoguesJson, null, true, null);
+    }
+
+    public void LancerDialogue(TextAsset json, Sprite fond, bool estDefi, string sceneRetour)
+    {
+        if (json == null)
         {
             Debug.LogError("DialogueUIBootstrap : assigne le fichier JSON du dialogue.");
             return;
         }
-        defiController.Lancer(dialoguesJson, 0);
+
+        if (fond != null)
+        {
+            Canvas canvas = TrouverCanvas();
+            Image imageFond = Composant<Image>(canvas != null ? canvas.transform : null, "Fond");
+            if (imageFond == null)
+                Debug.LogError("DialogueUIBootstrap : l'image UI nommée Fond est absente du Canvas.");
+            else
+                imageFond.sprite = fond;
+        }
+
+        defiController.afficherAnimationVictoire = estDefi;
+        if (!string.IsNullOrEmpty(sceneRetour))
+            defiController.onDefiTermine.AddListener(() => RetournerScene(sceneRetour));
+        defiController.Lancer(json, 0);
+    }
+
+    void RetournerScene(string sceneRetour)
+    {
+        if (!Application.CanStreamedLevelBeLoaded(sceneRetour))
+        {
+            Debug.LogError("DialogueUIBootstrap : scène de retour absente des scènes de build : " + sceneRetour);
+            return;
+        }
+
+        if (FadeManager.Instance != null)
+            FadeManager.Instance.LoadSceneWithFade(sceneRetour);
+        else
+            SceneManager.LoadScene(sceneRetour);
     }
 
     void ConfigurerClasseur(Transform ui)

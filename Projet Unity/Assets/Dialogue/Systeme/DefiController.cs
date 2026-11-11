@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
+using UnityEngine.Video;
 
 /// <summary>
 /// Lit le JSON d'un défi et fait défiler les étapes : lignes de dialogue, choix, question « quelle émotion ? ».
@@ -21,6 +23,7 @@ public class DefiController : MonoBehaviour
     [Header("Résultat")]
     public List<ReponseJoueur> historique = new List<ReponseJoueur>();
     public UnityEvent onDefiTermine = new UnityEvent();
+    public bool afficherAnimationVictoire = true;
     /// <summary>À brancher sur ProgressionManager.Enregistrer / FeedBackManager.AfficherRetourReponseJoueur.</summary>
     public event Action<ReponseJoueur> OnReponse;
 
@@ -30,6 +33,7 @@ public class DefiController : MonoBehaviour
     int etapeCourante;
     bool enCours;
     bool attenteCarte;    // vrai quand on attend que le joueur place une carte
+    bool animationVictoireEnCours;
 
     public void Lancer()
     {
@@ -71,7 +75,7 @@ public class DefiController : MonoBehaviour
         if (!etapes.TryGetValue(etapeCourante, out e))
         {
             Debug.LogWarning("DefiController : étape introuvable : " + etapeCourante);
-            Terminer();
+            Terminer(false);
             return;
         }
         etapeActive = e;
@@ -95,6 +99,14 @@ public class DefiController : MonoBehaviour
             }
             case TypeQuestion.CarteEmotion:
             {
+                Emotion emotionAttendue;
+                if (!EtapeDefi.TryParseEmotion(e.emotionAttendue, out emotionAttendue))
+                {
+                    Debug.LogError("DefiController : émotion inconnue dans le JSON : " + e.emotionAttendue);
+                    Terminer(false);
+                    return;
+                }
+
                 attenteCarte = true;
                 dialogueManager.AfficherInvite(e.invite);
                 if (classeur == null || interfaceCarte == null)
@@ -104,12 +116,13 @@ public class DefiController : MonoBehaviour
                 }
                 interfaceCarte.OuvrirSelectionCompacte(classeur, ProposerCarte,
                     dialogueManager != null ? dialogueManager.portraitGauche : null,
-                    dialogueManager != null ? dialogueManager.portraitDroit : null);
+                    dialogueManager != null ? dialogueManager.portraitDroit : null,
+                    TexteIndices(e.indices), e.solution, ContinuerApresSolution);
                 break;
             }
             default:
             {
-                if (e.fin) Terminer();
+                if (e.fin) Terminer(e.reussite);
                 else EtapeSuivante();
                 break;
             }
@@ -125,14 +138,16 @@ public class DefiController : MonoBehaviour
     }
 
     /// <summary>Appelée quand le joueur choisit une carte dans le classeur (mode sélection).</summary>
-    public void ProposerCarte(CarteEmotion carte)
+    public bool ProposerCarte(CarteEmotion carte)
     {
-        if (etapeActive == null) return;
-        attenteCarte = false;
+        if (etapeActive == null || !attenteCarte) return false;
 
         Emotion attendue;
         if (!EtapeDefi.TryParseEmotion(etapeActive.emotionAttendue, out attendue))
-            Debug.LogWarning("DefiController : émotion inconnue dans le JSON : " + etapeActive.emotionAttendue);
+        {
+            Debug.LogError("DefiController : émotion inconnue dans le JSON : " + etapeActive.emotionAttendue);
+            return false;
+        }
 
         ReponseJoueur r = new ReponseJoueur();
         r.carteChoisie = carte;
@@ -141,12 +156,31 @@ public class DefiController : MonoBehaviour
         historique.Add(r);
         if (OnReponse != null) OnReponse(r);
 
+        if (!r.estCorrecte) return false;
+
+        attenteCarte = false;
         if (carte != null)
             dialogueManager.AjouterAuHistorique(dialogueManager.nomJoueur, "<i>(carte " + carte.id + ")</i>");
 
         dialogueManager.Masquer();
         if (etapeActive.fin) Terminer();
         else EtapeSuivante();
+        return true;
+    }
+
+    void ContinuerApresSolution()
+    {
+        if (etapeActive == null || !attenteCarte) return;
+
+        attenteCarte = false;
+        dialogueManager.Masquer();
+        if (etapeActive.fin) Terminer();
+        else EtapeSuivante();
+    }
+
+    static string TexteIndices(List<string> indices)
+    {
+        return indices != null ? string.Join("\n", indices) : "";
     }
 
     /// <summary>
@@ -170,7 +204,10 @@ public class DefiController : MonoBehaviour
             }
             interfaceCarte.OuvrirSelectionCompacte(classeur, ProposerCarte,
                 dialogueManager != null ? dialogueManager.portraitGauche : null,
-                dialogueManager != null ? dialogueManager.portraitDroit : null);
+                dialogueManager != null ? dialogueManager.portraitDroit : null,
+                TexteIndices(etapeActive != null ? etapeActive.indices : null),
+                etapeActive != null ? etapeActive.solution : "",
+                ContinuerApresSolution);
             return;
         }
 
@@ -184,12 +221,112 @@ public class DefiController : MonoBehaviour
         JouerEtape();
     }
 
-    void Terminer()
+    void Terminer(bool afficherVictoire = true)
     {
         enCours = false;
         attenteCarte = false;
         etapeActive = null;
         dialogueManager.FinConversation();
+
+        if (!afficherVictoire || !afficherAnimationVictoire) { NotifierFinDefi(); return; }
+
+        VideoClip animation = Resources.Load<VideoClip>("Youpi_reussi");
+        if (animation == null)
+        {
+            Debug.LogError("DefiController : vidéo de réussite absente de Resources/Youpi_reussi.mp4.");
+            NotifierFinDefi();
+            return;
+        }
+
+        JouerAnimationVictoire(animation);
+    }
+
+    void JouerAnimationVictoire(VideoClip animation)
+    {
+        if (animationVictoireEnCours) return;
+        animationVictoireEnCours = true;
+
+        GameObject ecran = new GameObject("AnimationVictoire");
+        Canvas canvas = ecran.AddComponent<Canvas>();
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        canvas.overrideSorting = true;
+        canvas.sortingOrder = short.MaxValue;
+
+        CanvasScaler scaler = ecran.AddComponent<CanvasScaler>();
+        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+        scaler.referenceResolution = new Vector2(1366f, 768f);
+        scaler.matchWidthOrHeight = 0.5f;
+        ecran.AddComponent<GraphicRaycaster>();
+
+        GameObject videoObject = new GameObject(
+            "Video", typeof(RectTransform), typeof(CanvasRenderer), typeof(RawImage));
+        RectTransform videoRect = videoObject.transform as RectTransform;
+        videoRect.SetParent(ecran.transform, false);
+        videoRect.anchorMin = Vector2.zero;
+        videoRect.anchorMax = Vector2.one;
+        videoRect.offsetMin = Vector2.zero;
+        videoRect.offsetMax = Vector2.zero;
+
+        int width = Mathf.Clamp((int)animation.width, 1, 1920);
+        int height = Mathf.Clamp((int)animation.height, 1, 1080);
+        RenderTexture texture = new RenderTexture(width, height, 0, RenderTextureFormat.ARGB32);
+        texture.Create();
+        videoObject.GetComponent<RawImage>().texture = texture;
+
+        VideoPlayer player = ecran.AddComponent<VideoPlayer>();
+        player.source = VideoSource.VideoClip;
+        player.clip = animation;
+        player.renderMode = VideoRenderMode.RenderTexture;
+        player.targetTexture = texture;
+        player.aspectRatio = VideoAspectRatio.FitInside;
+        player.audioOutputMode = VideoAudioOutputMode.Direct;
+        player.playOnAwake = false;
+        player.isLooping = false;
+        player.waitForFirstFrame = true;
+        player.prepareCompleted += DemarrerAnimationVictoire;
+        player.loopPointReached += TerminerAnimationVictoire;
+        player.errorReceived += ErreurAnimationVictoire;
+        player.Prepare();
+    }
+
+    void DemarrerAnimationVictoire(VideoPlayer player)
+    {
+        player.Play();
+    }
+
+    void TerminerAnimationVictoire(VideoPlayer player)
+    {
+        LibererAnimationVictoire(player);
+    }
+
+    void ErreurAnimationVictoire(VideoPlayer player, string message)
+    {
+        Debug.LogError("DefiController : lecture de la vidéo de réussite impossible : " + message);
+        LibererAnimationVictoire(player);
+    }
+
+    void LibererAnimationVictoire(VideoPlayer player)
+    {
+        if (!animationVictoireEnCours) return;
+        animationVictoireEnCours = false;
+        player.prepareCompleted -= DemarrerAnimationVictoire;
+        player.loopPointReached -= TerminerAnimationVictoire;
+        player.errorReceived -= ErreurAnimationVictoire;
+
+        RenderTexture texture = player.targetTexture;
+        player.targetTexture = null;
+        if (texture != null)
+        {
+            texture.Release();
+            Destroy(texture);
+        }
+
+        Destroy(player.gameObject);
+        NotifierFinDefi();
+    }
+
+    void NotifierFinDefi()
+    {
         if (onDefiTermine != null) onDefiTermine.Invoke();
     }
 

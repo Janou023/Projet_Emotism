@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialoguesJson: {fileID: 4900000, guid: 32f1ecf63e0547ca8af8ab0c372412f3, type: 3}
+  fondScene: {fileID: 3055159045398532384, guid: 36c744124840baa469ade71ad3adcb59, type: 3}
   portraitManon: {fileID: -5054778891235105108, guid: 9ac49dcfd25e7964597932ad2bbfe849, type: 3}
   classeurPrefab: {fileID: 3550257505526808817, guid: 35c543195469ab54b8ad2796a3eb90af, type: 3}
   nomJoueur: Moi
