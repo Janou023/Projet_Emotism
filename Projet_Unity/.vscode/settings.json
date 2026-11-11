@@ -56,5 +56,16 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Projet_Unity.sln"
+    "files.associations": {
+        "*.asset": "yaml",
+        "*.meta": "yaml",
+        "*.prefab": "yaml",
+        "*.unity": "yaml",
+    },
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+        "*.sln": "*.csproj",
+        "*.slnx": "*.csproj"
+    },
+    "dotnet.defaultSolution": "Projet_Vide.slnx"
 }

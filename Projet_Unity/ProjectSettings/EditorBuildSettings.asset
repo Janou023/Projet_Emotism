@@ -7,6 +7,12 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Monde.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  m_configObjects: {}
-  m_UseUCBPForAssetBundles: 0
+    guid: c3d42b6c16e15014b9e87a2869546b80
+  - enabled: 1
+    path: Assets/Scenes/Defi_Tram.unity
+    guid: 4eb39eeebaea90f4dad59866f608dd74
+  - enabled: 1
+    path: Assets/Scenes/Dialogue.unity
+    guid: 4c1aa89ffcdf95a468d250a568edc096
+  m_configObjects:
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
