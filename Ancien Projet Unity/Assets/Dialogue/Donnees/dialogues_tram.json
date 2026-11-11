@@ -168,10 +168,7 @@
       "Elle connaît Manon parce que c'est sa camarade de classe.",
       "Elle a peur pour elle parce que l'examen est super important, et est très énervée car l'administration ne l'a pas prévenue."
     ],
-    "question": {},
-    "indice": "Même si ce choix n'est pas sympa, c'est un choix qui t'appartient. Dans ce jeu, on essaye d'être bienveillant et de comprendre les situations pour y répondre au mieux. Essaye encore !",
-    "cartes": [],
-    "personnage": "",
-    "fin": true
+    "fin": true,
+    "reussite": false
   }
 ]
