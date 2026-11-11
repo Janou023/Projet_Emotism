@@ -12,6 +12,7 @@
     "carte_obtenue": "",
     "cartes": [],
     "personnage": "tel_Alice",
+    "img_perso": "tel_Alice_1.png",
     "fin": false
   },
   {
@@ -30,6 +31,7 @@
     "carte_obtenue": "",
     "cartes": [],
     "personnage": "tel_Alice",
+    "img_perso": "tel_Alice_1.png",
     "fin": false
   },
   {
@@ -47,6 +49,7 @@
     "carte_obtenue": "",
     "cartes": [],
     "personnage": "Maman",
+    "img_perso": "maman_neutre.png",
     "fin": false
   },
   {
@@ -64,6 +67,7 @@
     "carte_obtenue": "",
     "cartes": [],
     "personnage": "Maman",
+    "img_perso": "maman_peur.png",
     "fin": false
   },
   {
@@ -78,6 +82,7 @@
     "carte_obtenue": "peur",
     "cartes": [],
     "personnage": "Maman",
+    "img_perso": "maman_peur.png",
     "fin": false
   },
   {
@@ -93,6 +98,7 @@
     "carte_obtenue": "",
     "cartes": [],
     "personnage": "Maman",
+    "img_perso": "maman_peur.png",
     "fin": false
   },
   {
@@ -106,6 +112,7 @@
     "carte_obtenue": "",
     "cartes": [],
     "personnage": "joueur",
+    "img_perso": "",
     "fin": false
   },
   {
@@ -119,6 +126,7 @@
     "carte_obtenue": "",
     "cartes": [],
     "personnage": "Maman",
+    "img_perso": "maman_peur.png",
     "fin": true
   }
 ]
