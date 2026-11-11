@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 436f74b208408ee4d939165c9649ca49
+guid: a30d57a44e4d2b444a954b299c72c906
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2140358064627010721
-    second: "Emotism-Id\xE9e__13_-removebg-preview_0"
+      213: 6575123261050649066
+    second: "Emotism-Id\xE9e (21)_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Emotism-Id\xE9e__13_-removebg-preview_0"
+      name: "Emotism-Id\xE9e (21)_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 110
-        height: 49
+        width: 193
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f53b3c92eabeb42e0800000000000000
-      internalID: -2140358064627010721
+      spriteID: ae9f459f4c78f3b50800000000000000
+      internalID: 6575123261050649066
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "Emotism-Id\xE9e__13_-removebg-preview_0": -2140358064627010721
+      "Emotism-Id\xE9e (21)_0": 6575123261050649066
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
