@@ -1,0 +1,539 @@
+fileFormatVersion: 2
+guid: e6a9a63c72e14db47bef79bdf60a2df7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6013867981507996071
+    second: CadreEmplacementCarte_0
+  - first:
+      213: 1563109298873093590
+    second: CadreEmplacementCarte_1
+  - first:
+      213: -1941707577462605311
+    second: CadreEmplacementCarte_2
+  - first:
+      213: 7536384496076047853
+    second: CadreEmplacementCarte_3
+  - first:
+      213: 4177243633089987792
+    second: CadreEmplacementCarte_4
+  - first:
+      213: 6977905314093115170
+    second: CadreEmplacementCarte_5
+  - first:
+      213: -2313177210925160122
+    second: CadreEmplacementCarte_6
+  - first:
+      213: -9205965134347018543
+    second: CadreEmplacementCarte_7
+  - first:
+      213: -966371706635757830
+    second: CadreEmplacementCarte_8
+  - first:
+      213: 384692214570166612
+    second: CadreEmplacementCarte_9
+  - first:
+      213: 1849593877845475594
+    second: CadreEmplacementCarte_10
+  - first:
+      213: 8686133091655426998
+    second: CadreEmplacementCarte_11
+  - first:
+      213: 5097829201948775420
+    second: CadreEmplacementCarte_12
+  - first:
+      213: 1916991041661946531
+    second: CadreEmplacementCarte_13
+  - first:
+      213: 6130123531179720987
+    second: CadreEmplacementCarte_14
+  - first:
+      213: 83800932240004347
+    second: CadreEmplacementCarte_15
+  - first:
+      213: -4296582349512150715
+    second: CadreEmplacementCarte_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CadreEmplacementCarte_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 36
+        width: 12
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 956de140fe27a8ca0800000000000000
+      internalID: -6013867981507996071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CadreEmplacementCarte_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 89
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ddc07820a741b510800000000000000
+      internalID: 1563109298873093590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CadreEmplacementCarte_2
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 131
+        width: 107
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10a38a3fe3bad05e0800000000000000
+      internalID: -1941707577462605311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CadreEmplacementCarte_3
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 123
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de5cf5b05cd969860800000000000000
+      internalID: 7536384496076047853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CadreEmplacementCarte_4
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 115
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d4479ac3fc88f930800000000000000
+      internalID: 4177243633089987792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CadreEmplacementCarte_5
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 107
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 227a4d2a9ef76d060800000000000000
+      internalID: 6977905314093115170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CadreEmplacementCarte_6
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 99
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 649e6481591f5efd0800000000000000
+      internalID: -2313177210925160122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CadreEmplacementCarte_7
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 91
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1de5d905c77dd3080800000000000000
+      internalID: -9205965134347018543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CadreEmplacementCarte_8
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 83
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af6dcf88d02c692f0800000000000000
+      internalID: -966371706635757830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CadreEmplacementCarte_9
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 75
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 459205de783b65500800000000000000
+      internalID: 384692214570166612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CadreEmplacementCarte_10
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 67
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0187b315d31ba910800000000000000
+      internalID: 1849593877845475594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CadreEmplacementCarte_11
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 59
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b323e796085b8870800000000000000
+      internalID: 8686133091655426998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CadreEmplacementCarte_12
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 51
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf315c356a02fb640800000000000000
+      internalID: 5097829201948775420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CadreEmplacementCarte_13
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 43
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3aacddb12358a9a10800000000000000
+      internalID: 1916991041661946531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CadreEmplacementCarte_14
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 35
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b110b317fd2921550800000000000000
+      internalID: 6130123531179720987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CadreEmplacementCarte_15
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 27
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf4130ef088b92100800000000000000
+      internalID: 83800932240004347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CadreEmplacementCarte_16
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 0
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5417d1d0e197f54c0800000000000000
+      internalID: -4296582349512150715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      CadreEmplacementCarte_0: -6013867981507996071
+      CadreEmplacementCarte_1: 1563109298873093590
+      CadreEmplacementCarte_10: 1849593877845475594
+      CadreEmplacementCarte_11: 8686133091655426998
+      CadreEmplacementCarte_12: 5097829201948775420
+      CadreEmplacementCarte_13: 1916991041661946531
+      CadreEmplacementCarte_14: 6130123531179720987
+      CadreEmplacementCarte_15: 83800932240004347
+      CadreEmplacementCarte_16: -4296582349512150715
+      CadreEmplacementCarte_2: -1941707577462605311
+      CadreEmplacementCarte_3: 7536384496076047853
+      CadreEmplacementCarte_4: 4177243633089987792
+      CadreEmplacementCarte_5: 6977905314093115170
+      CadreEmplacementCarte_6: -2313177210925160122
+      CadreEmplacementCarte_7: -9205965134347018543
+      CadreEmplacementCarte_8: -966371706635757830
+      CadreEmplacementCarte_9: 384692214570166612
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
