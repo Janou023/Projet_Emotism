@@ -27,10 +27,13 @@ public class EtapeDefi
     public List<string> phrases = new List<string>();
     public string personnage = "";
     public bool fin;
+    public bool reussite = true;
     public TypeQuestion type = TypeQuestion.Aucune;
     public string invite = "";                       // texte de la question affiché
     public List<ChoixReponse> choix = new List<ChoixReponse>();
     public string emotionAttendue = "";              // brut : "peur", "colère"...
+    public List<string> indices = new List<string>();
+    public string solution = "";
 
     public static Dictionary<int, EtapeDefi> Charger(string json)
     {
@@ -49,6 +52,10 @@ public class EtapeDefi
             e.personnage = (string)o["personnage"] ?? "";
             JToken fin = o["fin"];
             e.fin = fin != null && (bool)fin;
+            JToken reussite = o["reussite"];
+            e.reussite = reussite == null || (bool)reussite;
+            e.indices = Textes(o["Indices"]);
+            e.solution = (string)o["Solution"] ?? "";
 
             List<string> cartes = Textes(o["cartes"]);
             List<ChoixReponse> paragraphes = new List<ChoixReponse>();
@@ -101,6 +108,8 @@ public class EtapeDefi
     static List<string> Textes(JToken t)
     {
         List<string> liste = new List<string>();
+        if (t != null && t.Type == JTokenType.String)
+            liste.Add((string)t);
         JArray a = t as JArray;
         if (a != null)
             foreach (JToken x in a) liste.Add((string)x);

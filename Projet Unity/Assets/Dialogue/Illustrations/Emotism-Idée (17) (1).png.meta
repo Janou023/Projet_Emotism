@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 85d70ce932a37cd46a87f9d4b32ac9b6
+guid: f343e6156161acf4987a02fb28141f98
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7325925066820600819
-    second: "Emotism-Id\xE9e (17) (1)_0"
+      213: -5103991381309928305
+    second: "Emotism-Id\xE9e (20)_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Emotism-Id\xE9e (17) (1)_0"
+      name: "Emotism-Id\xE9e (20)_0"
       rect:
         serializedVersion: 2
-        x: 69
-        y: 204
-        width: 434
-        height: 108
+        x: 0
+        y: 0
+        width: 193
+        height: 84
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d0c370557f5155a90800000000000000
-      internalID: -7325925066820600819
+      spriteID: f8ccd5c71eafa29b0800000000000000
+      internalID: -5103991381309928305
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "Emotism-Id\xE9e (17) (1)_0": -7325925066820600819
+      "Emotism-Id\xE9e (20)_0": -5103991381309928305
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
