@@ -19,6 +19,7 @@ public class DefiController : MonoBehaviour
     public DialogueManager dialogueManager;
     public UIClasseur classeur;
     public CarteReponseUI interfaceCarte;
+    public GestionnaireTutoriels gestionnaireTutoriels;
 
     [Header("Résultat")]
     public List<ReponseJoueur> historique = new List<ReponseJoueur>();
@@ -114,10 +115,16 @@ public class DefiController : MonoBehaviour
                     Debug.LogError("DefiController : assigne le UIClasseur et l'interface de réponse pour afficher le carnet pendant la question.");
                     break;
                 }
-                interfaceCarte.OuvrirSelectionCompacte(classeur, ProposerCarte,
+                Action ouvrirSelectionCarte = () => interfaceCarte.OuvrirSelectionCompacte(
+                    classeur,
+                    ProposerCarte,
                     dialogueManager != null ? dialogueManager.portraitGauche : null,
                     dialogueManager != null ? dialogueManager.portraitDroit : null,
                     TexteIndices(e.indices), e.solution, ContinuerApresSolution);
+
+                if (gestionnaireTutoriels == null ||
+                    !gestionnaireTutoriels.AfficherAideCartes(ouvrirSelectionCarte))
+                    ouvrirSelectionCarte();
                 break;
             }
             default:
@@ -155,7 +162,6 @@ public class DefiController : MonoBehaviour
         r.estCorrecte = carte != null && carte.emotion == attendue;
         historique.Add(r);
         if (OnReponse != null) OnReponse(r);
-
         if (!r.estCorrecte) return false;
 
         attenteCarte = false;

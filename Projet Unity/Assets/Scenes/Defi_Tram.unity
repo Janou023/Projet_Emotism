@@ -330,6 +330,18 @@ PrefabInstance:
       propertyPath: m_margin.z
       value: -465.00867
       objectReference: {fileID: 0}
+    - target: {fileID: 4495833525755860066, guid: 9131860145ef5cd4d95bd51cbea51adc, type: 3}
+      propertyPath: m_overflowMode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495833525755860066, guid: 9131860145ef5cd4d95bd51cbea51adc, type: 3}
+      propertyPath: m_TextWrappingMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495833525755860066, guid: 9131860145ef5cd4d95bd51cbea51adc, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5230446598150650968, guid: 9131860145ef5cd4d95bd51cbea51adc, type: 3}
       propertyPath: m_text
       value: 
@@ -2298,6 +2310,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!61 &7284043750986115003
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2333,6 +2346,15 @@ BoxCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10, y: 6}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Size: {x: 2.5, y: 1.5}
   m_EdgeRadius: 0
 --- !u!114 &7284043750986115004
@@ -2345,7 +2367,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 611e8b4a24d3d6348beba8c19ed532ac, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
   defi: {fileID: 0}
   jsonDialogue: {fileID: 4900000, guid: 32f1ecf63e0547ca8af8ab0c372412f3, type: 3}
@@ -2381,7 +2403,6 @@ SceneRoots:
   - {fileID: 1624962275}
   - {fileID: 3242688098127322187}
   - {fileID: 2485060260221259758}
-  - {fileID: 7422038471861310128}
   - {fileID: 1163018810}
   - {fileID: 1738816195}
   - {fileID: 7284043750986115001}

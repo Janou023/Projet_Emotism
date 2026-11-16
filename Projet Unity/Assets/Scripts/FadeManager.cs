@@ -40,6 +40,7 @@ public class FadeManager : MonoBehaviour
 
     public IEnumerator FadeIn()
     {
+        fadeCanvasGroup.blocksRaycasts = true;
         fadeCanvasGroup.alpha = 1;
         float elapsedTime = 0;
         while (elapsedTime < fadeDuration)
@@ -49,10 +50,12 @@ public class FadeManager : MonoBehaviour
             yield return null;
         }
         fadeCanvasGroup.alpha = 0;
+        fadeCanvasGroup.blocksRaycasts = false;
     }
 
     public IEnumerator FadeOut()
     {
+        fadeCanvasGroup.blocksRaycasts = true;
         fadeCanvasGroup.alpha = 0;
         float elapsedTime = 0;
         while (elapsedTime < fadeDuration)
