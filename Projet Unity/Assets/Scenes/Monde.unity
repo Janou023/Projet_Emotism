@@ -173,7 +173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5079211422077744817, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
       propertyPath: sceneName
-      value: Pole_Emotion
+      value: PoleColere
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

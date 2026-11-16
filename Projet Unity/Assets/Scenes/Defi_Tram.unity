@@ -2021,6 +2021,7 @@ GameObject:
   - component: {fileID: 7284043750986115002}
   - component: {fileID: 7284043750986115003}
   - component: {fileID: 7284043750986115004}
+  - component: {fileID: 7284043750986115005}
   m_Layer: 0
   m_Name: PNJ tram
   m_TagString: Untagged
@@ -2102,6 +2103,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!61 &7284043750986115003
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2137,6 +2139,15 @@ BoxCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10, y: 6}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Size: {x: 2.5, y: 1.5}
   m_EdgeRadius: 0
 --- !u!114 &7284043750986115004
@@ -2149,7 +2160,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 611e8b4a24d3d6348beba8c19ed532ac, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
   defi: {fileID: 0}
   jsonDialogue: {fileID: 4900000, guid: 32f1ecf63e0547ca8af8ab0c372412f3, type: 3}
@@ -2164,6 +2175,23 @@ MonoBehaviour:
   startAutomatically: 0
   onlyOnce: 0
   hint: {fileID: 0}
+--- !u!114 &7284043750986115005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7284043750986115000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 355eef4f03878804cab423eeb0e96dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DefiPrerequis
+  jsonDefi: {fileID: 4900000, guid: 538d17585f4f97946974da6b1aa6312e, type: 3}
+  cartesSupplementaires: []
+  objetsVerrouille: []
+  composantsADesactiverSiVerrouille:
+  - {fileID: 7284043750986115004}
 --- !u!1001 &8551039823291306400
 PrefabInstance:
   m_ObjectHideFlags: 0

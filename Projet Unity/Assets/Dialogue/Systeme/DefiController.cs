@@ -19,6 +19,7 @@ public class DefiController : MonoBehaviour
     public DialogueManager dialogueManager;
     public UIClasseur classeur;
     public CarteReponseUI interfaceCarte;
+    public CardRewardPopup popupCarte;        // fenêtre « Nouvelle carte obtenue ! » (assignée par DialogueUIBootstrap)
 
     [Header("Résultat")]
     public List<ReponseJoueur> historique = new List<ReponseJoueur>();
@@ -34,6 +35,7 @@ public class DefiController : MonoBehaviour
     bool enCours;
     bool attenteCarte;    // vrai quand on attend que le joueur place une carte
     bool animationVictoireEnCours;
+    bool carteDejaDonnee; // vrai pendant qu'on traite le champ "carte_obtenue" de l'étape
 
     public void Lancer()
     {
@@ -55,6 +57,7 @@ public class DefiController : MonoBehaviour
         etapeCourante = premiereEtape;
         enCours = true;
         attenteCarte = false;
+        carteDejaDonnee = false;
         JouerEtape();
     }
 
@@ -88,44 +91,55 @@ public class DefiController : MonoBehaviour
     void ApresLignes()
     {
         EtapeDefi e = etapeActive;
+
+        // Étape qui donne une carte (champ "carte_obtenue" du JSON) : on la donne, on affiche
+        // la fenêtre d'obtention, puis on revient ici pour continuer l'étape normalement.
+        if (!string.IsNullOrEmpty(e.carteObtenue) && !carteDejaDonnee)
+        {
+            carteDejaDonnee = true;
+            RecompenseCarte.Accorder(classeur, popupCarte, e.carteObtenue, ApresLignes);
+            return;
+        }
+        carteDejaDonnee = false;
+
         switch (e.type)
         {
             case TypeQuestion.Choix:
-            {
-                List<string> textes = new List<string>();
-                foreach (ChoixReponse c in e.choix) textes.Add(c.texte);
-                dialogueManager.AfficherChoix(e.invite, textes, ChoixFait);
-                break;
-            }
-            case TypeQuestion.CarteEmotion:
-            {
-                Emotion emotionAttendue;
-                if (!EtapeDefi.TryParseEmotion(e.emotionAttendue, out emotionAttendue))
                 {
-                    Debug.LogError("DefiController : émotion inconnue dans le JSON : " + e.emotionAttendue);
-                    Terminer(false);
-                    return;
-                }
-
-                attenteCarte = true;
-                dialogueManager.AfficherInvite(e.invite);
-                if (classeur == null || interfaceCarte == null)
-                {
-                    Debug.LogError("DefiController : assigne le UIClasseur et l'interface de réponse pour afficher le carnet pendant la question.");
+                    List<string> textes = new List<string>();
+                    foreach (ChoixReponse c in e.choix) textes.Add(c.texte);
+                    dialogueManager.AfficherChoix(e.invite, textes, ChoixFait);
                     break;
                 }
-                interfaceCarte.OuvrirSelectionCompacte(classeur, ProposerCarte,
-                    dialogueManager != null ? dialogueManager.portraitGauche : null,
-                    dialogueManager != null ? dialogueManager.portraitDroit : null,
-                    TexteIndices(e.indices), e.solution, ContinuerApresSolution);
-                break;
-            }
+            case TypeQuestion.CarteEmotion:
+                {
+                    Emotion emotionAttendue;
+                    if (!EtapeDefi.TryParseEmotion(e.emotionAttendue, out emotionAttendue))
+                    {
+                        Debug.LogError("DefiController : émotion inconnue dans le JSON : " + e.emotionAttendue);
+                        Terminer(false);
+                        return;
+                    }
+
+                    attenteCarte = true;
+                    dialogueManager.AfficherInvite(e.invite);
+                    if (classeur == null || interfaceCarte == null)
+                    {
+                        Debug.LogError("DefiController : assigne le UIClasseur et l'interface de réponse pour afficher le carnet pendant la question.");
+                        break;
+                    }
+                    interfaceCarte.OuvrirSelectionCompacte(classeur, ProposerCarte,
+                        dialogueManager != null ? dialogueManager.portraitGauche : null,
+                        dialogueManager != null ? dialogueManager.portraitDroit : null,
+                        TexteIndices(e.indices), e.solution, ContinuerApresSolution);
+                    break;
+                }
             default:
-            {
-                if (e.fin) Terminer(e.reussite);
-                else EtapeSuivante();
-                break;
-            }
+                {
+                    if (e.fin) Terminer(e.reussite);
+                    else EtapeSuivante();
+                    break;
+                }
         }
     }
 
