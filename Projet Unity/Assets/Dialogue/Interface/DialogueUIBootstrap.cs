@@ -15,6 +15,9 @@ public class DialogueUIBootstrap : MonoBehaviour
     public string nomJoueur = "Moi";
     public Vector2 decalagePortraitSelection = new Vector2(-450f, 0f);
 
+    [Tooltip("Autres personnages des dialogues (ex. Julia). Le nom doit correspondre au champ \"personnage\" du JSON.")]
+    public Personnage[] autresPersonnages;
+
     DialogueManager dialogueManager;
     DefiController defiController;
     UIClasseur classeur;
@@ -112,7 +115,7 @@ public class DialogueUIBootstrap : MonoBehaviour
         if (defiController == null) defiController = gameObject.AddComponent<DefiController>();
         defiController.dialoguesJson = dialoguesJson;
         defiController.dialogueManager = dialogueManager;
-        defiController.personnages = new[]
+        List<Personnage> listePersonnages = new List<Personnage>
         {
             new Personnage
             {
@@ -121,6 +124,8 @@ public class DialogueUIBootstrap : MonoBehaviour
                 portraitNeutre = portraitManon
             }
         };
+        if (autresPersonnages != null) listePersonnages.AddRange(autresPersonnages);
+        defiController.personnages = listePersonnages.ToArray();
 
         classeur = FindAnyObjectByType<UIClasseur>();
         if (classeur == null && classeurPrefab != null)
@@ -143,6 +148,7 @@ public class DialogueUIBootstrap : MonoBehaviour
         interfaceCarte.decalagePortraitSelection = decalagePortraitSelection;
         interfaceCarte.Configurer();
         defiController.interfaceCarte = interfaceCarte;
+        defiController.popupCarte = FindAnyObjectByType<CardRewardPopup>(FindObjectsInactive.Include);
         if (interfaceCarte.confirmationPanel != null)
             AjouterBloqueur(interfaceCarte.confirmationPanel);
         ConfigurerClasseur(ui);

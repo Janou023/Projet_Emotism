@@ -34,6 +34,7 @@ public class EtapeDefi
     public string emotionAttendue = "";              // brut : "peur", "colère"...
     public List<string> indices = new List<string>();
     public string solution = "";
+    public string carteObtenue = "";                 // id de la carte donnée à cette étape (ex. "colere")
 
     public static Dictionary<int, EtapeDefi> Charger(string json)
     {
@@ -56,6 +57,7 @@ public class EtapeDefi
             e.reussite = reussite == null || (bool)reussite;
             e.indices = Textes(o["Indices"]);
             e.solution = (string)o["Solution"] ?? "";
+            e.carteObtenue = (string)o["carte_obtenue"] ?? "";
 
             List<string> cartes = Textes(o["cartes"]);
             List<ChoixReponse> paragraphes = new List<ChoixReponse>();

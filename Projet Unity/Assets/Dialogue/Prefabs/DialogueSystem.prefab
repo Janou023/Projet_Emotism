@@ -50,3 +50,8 @@ MonoBehaviour:
   classeurPrefab: {fileID: 3550257505526808817, guid: 35c543195469ab54b8ad2796a3eb90af, type: 3}
   nomJoueur: Moi
   decalagePortraitSelection: {x: -450, y: 0}
+  autresPersonnages:
+  - nom: Julia
+    cote: 1
+    portraitNeutre: {fileID: -5054778891235105108, guid: 9ac49dcfd25e7964597932ad2bbfe849, type: 3}
+    portraits: []
