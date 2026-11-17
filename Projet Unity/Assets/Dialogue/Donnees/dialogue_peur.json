@@ -1,0 +1,124 @@
+[
+  {
+    "num": 0,
+    "phrases": [
+      "Salut ! Je suis en ville en ce moment, n’hésite pas à venir me voir pour qu’on passe un peu de temps ensemble !"
+    ],
+    "pensees": [
+      "J’aime bien passer du temps avec Alice. Mais je ne sais pas toujours comment expliquer ce que je ressens. Je sais que quelque chose se passe en moi, sans réussir à lui donner un nom."
+    ],
+    "question": {},
+    "indice": "",
+    "carte_obtenue": "",
+    "cartes": [],
+    "personnage": "tel_Alice",
+    "fin": false
+  },
+  {
+    "num": 1,
+    "phrases": [
+      "J’espère que tu vas bien ! 😊"
+    ],
+    "pensees": [],
+    "question": {
+      "question": "Que signifie ce message ?",
+      "reponse_1": "Alice est heureuse",
+      "reponse_2": "Elle souhaite te voir",
+      "reponse_3": "On ne peut pas savoir avec certitude ce que ressent Alice"
+    },
+    "indice": "Les réponses A et B sont des possibilités mais pour l'instant, on ne peut pas vraiment savoir",
+    "carte_obtenue": "",
+    "cartes": [],
+    "personnage": "tel_Alice",
+    "fin": false
+  },
+  {
+    "num": 2,
+    "phrases": [
+      "Chéri⸱e, tu es réveillé⸱e ?"
+    ],
+    "pensees": [],
+    "question": {
+      "reponse_1": "Oui !",
+      "reponse_2": "À peu près",
+      "reponse_3": "Coucou maman !"
+    },
+    "indice": "",
+    "carte_obtenue": "",
+    "cartes": [],
+    "personnage": "Maman",
+    "fin": false
+  },
+  {
+    "num": 3,
+    "phrases": [
+      "Pardon de te déranger, est-ce que tu as vu ta sœur Julia ?"
+    ],
+    "pensees": [],
+    "question": {
+      "reponse_1": "Non",
+      "reponse_2": "Je ne sais pas",
+      "reponse_3": "Oui, hier"
+    },
+    "indice": "",
+    "carte_obtenue": "",
+    "cartes": [],
+    "personnage": "Maman",
+    "fin": false
+  },
+  {
+    "num": 4,
+    "phrases": [
+      "Je ne l'ai pas vue depuis hier soir... elle a disparu. Je suis vraiment très inquiète.",
+      "J'ai peur qu'il lui arrive quelque chose."
+    ],
+    "pensees": [],
+    "question": {},
+    "indice": "",
+    "carte_obtenue": "peur",
+    "cartes": [],
+    "personnage": "Maman",
+    "fin": false
+  },
+  {
+    "num": 5,
+    "phrases": [
+      "Tu as une idée d'où Julia pourrait être ?"
+    ],
+    "pensees": [
+      "Depuis une semaine, Julia nous construit une cabane dans le bois."
+    ],
+    "question": {},
+    "indice": "",
+    "carte_obtenue": "",
+    "cartes": [],
+    "personnage": "Maman",
+    "fin": false
+  },
+  {
+    "num": 6,
+    "phrases": [
+      "Peut-être qu'elle est dans le bois, elle essaye de construire une cabane en ce moment."
+    ],
+    "pensees": [],
+    "question": {},
+    "indice": "",
+    "carte_obtenue": "",
+    "cartes": [],
+    "personnage": "joueur",
+    "fin": false
+  },
+  {
+    "num": 7,
+    "phrases": [
+      "Est-ce que tu peux aller la chercher s'il te plaît ? Je me fais du souci pour elle."
+    ],
+    "pensees": [],
+    "question": {},
+    "indice": "",
+    "carte_obtenue": "",
+    "cartes": [],
+    "personnage": "Maman",
+    "fin": true
+  }
+]
