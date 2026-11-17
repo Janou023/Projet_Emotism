@@ -29,6 +29,7 @@ public class DialogueManager : MonoBehaviour
     public PortraitSlot portraitDroit;
     public Sprite defaultPlayerSprite;      // conservé pour ta scène
     public Sprite defaultNPCColorSprite;    // sprite affiché si le personnage n'a pas de portrait
+    public Sprite portraitPenseeJoueur;
 
     [Header("Historique (optionnel)")]
     public DialogueHistory dialogueHistory;
@@ -150,7 +151,11 @@ public class DialogueManager : MonoBehaviour
         if (pensee)
         {
             if (portraitGauche != null) portraitGauche.Hide();
-            if (portraitDroit != null) portraitDroit.Hide();
+            if (portraitDroit != null)
+            {
+                if (portraitPenseeJoueur != null) portraitDroit.Show(portraitPenseeJoueur, true);
+                else portraitDroit.Hide();
+            }
         }
         else
         {
