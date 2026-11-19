@@ -1861,17 +1861,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1071857952088392183, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2032509675471281391, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
       propertyPath: m_Name
-      value: ladder_Pole_peur
+      value: Entree_Pole_peur
       objectReference: {fileID: 0}
     - target: {fileID: 4472350689607651730, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.14
+      value: -1.96
       objectReference: {fileID: 0}
     - target: {fileID: 4472350689607651730, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.85
+      value: 17.04
       objectReference: {fileID: 0}
     - target: {fileID: 4472350689607651730, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1909,10 +1913,18 @@ PrefabInstance:
       propertyPath: sceneName
       value: PolePeur
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5079211422077744817, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
+    - {fileID: 6528851910490303480, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2032509675471281391, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1606594901}
+    - targetCorrespondingSourceObject: {fileID: 2032509675471281391, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1606594902}
   m_SourcePrefab: {fileID: 100100000, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
 --- !u!4 &487861561 stripped
 Transform:
@@ -4838,6 +4850,85 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 894709440528807259, guid: 82fdb3ae00c628347aa16b51a4536cbd, type: 3}
   m_PrefabInstance: {fileID: 1002642189}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1005321967 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2032509675471281391, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
+  m_PrefabInstance: {fileID: 1096411375}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1005321972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005321967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 611e8b4a24d3d6348beba8c19ed532ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
+  defi: {fileID: 0}
+  jsonDialogue: {fileID: 4900000, guid: e9a3452adc0a103478f19bcb6bfbf63f, type: 3}
+  ouvrirSceneDialogue: 1
+  sceneDialogue: Dialogue
+  fondDialogue: {fileID: -8216677591290309347, guid: 42dbea86f42768748839efa0b365bacf, type: 3}
+  estUnDefi: 0
+  afficherEcranReussiteSimple: 0
+  idDefi: 
+  sceneRetourDefi: Monde
+  interactKey: 101
+  joueur: {fileID: 0}
+  distanceInteraction: 1.5
+  margeClic: 0.5
+  startAutomatically: 1
+  onlyOnce: 0
+  hint: {fileID: 0}
+--- !u!61 &1005321976
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005321967}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 3.76, y: 1.16}
+  m_EdgeRadius: 0
 --- !u!1001 &1024741371
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5156,17 +5247,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1071857952088392183, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2032509675471281391, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
       propertyPath: m_Name
-      value: ladder_Pole_colere
+      value: Entree_Pole_colere
       objectReference: {fileID: 0}
     - target: {fileID: 4472350689607651730, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.26
+      value: -13.02
       objectReference: {fileID: 0}
     - target: {fileID: 4472350689607651730, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.96
+      value: 7.3
       objectReference: {fileID: 0}
     - target: {fileID: 4472350689607651730, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5204,10 +5299,22 @@ PrefabInstance:
       propertyPath: sceneName
       value: PoleColere
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6528851910490303480, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
+      propertyPath: m_Radius
+      value: 0.72
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5079211422077744817, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
+    - {fileID: 6528851910490303480, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2032509675471281391, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1005321972}
+    - targetCorrespondingSourceObject: {fileID: 2032509675471281391, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1005321976}
   m_SourcePrefab: {fileID: 100100000, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
 --- !u!1001 &1105040411
 PrefabInstance:
@@ -8139,6 +8246,85 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6919109525218073694, guid: d5d666bdd433042458df9e52e3affdc8, type: 3}
   m_PrefabInstance: {fileID: 1588872008}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1606594896 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2032509675471281391, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
+  m_PrefabInstance: {fileID: 479102988}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1606594901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606594896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 611e8b4a24d3d6348beba8c19ed532ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
+  defi: {fileID: 0}
+  jsonDialogue: {fileID: 4900000, guid: 212b9fb2c4eda6d42896e9652a79ef49, type: 3}
+  ouvrirSceneDialogue: 1
+  sceneDialogue: Dialogue
+  fondDialogue: {fileID: 5646021317661710079, guid: cba78b4fafeac6d45a7849fb6e7905bc, type: 3}
+  estUnDefi: 0
+  afficherEcranReussiteSimple: 0
+  idDefi: 
+  sceneRetourDefi: Monde
+  interactKey: 101
+  joueur: {fileID: 0}
+  distanceInteraction: 1.5
+  margeClic: 0.5
+  startAutomatically: 1
+  onlyOnce: 0
+  hint: {fileID: 0}
+--- !u!61 &1606594902
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606594896}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.12, y: 1.34}
+  m_EdgeRadius: 0
 --- !u!1 &1614417428
 GameObject:
   m_ObjectHideFlags: 0
@@ -12681,13 +12867,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4472350689607651730, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5079211422077744817, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
       propertyPath: playerReturnPosition
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5079211422077744817, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
+      propertyPath: requiredEmotions.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5079211422077744817, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
       propertyPath: rememberPlayerPositionOnReturn
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5079211422077744817, guid: a48caff8afedf3549b7efb2e0d7f35db, type: 3}
+      propertyPath: 'requiredEmotions.Array.data[0]'
+      value: Colere
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12815,6 +13013,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 7279988679789920415, guid: dd7a2c0c4b6c68e4fad97e71b32c3d07, type: 3}
+    - target: {fileID: 8485198310773009834, guid: 243606d592ad18a46b62ea488fa9e853, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9091833679720867270, guid: 243606d592ad18a46b62ea488fa9e853, type: 3}
       propertyPath: m_Radius
       value: 0.77
