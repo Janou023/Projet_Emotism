@@ -1,0 +1,522 @@
+fileFormatVersion: 2
+guid: 38abd508f50710d468a3b612f8458e20
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7367109843022456902
+    second: Tiles_du_monde_0
+  - first:
+      213: 3356247617201530352
+    second: Tiles_du_monde_1
+  - first:
+      213: -7760759916004570508
+    second: Tiles_du_monde_2
+  - first:
+      213: -7953318103457048572
+    second: Tiles_du_monde_3
+  - first:
+      213: 3679461450838324689
+    second: Tiles_du_monde_4
+  - first:
+      213: 2335070914779157269
+    second: Tiles_du_monde_5
+  - first:
+      213: 540526781396428980
+    second: Tiles_du_monde_6
+  - first:
+      213: 2635830231833815704
+    second: Tiles_du_monde_7
+  - first:
+      213: 2331804244577669248
+    second: Tiles_du_monde_8
+  - first:
+      213: 1609603506018488220
+    second: Tiles_du_monde_9
+  - first:
+      213: 2040926752626660784
+    second: Tiles_du_monde_10
+  - first:
+      213: -7450941783296000760
+    second: Tiles_du_monde_11
+  - first:
+      213: -6788259691473880036
+    second: Tiles_du_monde_12
+  - first:
+      213: 8114216371549000391
+    second: Tiles_du_monde_13
+  - first:
+      213: 2355584405108790607
+    second: Tiles_du_monde_14
+  - first:
+      213: 722244284798114175
+    second: Tiles_du_monde_15
+  - first:
+      213: 3543966135528371113
+    second: Tiles_du_monde_16
+  - first:
+      213: 5966590523292404182
+    second: Tiles_du_monde_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Tram
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 1305
+        width: 1614
+        height: 287
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab7dc5161a4c2c990800000000000000
+      internalID: -7367109843022456902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arret
+      rect:
+        serializedVersion: 2
+        x: 1711
+        y: 1364
+        width: 572
+        height: 254
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f56c89fc69c39e20800000000000000
+      internalID: 3356247617201530352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arbre
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 701
+        width: 389
+        height: 498
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47a057389fd3c4490800000000000000
+      internalID: -7760759916004570508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cabane
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 830
+        width: 648
+        height: 397
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40852c9c25320a190800000000000000
+      internalID: -7953318103457048572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rail
+      rect:
+        serializedVersion: 2
+        x: 2023
+        y: 1108
+        width: 299
+        height: 221
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d536f5e1b2101330800000000000000
+      internalID: 3679461450838324689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buisson
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 721
+        width: 188
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51312c010a6d76020800000000000000
+      internalID: 2335070914779157269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chemin_1
+      rect:
+        serializedVersion: 2
+        x: 1321
+        y: 885
+        width: 282
+        height: 132
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 080dcc32b9b3c5020800000000000000
+      internalID: 2331804244577669248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chemin_2
+      rect:
+        serializedVersion: 2
+        x: 1720
+        y: 846
+        width: 238
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9f84755cd5765610800000000000000
+      internalID: 1609603506018488220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maison
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 21
+        width: 979
+        height: 678
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b557e67114d25c10800000000000000
+      internalID: 2040926752626660784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Route_1
+      rect:
+        serializedVersion: 2
+        x: 1262
+        y: 359
+        width: 289
+        height: 413
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80db684ccefe89890800000000000000
+      internalID: -7450941783296000760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Passage_pietons
+      rect:
+        serializedVersion: 2
+        x: 1573
+        y: 359
+        width: 291
+        height: 413
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1cb89eb6c14bc1a0800000000000000
+      internalID: -6788259691473880036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Route_2
+      rect:
+        serializedVersion: 2
+        x: 1911
+        y: 350
+        width: 430
+        height: 493
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c256d88ccc7b9070800000000000000
+      internalID: 8114216371549000391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Route_simple_1
+      rect:
+        serializedVersion: 2
+        x: 1273
+        y: 61
+        width: 277
+        height: 220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4595f83987b0b020800000000000000
+      internalID: 2355584405108790607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Route_simple_2
+      rect:
+        serializedVersion: 2
+        x: 1660
+        y: 34
+        width: 220
+        height: 282
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f799274b95de50a00800000000000000
+      internalID: 722244284798114175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Route_simple_3
+      rect:
+        serializedVersion: 2
+        x: 1982
+        y: 20
+        width: 333
+        height: 304
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a3be2c6c62be2130800000000000000
+      internalID: 3543966135528371113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 64d39e59feeff234ea509519e424a56a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Arbre: -7760759916004570508
+      Arret: 3356247617201530352
+      Buisson: 2335070914779157269
+      Cabane: -7953318103457048572
+      Chemin_1: 2331804244577669248
+      Chemin_2: 1609603506018488220
+      Maison: 2040926752626660784
+      Passage_pietons: -6788259691473880036
+      Rail: 3679461450838324689
+      Route_1: -7450941783296000760
+      Route_2: 8114216371549000391
+      Route_simple_1: 2355584405108790607
+      Route_simple_2: 722244284798114175
+      Route_simple_3: 3543966135528371113
+      Tiles_du_monde_6: 540526781396428980
+      Tiles_du_monde_7: 2635830231833815704
+      Tram: -7367109843022456902
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

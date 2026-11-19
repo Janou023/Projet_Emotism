@@ -1,0 +1,537 @@
+fileFormatVersion: 2
+guid: dd7a2c0c4b6c68e4fad97e71b32c3d07
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7279988679789920415
+    second: perso_princip_map_spritesheet_0
+  - first:
+      213: 8313735686104862177
+    second: perso_princip_map_spritesheet_1
+  - first:
+      213: 1229255029716186539
+    second: perso_princip_map_spritesheet_2
+  - first:
+      213: 8279923331542902252
+    second: perso_princip_map_spritesheet_3
+  - first:
+      213: -3968784258220576963
+    second: perso_princip_map_spritesheet_4
+  - first:
+      213: -3204181578609932906
+    second: perso_princip_map_spritesheet_5
+  - first:
+      213: 3453999409306801480
+    second: perso_princip_map_spritesheet_6
+  - first:
+      213: 8829211485715917171
+    second: perso_princip_map_spritesheet_7
+  - first:
+      213: 624569283295350753
+    second: perso_princip_map_spritesheet_8
+  - first:
+      213: -8607730596924289468
+    second: perso_princip_map_spritesheet_9
+  - first:
+      213: 2798683809301051797
+    second: perso_princip_map_spritesheet_10
+  - first:
+      213: 2372857462642116195
+    second: perso_princip_map_spritesheet_11
+  - first:
+      213: -370853454298840965
+    second: perso_princip_map_spritesheet_12
+  - first:
+      213: -7781945829489577603
+    second: perso_princip_map_spritesheet_13
+  - first:
+      213: -2302829057403033778
+    second: perso_princip_map_spritesheet_14
+  - first:
+      213: 1076208169882968568
+    second: perso_princip_map_spritesheet_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: perso_princip_map_spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 457
+        width: 96
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f904ebb1227b70560800000000000000
+      internalID: 7279988679789920415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: perso_princip_map_spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 458
+        width: 98
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1edc4c6fe82506370800000000000000
+      internalID: 8313735686104862177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: perso_princip_map_spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 460
+        width: 96
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba57898cfe03f0110800000000000000
+      internalID: 1229255029716186539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: perso_princip_map_spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 458
+        width: 98
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce56510b66238e270800000000000000
+      internalID: 8279923331542902252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: perso_princip_map_spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 306
+        width: 92
+        height: 133
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3fa992aebb0ce8c0800000000000000
+      internalID: -3968784258220576963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: perso_princip_map_spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 308
+        width: 94
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 695ca1ba4d57883d0800000000000000
+      internalID: -3204181578609932906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: perso_princip_map_spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 306
+        width: 92
+        height: 133
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8451426a9221fef20800000000000000
+      internalID: 3453999409306801480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: perso_princip_map_spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 308
+        width: 92
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37965ec2119a78a70800000000000000
+      internalID: 8829211485715917171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: perso_princip_map_spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 157
+        width: 92
+        height: 133
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ef807c347aeaa800800000000000000
+      internalID: 624569283295350753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: perso_princip_map_spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 156
+        width: 94
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44e0118b0a23b8880800000000000000
+      internalID: -8607730596924289468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: perso_princip_map_spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 156
+        width: 92
+        height: 133
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 599b604b81ce6d620800000000000000
+      internalID: 2798683809301051797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: perso_princip_map_spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 156
+        width: 92
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3660b635a451ee020800000000000000
+      internalID: 2372857462642116195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: perso_princip_map_spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 6
+        width: 96
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b708ac88fb67adaf0800000000000000
+      internalID: -370853454298840965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: perso_princip_map_spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 7
+        width: 97
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d71f0f3af79f00490800000000000000
+      internalID: -7781945829489577603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: perso_princip_map_spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 7
+        width: 96
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e476b075c25ba00e0800000000000000
+      internalID: -2302829057403033778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: perso_princip_map_spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 7
+        width: 97
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f16f36e0a57fee00800000000000000
+      internalID: 1076208169882968568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 81774bad2943e064a97eef40c798a756
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      perso_princip_map_spritesheet_0: 7279988679789920415
+      perso_princip_map_spritesheet_1: 8313735686104862177
+      perso_princip_map_spritesheet_10: 2798683809301051797
+      perso_princip_map_spritesheet_11: 2372857462642116195
+      perso_princip_map_spritesheet_12: -370853454298840965
+      perso_princip_map_spritesheet_13: -7781945829489577603
+      perso_princip_map_spritesheet_14: -2302829057403033778
+      perso_princip_map_spritesheet_15: 1076208169882968568
+      perso_princip_map_spritesheet_2: 1229255029716186539
+      perso_princip_map_spritesheet_3: 8279923331542902252
+      perso_princip_map_spritesheet_4: -3968784258220576963
+      perso_princip_map_spritesheet_5: -3204181578609932906
+      perso_princip_map_spritesheet_6: 3453999409306801480
+      perso_princip_map_spritesheet_7: 8829211485715917171
+      perso_princip_map_spritesheet_8: 624569283295350753
+      perso_princip_map_spritesheet_9: -8607730596924289468
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
