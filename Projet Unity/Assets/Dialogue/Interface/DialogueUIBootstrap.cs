@@ -133,10 +133,6 @@ public class DialogueUIBootstrap : MonoBehaviour
             ? personnageJoueur.portraitNeutre
             : portraitManon;
 
-        defiController.gestionnaireTutoriels = FindAnyObjectByType<GestionnaireTutoriels>();
-        if (defiController.gestionnaireTutoriels == null)
-            Debug.LogWarning("DialogueUIBootstrap : aucun GestionnaireTutoriels trouvé dans la scène Dialogue.");
-
         classeur = FindAnyObjectByType<UIClasseur>();
         if (classeur == null && classeurPrefab != null)
             classeur = Instantiate(classeurPrefab, canvas.transform);

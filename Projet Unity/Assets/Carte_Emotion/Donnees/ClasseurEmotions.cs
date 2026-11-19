@@ -14,11 +14,6 @@ public class ClasseurEmotions : MonoBehaviour
 
     private void Awake()
     {
-        ChargerProgression();
-    }
-
-    void Awake()
-    {
         InitialiserCartesDeDepart();
     }
 
@@ -102,6 +97,16 @@ public class ClasseurEmotions : MonoBehaviour
     public List<CarteEmotion> GetCartes()
     {
         return cartesPossedees;
+    }
+
+    /// <summary>
+    /// Compatibilité avec les anciens appels de sauvegarde.
+    /// ProgressManager reste l'unique écrivain du fichier de progression.
+    /// </summary>
+    public static void SauvegarderProgression()
+    {
+        if (ProgressManager.Instance != null)
+            ProgressManager.Instance.Save();
     }
 
     // Compare les identifiants sans tenir compte des majuscules ni des accents.
