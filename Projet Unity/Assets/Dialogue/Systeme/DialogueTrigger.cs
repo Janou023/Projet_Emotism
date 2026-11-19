@@ -17,10 +17,13 @@ public class DialogueTrigger : MonoBehaviour
     public bool ouvrirSceneDialogue;
     public string sceneDialogue = "Dialogue";
     public Sprite fondDialogue;
-    public bool estUnDefi = true;
+    public bool estUnDefi;
+    public bool afficherEcranReussiteSimple;
+    public string idDefi;
+    public string sceneRetourDefi;
 
     [Header("Paramètres d'Interaction")]
-    public KeyCode interactKey = KeyCode.A;
+    public KeyCode interactKey = KeyCode.E;
     public Transform joueur;
     public float distanceInteraction = 1.5f;
     public float margeClic = 0.5f;
@@ -70,8 +73,11 @@ public class DialogueTrigger : MonoBehaviour
 #if ENABLE_INPUT_SYSTEM
         if (Keyboard.current != null)
         {
-            toucheInteraction |= Keyboard.current.aKey.wasPressedThisFrame ||
-                Keyboard.current.digit1Key.wasPressedThisFrame ||
+            if (interactKey == KeyCode.E)
+                toucheInteraction |= Keyboard.current.eKey.wasPressedThisFrame;
+            else if (interactKey == KeyCode.A)
+                toucheInteraction |= Keyboard.current.aKey.wasPressedThisFrame;
+            toucheInteraction |= Keyboard.current.digit1Key.wasPressedThisFrame ||
                 Keyboard.current.numpad1Key.wasPressedThisFrame;
         }
 #endif
@@ -110,7 +116,10 @@ public class DialogueTrigger : MonoBehaviour
 
     void Launch()
     {
-        if (lancementEnCours || DialogueManager.IsActive) return;
+        if (lancementEnCours) return;
+        // Un DialogueManager détruit lors d'un changement de scène ne doit pas
+        // laisser son ancien état statique bloquer les interactions suivantes.
+        if (DialogueManager.IsActive && DialogueManager.Instance != null) return;
         string triggerKey = CleDeclencheur();
         if (onlyOnce && (done || completedTriggers.Contains(triggerKey))) return;
 
@@ -130,7 +139,10 @@ public class DialogueTrigger : MonoBehaviour
                 return;
             }
 
-            DialogueLaunchContext.Preparer(jsonDialogueLancement, fondDialogue, estUnDefi, gameObject.scene.name);
+            string sceneRetour = string.IsNullOrEmpty(sceneRetourDefi)
+                ? gameObject.scene.name : sceneRetourDefi;
+            DialogueLaunchContext.Preparer(jsonDialogueLancement, fondDialogue, estUnDefi,
+                sceneRetour, afficherEcranReussiteSimple, idDefi);
             done = true;
             lancementEnCours = true;
             if (onlyOnce) completedTriggers.Add(triggerKey);

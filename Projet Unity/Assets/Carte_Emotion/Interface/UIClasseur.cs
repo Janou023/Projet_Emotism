@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using UnityEngine.EventSystems;
 
 public class UIClasseur : MonoBehaviour
@@ -9,6 +8,7 @@ public class UIClasseur : MonoBehaviour
     public ClasseurEmotions classeurData;
 
     [Header("Liste des Cartes")]
+    [Tooltip("Source des rectos, versos et illustrations affichées au clic. Modifie les éléments de cette liste dans l'Inspector du prefab ClasseurEmotions.")]
     public CarteEmotion[] toutesLesCartes = new CarteEmotion[5];
 
     [Header("Slots UI (8 boutons de cartes)")]
@@ -17,7 +17,6 @@ public class UIClasseur : MonoBehaviour
     [Header("Panneau de Zoom")]
     public GameObject inspectionPanel;
     public Image enlargedCardImage;
-    public TextMeshProUGUI enlargedCardText; // Optionnel : pour le texteExplicatif
 
     [Header("Conteneur Principal")]
     public GameObject binderPanel;
@@ -70,6 +69,20 @@ public class UIClasseur : MonoBehaviour
 
     void Start()
     {
+        if (classeurData != null)
+        {
+            classeurData.InitialiserCartesDeDepart();
+            classeurData.Restaurer(toutesLesCartes);
+
+            CompteurCartes[] compteurs = FindObjectsByType<CompteurCartes>(
+                FindObjectsInactive.Include, FindObjectsSortMode.None);
+            foreach (CompteurCartes compteur in compteurs)
+            {
+                if (compteur.classeur == classeurData)
+                    compteur.Rafraichir();
+            }
+        }
+
         SetupButtonListeners();
         ConfigurerBoutonClasseur();
         RafraichirUI();
@@ -343,9 +356,9 @@ public class UIClasseur : MonoBehaviour
             {
                 if (inspectionPanel != null && enlargedCardImage != null)
                 {
-                    enlargedCardImage.sprite = carte.illustration;
-                    if (enlargedCardText != null)
-                        enlargedCardText.text = carte.texteExplicatif;
+                    enlargedCardImage.sprite = carte.illustrationExplicative != null
+                        ? carte.illustrationExplicative
+                        : carte.illustration;
 
                     inspectionPanel.SetActive(true);
                 }

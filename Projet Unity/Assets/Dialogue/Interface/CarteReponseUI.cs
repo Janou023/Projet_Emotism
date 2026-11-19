@@ -22,7 +22,7 @@ public class CarteReponseUI : MonoBehaviour
     PortraitSlot portraitGauche;
     PortraitSlot portraitDroit;
     CarteEmotion carteSelectionnee;
-    Sprite cadreEmplacement;
+    public Sprite cadreEmplacement;
     TMP_Text texteConfirmation;
     Action apresSolution;
     string indicesDisponibles;
@@ -48,17 +48,8 @@ public class CarteReponseUI : MonoBehaviour
 
     public void Configurer()
     {
-        Texture2D textureCadre = Resources.Load<Texture2D>("CadreEmplacementCarte");
-        if (textureCadre == null)
-            Debug.LogError("CarteReponseUI : l'image CadreEmplacementCarte est introuvable dans Assets/Resources.");
-        else
-        {
-            cadreEmplacement = Sprite.Create(
-                textureCadre,
-                new Rect(0f, 0f, textureCadre.width, textureCadre.height),
-                new Vector2(0.5f, 0.5f));
-            cadreEmplacement.name = "CadreEmplacementCarte_Runtime";
-        }
+        if (cadreEmplacement == null && emplacementCarte != null)
+            cadreEmplacement = emplacementCarte.sprite;
 
         if (confirmationPanel != null) confirmationPanel.SetActive(false);
         if (confirmationPanel != null)
@@ -148,11 +139,6 @@ public class CarteReponseUI : MonoBehaviour
             emplacementCarte.gameObject.AddComponent<CarteDropTarget>();
 
         ConfigurerBoutonsConfirmation(EtatConfirmation.Validation);
-    }
-
-    void OnDestroy()
-    {
-        if (cadreEmplacement != null) Destroy(cadreEmplacement);
     }
 
     public void OuvrirSelection(

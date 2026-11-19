@@ -1,16 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Classeur de cartes émotion.
+/// La liste des cartes possédées est désormais enregistrée dans la sauvegarde (ProgressManager)
+/// </summary>
 public class ClasseurEmotions : MonoBehaviour
 {
-    private const string CleCartesPossedees = "SauvegardeJoueur_CartesPossedees";
-
-    [System.Serializable]
-    private class DonneesCartes
-    {
-        public List<string> ids = new List<string>();
-    }
-
+    // CARTES DE DÉPART : possédées dès le début de la partie (ex. la carte Joie).
+    // Les cartes obtenues ensuite sont ajoutées à la sauvegarde, pas à cette liste dans l'éditeur.
+    // Laisser vide si le joueur ne doit avoir aucune carte au départ.
     [SerializeField] private List<CarteEmotion> cartesPossedees = new List<CarteEmotion>();
 
     private void Awake()
@@ -18,18 +17,86 @@ public class ClasseurEmotions : MonoBehaviour
         ChargerProgression();
     }
 
-    public void AjouterCarte(CarteEmotion carte)
+    void Awake()
     {
-        if (carte != null && !Possede(carte))
+        InitialiserCartesDeDepart();
+    }
+
+    public void InitialiserCartesDeDepart()
+    {
+        // Appelée aussi à l'ouverture du carnet au cas où le ProgressManager
+        // n'était pas encore initialisé pendant Awake.
+        if (ProgressManager.Instance == null) return;
+
+        foreach (var carte in cartesPossedees)
         {
-            cartesPossedees.Add(carte);
-            SauvegarderProgression();
+            if (carte != null && !string.IsNullOrWhiteSpace(carte.id))
+                ProgressManager.Instance.UnlockEmotion(carte.id);
         }
+    }
+
+    /// <summary>
+    /// Ajoute une carte au classeur et l'enregistre dans la sauvegarde.
+    /// Renvoie true si la carte est NOUVELLE (le jeu peut alors afficher l'animation d'obtention).
+    /// </summary>
+    public bool AjouterCarte(CarteEmotion carte)
+    {
+        if (carte == null) return false;
+
+        bool nouvelle;
+        if (ProgressManager.Instance != null)
+            nouvelle = ProgressManager.Instance.UnlockEmotion(carte.id);
+        else
+            nouvelle = !ListeContient(carte.id); // repli : scène testée sans ProgressManager
+
+        if (!ListeContient(carte.id))
+            cartesPossedees.Add(carte);
+
+        return nouvelle;
     }
 
     public bool Possede(CarteEmotion carte)
     {
-        return carte != null && cartesPossedees.Exists(c => c != null && c.id == carte.id);
+        if (carte == null) return false;
+
+        if (ProgressManager.Instance != null)
+            return ProgressManager.Instance.IsEmotionUnlocked(carte.id);
+
+        return ListeContient(carte.id); // repli : scène testée sans ProgressManager
+    }
+
+    /// <summary>Nombre de cartes possédées (d'après la sauvegarde).</summary>
+    public int NombreCartes =>
+        ProgressManager.Instance != null
+            ? ProgressManager.Instance.Data.emotions_terminees.Count
+            : cartesPossedees.Count;
+
+    /// <summary>
+    /// Remplace les entrées possédées par les fiches correspondantes du catalogue,
+    /// pour que les cartes possédées aient aussi leurs sprites et leur description.
+    /// </summary>
+    public void Restaurer(IEnumerable<CarteEmotion> catalogue)
+    {
+        if (catalogue == null) return;
+
+        List<CarteEmotion> cartesCatalogue = new List<CarteEmotion>(catalogue);
+        List<CarteEmotion> cartesRestaurees = new List<CarteEmotion>();
+        foreach (var carte in cartesCatalogue)
+        {
+            if (carte == null || string.IsNullOrWhiteSpace(carte.id)) continue;
+
+            bool estPossedee = ProgressManager.Instance != null
+                ? ProgressManager.Instance.IsEmotionUnlocked(carte.id)
+                : ListeContient(carte.id);
+
+            bool dejaAjoutee = cartesRestaurees.Exists(c =>
+                ProgressData.Normalize(c.id) == ProgressData.Normalize(carte.id));
+            if (estPossedee && !dejaAjoutee)
+                cartesRestaurees.Add(carte);
+        }
+
+        cartesPossedees.Clear();
+        cartesPossedees.AddRange(cartesRestaurees);
     }
 
     public List<CarteEmotion> GetCartes()
@@ -37,51 +104,13 @@ public class ClasseurEmotions : MonoBehaviour
         return cartesPossedees;
     }
 
-    public static void SauvegarderProgression()
+    // Compare les identifiants sans tenir compte des majuscules ni des accents.
+    bool ListeContient(string id)
     {
-        ClasseurEmotions[] classeurs = FindObjectsByType<ClasseurEmotions>(FindObjectsInactive.Include);
-        if (classeurs.Length == 0)
-        {
-            return;
-        }
+        string idNormalise = ProgressData.Normalize(id);
+        if (idNormalise == "") return false;
 
-        DonneesCartes donnees = new DonneesCartes();
-        HashSet<string> ids = new HashSet<string>();
-        foreach (ClasseurEmotions classeur in classeurs)
-        {
-            foreach (CarteEmotion carte in classeur.cartesPossedees)
-            {
-                if (carte != null && !string.IsNullOrWhiteSpace(carte.id) && ids.Add(carte.id))
-                {
-                    donnees.ids.Add(carte.id);
-                }
-            }
-        }
-
-        PlayerPrefs.SetString(CleCartesPossedees, JsonUtility.ToJson(donnees));
-        PlayerPrefs.Save();
-    }
-
-    private void ChargerProgression()
-    {
-        if (!PlayerPrefs.HasKey(CleCartesPossedees))
-        {
-            return;
-        }
-
-        DonneesCartes donnees = JsonUtility.FromJson<DonneesCartes>(PlayerPrefs.GetString(CleCartesPossedees));
-        if (donnees == null || donnees.ids == null)
-        {
-            Debug.LogWarning("La sauvegarde des cartes est invalide et ne peut pas etre chargee.", this);
-            return;
-        }
-
-        foreach (string id in donnees.ids)
-        {
-            if (!string.IsNullOrWhiteSpace(id) && !cartesPossedees.Exists(c => c != null && c.id == id))
-            {
-                cartesPossedees.Add(new CarteEmotion { id = id });
-            }
-        }
+        return cartesPossedees.Exists(c => c != null &&
+            ProgressData.Normalize(c.id) == idNormalise);
     }
 }

@@ -13,35 +13,14 @@ public class DeplacementJoueur : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     private Vector2 movement;
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    private static void ReinitialiserVerificationSceneInitiale()
-    {
-        verificationSceneInitialeEffectuee = false;
-    }
-
     void Awake()
     {
-        if (verificationSceneInitialeEffectuee)
+        if (LoadDefi.TryGetReturnPosition(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name, out Vector3 position))
         {
-            return;
+            transform.position = position;
+            if (rigidbody != null)
+                rigidbody.position = position;
         }
-
-        verificationSceneInitialeEffectuee = true;
-        string sceneSauvegardee = PlayerPrefs.GetString(CleSceneSauvegardee, string.Empty);
-        string sceneActuelle = SceneManager.GetActiveScene().name;
-        if (string.IsNullOrEmpty(sceneSauvegardee) || sceneSauvegardee == sceneActuelle)
-        {
-            return;
-        }
-
-        if (!Application.CanStreamedLevelBeLoaded(sceneSauvegardee))
-        {
-            Debug.LogWarning("La scene sauvegardee n'est pas disponible dans les scenes du jeu : " + sceneSauvegardee, this);
-            return;
-        }
-
-        Debug.Log("Chargement de la scene sauvegardee : " + sceneSauvegardee, this);
-        SceneManager.LoadScene(sceneSauvegardee);
     }
 
     void Update()
@@ -59,11 +38,11 @@ public class DeplacementJoueur : MonoBehaviour
             movement.y = 0;
         }
 
-        movement = movement.normalized;
+        movement = Vector2.ClampMagnitude(movement, 1f);
 
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
-        if (movement.sqrMagnitude > 0.1f)
+        if (movement.sqrMagnitude > 0.01f)
         {
             spriteRenderer.flipX = movement.x < 0;
             animator.SetFloat("Horizontal", movement.x);

@@ -29,6 +29,7 @@ public class DialogueManager : MonoBehaviour
     public PortraitSlot portraitDroit;
     public Sprite defaultPlayerSprite;      // conservé pour ta scène
     public Sprite defaultNPCColorSprite;    // sprite affiché si le personnage n'a pas de portrait
+    public Sprite portraitPenseeJoueur;
 
     [Header("Historique (optionnel)")]
     public DialogueHistory dialogueHistory;
@@ -60,6 +61,8 @@ public class DialogueManager : MonoBehaviour
     Coroutine typingRoutine;
     Action surFin;
     Action<int> surChoix;
+    readonly Dictionary<TMP_Text, (float size, float spacing)> baseStyles =
+        new Dictionary<TMP_Text, (float size, float spacing)>();
 
     void Awake()
     {
@@ -75,11 +78,59 @@ public class DialogueManager : MonoBehaviour
 
         if (choicesContainer != null) choicesContainer.gameObject.SetActive(false);
         CacherChoix();
+        if (SettingsManager.Instance != null)
+        {
+            SettingsManager.Instance.OnSettingsChanged += AppliquerReglages;
+            AppliquerReglages();
+        }
+    }
+
+    void OnEnable()
+    {
+        if (SettingsManager.Instance != null)
+        {
+            SettingsManager.Instance.OnSettingsChanged -= AppliquerReglages;
+            SettingsManager.Instance.OnSettingsChanged += AppliquerReglages;
+            AppliquerReglages();
+        }
     }
 
     void OnDestroy()
     {
+        if (SettingsManager.Instance != null)
+            SettingsManager.Instance.OnSettingsChanged -= AppliquerReglages;
         if (Instance == this) { Instance = null; IsActive = false; }
+    }
+
+    void AppliquerReglages()
+    {
+        if (SettingsManager.Instance == null) return;
+        var reglages = SettingsManager.Instance.Data;
+
+        AjouterStyle(textDialogue);
+        AjouterStyle(textNom);
+        AjouterStyle(questionText);
+        if (choiceButtons != null)
+            foreach (Button button in choiceButtons)
+                if (button != null)
+                    foreach (TMP_Text label in button.GetComponentsInChildren<TMP_Text>(true))
+                        AjouterStyle(label);
+
+        foreach (var style in baseStyles)
+        {
+            if (style.Key == null) continue;
+            style.Key.fontSize = style.Value.size * AccessibleText.ScaleFor(reglages.textSizeLevel);
+            style.Key.lineSpacing = style.Value.spacing + reglages.lineSpacing * 40f;
+        }
+
+        if (reglages.instantText && typing)
+            FinishTyping();
+    }
+
+    void AjouterStyle(TMP_Text label)
+    {
+        if (label != null && !baseStyles.ContainsKey(label))
+            baseStyles.Add(label, (label.fontSize, label.lineSpacing));
     }
 
     // ---------------- Dialogue ----------------
@@ -99,6 +150,7 @@ public class DialogueManager : MonoBehaviour
         IsActive = true;
         startFrame = Time.frameCount;      // le clic qui a lancé le dialogue ne saute pas la 1re ligne
 
+        AppliquerReglages();
         if (dialoguePanel != null) dialoguePanel.SetActive(true);
         AfficherElements(true);
         onDialogueStart.Invoke();
@@ -150,7 +202,11 @@ public class DialogueManager : MonoBehaviour
         if (pensee)
         {
             if (portraitGauche != null) portraitGauche.Hide();
-            if (portraitDroit != null) portraitDroit.Hide();
+            if (portraitDroit != null)
+            {
+                if (portraitPenseeJoueur != null) portraitDroit.Show(portraitPenseeJoueur, true);
+                else portraitDroit.Hide();
+            }
         }
         else
         {
@@ -179,11 +235,28 @@ public class DialogueManager : MonoBehaviour
         textDialogue.maxVisibleCharacters = 0;
         textDialogue.ForceMeshUpdate();
         int total = textDialogue.textInfo.characterCount;
+        AppliquerReglages();
+        if (SettingsManager.Instance != null && SettingsManager.Instance.Data.instantText)
+        {
+            FinishTyping();
+            yield break;
+        }
 
         float affiches = 0f;
         while (affiches < total)
         {
-            affiches += typingSpeed > 0f ? Time.unscaledDeltaTime / typingSpeed : total;
+            float vitesse = typingSpeed;
+            if (SettingsManager.Instance != null)
+            {
+                float facteur = Mathf.Lerp(2f, 0.1f, SettingsManager.Instance.Data.textSpeed);
+                vitesse *= facteur;
+                if (SettingsManager.Instance.Data.instantText)
+                {
+                    FinishTyping();
+                    yield break;
+                }
+            }
+            affiches += vitesse > 0f ? Time.unscaledDeltaTime / vitesse : total;
             textDialogue.maxVisibleCharacters = Mathf.Min(total, Mathf.FloorToInt(affiches));
             yield return null;
         }
@@ -213,6 +286,7 @@ public class DialogueManager : MonoBehaviour
     public void AfficherInvite(string texte)
     {
         Masquer();
+        AppliquerReglages();
         IsActive = true;
         if (dialoguePanel != null) dialoguePanel.SetActive(!string.IsNullOrEmpty(texte));
         if (textDialogue != null) textDialogue.gameObject.SetActive(true);
@@ -276,6 +350,7 @@ public class DialogueManager : MonoBehaviour
             button.onClick.AddListener(() => Choisir(index));
         }
 
+        AppliquerReglages();
         Canvas.ForceUpdateCanvases();
         LayoutRebuilder.ForceRebuildLayoutImmediate(choicesContainer);
     }

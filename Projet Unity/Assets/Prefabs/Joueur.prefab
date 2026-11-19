@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.45, y: -1.25, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,9 +83,9 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -4114010221568612687, guid: 60464933adb8fd440aef667cb3954496, type: 3}
+  m_Sprite: {fileID: 4268828275194944939, guid: b55e1bea29a30cf46b51fdac803a4f93, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -109,6 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeplacementJoueur
   moveSpeed: 3
+  freeMovement: 0
   rigidbody: {fileID: 3313370110034947943}
   animator: {fileID: 6321514462284199307}
   spriteRenderer: {fileID: 8485198310773009834}
@@ -138,7 +139,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &6321514462284199307
 Animator:
   serializedVersion: 7

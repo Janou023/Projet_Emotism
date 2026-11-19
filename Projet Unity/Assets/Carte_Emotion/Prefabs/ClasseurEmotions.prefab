@@ -68,8 +68,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -897896577434161979, guid: 89a987e287458ca4a9b3bf6af6a8a8fe, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: -656367341627887373, guid: ec42b8b1de2e15246a55899d04b70ea6, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -157,6 +157,8 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+  m_MaxWidth: -1
+  m_MaxHeight: -1
 --- !u!1 &653722186484683897
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,8 +347,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Carnet des Emotions
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bf5da6bb181f8074d99d8674315a156c, type: 2}
+  m_sharedMaterial: {fileID: -7494975271751240817, guid: bf5da6bb181f8074d99d8674315a156c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -370,7 +372,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 69.5
+  m_fontSize: 72
   m_fontSizeBase: 48.76
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -381,6 +383,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -392,7 +395,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -434,6 +437,8 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+  m_MaxWidth: -1
+  m_MaxHeight: -1
 --- !u!1 &2022502255826506323
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,8 +649,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1649391307269744859, guid: d2fbad78366998946b0bbd7b05effc79, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 8507464666147789446, guid: bee9a68ef608f8e4184cf5079096e4bd, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -824,7 +829,7 @@ GameObject:
   - component: {fileID: 3550257505526808817}
   - component: {fileID: 4007218304211678402}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: ClasseurEmotions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -869,6 +874,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -931,27 +937,32 @@ MonoBehaviour:
   - id: Joie
     emotion: 0
     illustration: {fileID: 405011534681376040, guid: 5991db4811085a74da068b47a7cddf60, type: 3}
-    lockedSprite: {fileID: 3102294408948863480, guid: 140ea89dcd2460745bf2297e44dd1209, type: 3}
+    lockedSprite: {fileID: -2416840346491951443, guid: 3b9596f9db47e184080ae49f19e7e7a9, type: 3}
+    illustrationExplicative: {fileID: 0}
     texteExplicatif: 
   - id: "Col\xE8re"
     emotion: 1
-    illustration: {fileID: -1236607503486771736, guid: af1483831967e08489e662bbb5fdce77, type: 3}
-    lockedSprite: {fileID: -897896577434161979, guid: 89a987e287458ca4a9b3bf6af6a8a8fe, type: 3}
+    illustration: {fileID: 6989491331060828681, guid: 6588724a8bb992149b1c1a948dfbf83a, type: 3}
+    lockedSprite: {fileID: -656367341627887373, guid: ec42b8b1de2e15246a55899d04b70ea6, type: 3}
+    illustrationExplicative: {fileID: -8865349819657786182, guid: 0aaa896588c73ae4c922d14cdf1b6ef6, type: 3}
     texteExplicatif: 
   - id: Peur
     emotion: 2
-    illustration: {fileID: -4856073130520473659, guid: 11a04722361179440925ea3d542dc5b4, type: 3}
-    lockedSprite: {fileID: 1649391307269744859, guid: d2fbad78366998946b0bbd7b05effc79, type: 3}
+    illustration: {fileID: 2270243128297679544, guid: e8332e632d31bcb418a984a08a89d716, type: 3}
+    lockedSprite: {fileID: 8507464666147789446, guid: bee9a68ef608f8e4184cf5079096e4bd, type: 3}
+    illustrationExplicative: {fileID: -8689484497898423409, guid: e9e453dfb653a454692d3ff6d3b7a26c, type: 3}
     texteExplicatif: 
   - id: Tristesse
     emotion: 3
     illustration: {fileID: -7422138848110051362, guid: 0acab269ff6470c4f84ca66236bb4907, type: 3}
-    lockedSprite: {fileID: -3873870304093516695, guid: 4211f3be7d5d9aa48adf7156f44a2f4b, type: 3}
+    lockedSprite: {fileID: 5554643781762505088, guid: 5805d2d0d4f77fa468fb6c7a0aae8e22, type: 3}
+    illustrationExplicative: {fileID: 0}
     texteExplicatif: 
   - id: Degout
     emotion: 4
     illustration: {fileID: -2357589997477029939, guid: 3b5b19ebf5a606246b93260dec30ac70, type: 3}
-    lockedSprite: {fileID: -6213147208409999022, guid: f84c21d684c95ac4190ef04f221dc975, type: 3}
+    lockedSprite: {fileID: 3682607121764877098, guid: 97ad5dd254199544995d92430c20c38f, type: 3}
+    illustrationExplicative: {fileID: 0}
     texteExplicatif: 
   slotImages:
   - {fileID: 8129453528318979043}
@@ -961,7 +972,6 @@ MonoBehaviour:
   - {fileID: 6504656082081684368}
   inspectionPanel: {fileID: 5632131835386342017}
   enlargedCardImage: {fileID: 6133119654372790508}
-  enlargedCardText: {fileID: 0}
   binderPanel: {fileID: 2217458172166890964}
   centrerEnModeSelection: 1
   positionSelection: {x: 0, y: 0}
@@ -984,10 +994,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cartesPossedees:
-  - id: Joie
-    emotion: 0
-    illustration: {fileID: 405011534681376040, guid: 5991db4811085a74da068b47a7cddf60, type: 3}
-    lockedSprite: {fileID: 3102294408948863480, guid: 140ea89dcd2460745bf2297e44dd1209, type: 3}
+  - id: Peur
+    emotion: 2
+    illustration: {fileID: 0}
+    lockedSprite: {fileID: 0}
+    illustrationExplicative: {fileID: 0}
     texteExplicatif: 
 --- !u!1 &3852304943013205072
 GameObject:
@@ -1160,6 +1171,8 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+  m_MaxWidth: -1
+  m_MaxHeight: -1
 --- !u!1 &4632253004345224341
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,8 +1240,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -3873870304093516695, guid: 4211f3be7d5d9aa48adf7156f44a2f4b, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 5554643781762505088, guid: 5805d2d0d4f77fa468fb6c7a0aae8e22, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1573,8 +1586,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bf5da6bb181f8074d99d8674315a156c, type: 2}
+  m_sharedMaterial: {fileID: -7494975271751240817, guid: bf5da6bb181f8074d99d8674315a156c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1609,6 +1622,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1620,7 +1634,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -1662,6 +1676,8 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+  m_MaxWidth: -1
+  m_MaxHeight: -1
 --- !u!114 &8500295228764943624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1747,8 +1763,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2357589997477029939, guid: 3b5b19ebf5a606246b93260dec30ac70, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 3682607121764877098, guid: 97ad5dd254199544995d92430c20c38f, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1912,7 +1928,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -2118,8 +2134,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: X
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bf5da6bb181f8074d99d8674315a156c, type: 2}
+  m_sharedMaterial: {fileID: -7494975271751240817, guid: bf5da6bb181f8074d99d8674315a156c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2154,6 +2170,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2165,7 +2182,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -2284,6 +2301,8 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+  m_MaxWidth: -1
+  m_MaxHeight: -1
 --- !u!1 &8749517401565073853
 GameObject:
   m_ObjectHideFlags: 0
@@ -2485,7 +2504,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3102294408948863480, guid: 140ea89dcd2460745bf2297e44dd1209, type: 3}
+  m_Sprite: {fileID: -2416840346491951443, guid: 3b9596f9db47e184080ae49f19e7e7a9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
