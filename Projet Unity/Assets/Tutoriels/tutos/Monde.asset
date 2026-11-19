@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Monde
   m_EditorClassIdentifier: Assembly-CSharp::ContenuTutoriel
   id: Monde
-  titre: Bienvenue dans le Monde !
-  texte: "C'est ici que vous pourrez vous d\xE9placer entre les d\xE9fis et les poles \xE9motions !"
+  titre: 'Monde '
+  texte: "Bienvenue dans le Monde ! Il s\u2019agit d\u201Dun hub dans lequel vous pouvez vous d\xE9placer vers des P\xF4les \xC9motions ou des D\xE9fis de vos choix. \r\nAttention cependant, vous ne pouvez acc\xE9der qu\u2019au d\xE9fi dont vous avez les cartes \xE9motions n\xE9cessaires ! "
