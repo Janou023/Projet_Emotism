@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,12 +14,19 @@ public class ClasseurEmotions : MonoBehaviour
 
     void Awake()
     {
-        // Les cartes de départ sont enregistrées dans la sauvegarde, sans animation
+        InitialiserCartesDeDepart();
+    }
+
+    public void InitialiserCartesDeDepart()
+    {
+        // Appelée aussi à l'ouverture du carnet au cas où le ProgressManager
+        // n'était pas encore initialisé pendant Awake.
         if (ProgressManager.Instance == null) return;
 
         foreach (var carte in cartesPossedees)
         {
-            if (carte != null) ProgressManager.Instance.UnlockEmotion(carte.id);
+            if (carte != null && !string.IsNullOrWhiteSpace(carte.id))
+                ProgressManager.Instance.UnlockEmotion(carte.id);
         }
     }
 
@@ -61,19 +67,31 @@ public class ClasseurEmotions : MonoBehaviour
             : cartesPossedees.Count;
 
     /// <summary>
-    /// Reconstruit la liste des cartes possédées à partir de la sauvegarde.
-    /// À appeler avec la liste complète des cartes du jeu (UIClasseur.toutesLesCartes).
+    /// Remplace les entrées possédées par les fiches correspondantes du catalogue,
+    /// pour que les cartes possédées aient aussi leurs sprites et leur description.
     /// </summary>
     public void Restaurer(IEnumerable<CarteEmotion> catalogue)
     {
-        if (catalogue == null || ProgressManager.Instance == null) return;
+        if (catalogue == null) return;
 
-        foreach (var carte in catalogue)
+        List<CarteEmotion> cartesCatalogue = new List<CarteEmotion>(catalogue);
+        List<CarteEmotion> cartesRestaurees = new List<CarteEmotion>();
+        foreach (var carte in cartesCatalogue)
         {
-            if (carte == null) continue;
-            if (ProgressManager.Instance.IsEmotionUnlocked(carte.id) && !ListeContient(carte.id))
-                cartesPossedees.Add(carte);
+            if (carte == null || string.IsNullOrWhiteSpace(carte.id)) continue;
+
+            bool estPossedee = ProgressManager.Instance != null
+                ? ProgressManager.Instance.IsEmotionUnlocked(carte.id)
+                : ListeContient(carte.id);
+
+            bool dejaAjoutee = cartesRestaurees.Exists(c =>
+                ProgressData.Normalize(c.id) == ProgressData.Normalize(carte.id));
+            if (estPossedee && !dejaAjoutee)
+                cartesRestaurees.Add(carte);
         }
+
+        cartesPossedees.Clear();
+        cartesPossedees.AddRange(cartesRestaurees);
     }
 
     public List<CarteEmotion> GetCartes()
@@ -81,10 +99,13 @@ public class ClasseurEmotions : MonoBehaviour
         return cartesPossedees;
     }
 
-    // Comparaison sans tenir compte des majuscules : "Joie" et "joie" sont la même carte
+    // Compare les identifiants sans tenir compte des majuscules ni des accents.
     bool ListeContient(string id)
     {
+        string idNormalise = ProgressData.Normalize(id);
+        if (idNormalise == "") return false;
+
         return cartesPossedees.Exists(c => c != null &&
-            string.Equals(c.id, id, StringComparison.OrdinalIgnoreCase));
+            ProgressData.Normalize(c.id) == idNormalise);
     }
 }

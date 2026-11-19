@@ -27,7 +27,8 @@ public class DialoguePrefabLauncher : MonoBehaviour
         {
             if (hasLaunchSettings)
                 instance.LancerDialogue(launchSettings.Json, launchSettings.Fond,
-                    launchSettings.EstDefi, launchSettings.SceneRetour);
+                    launchSettings.EstDefi, launchSettings.SceneRetour,
+                    launchSettings.EcranReussiteSimple, launchSettings.IdDefi);
             else
                 instance.LancerDialogue();
         }

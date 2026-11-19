@@ -2120,6 +2120,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8485198310773009834, guid: 243606d592ad18a46b62ea488fa9e853, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2284,9 +2288,12 @@ MonoBehaviour:
   sceneDialogue: Dialogue
   fondDialogue: {fileID: -8231925205340745331, guid: 8b1ef2902cf2f834e8aa187fc816b241, type: 3}
   estUnDefi: 1
+  afficherEcranReussiteSimple: 1
+  idDefi: tram
+  sceneRetourDefi: Monde
   interactKey: 101
   joueur: {fileID: 6852574}
-  distanceInteraction: 2
+  distanceInteraction: 4.5
   margeClic: 0.5
   startAutomatically: 0
   onlyOnce: 0

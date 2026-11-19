@@ -9,6 +9,16 @@ public class DeplacementJoueur : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     private Vector2 movement;
 
+    void Awake()
+    {
+        if (LoadDefi.TryGetReturnPosition(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name, out Vector3 position))
+        {
+            transform.position = position;
+            if (rigidbody != null)
+                rigidbody.position = position;
+        }
+    }
+
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -19,11 +29,11 @@ public class DeplacementJoueur : MonoBehaviour
             movement.y = 0;
         }
 
-        movement = movement.normalized;
+        movement = Vector2.ClampMagnitude(movement, 1f);
 
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
-        if (movement.sqrMagnitude > 0.1f)
+        if (movement.sqrMagnitude > 0.01f)
         {
             spriteRenderer.flipX = movement.x < 0;
             animator.SetFloat("Horizontal", movement.x);

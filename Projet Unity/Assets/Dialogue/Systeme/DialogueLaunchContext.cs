@@ -6,6 +6,8 @@ public struct DialogueLaunchSettings
     public Sprite Fond;
     public bool EstDefi;
     public string SceneRetour;
+    public bool EcranReussiteSimple;
+    public string IdDefi;
 }
 
 public static class DialogueLaunchContext
@@ -13,14 +15,17 @@ public static class DialogueLaunchContext
     static DialogueLaunchSettings settings;
     static bool isPending;
 
-    public static void Preparer(TextAsset json, Sprite fond, bool estDefi, string sceneRetour)
+    public static void Preparer(TextAsset json, Sprite fond, bool estDefi, string sceneRetour,
+        bool ecranReussiteSimple = false, string idDefi = "")
     {
         settings = new DialogueLaunchSettings
         {
             Json = json,
             Fond = fond,
             EstDefi = estDefi,
-            SceneRetour = sceneRetour
+            SceneRetour = sceneRetour,
+            EcranReussiteSimple = ecranReussiteSimple,
+            IdDefi = idDefi
         };
         isPending = true;
     }
