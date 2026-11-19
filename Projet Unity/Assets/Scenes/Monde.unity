@@ -341,7 +341,7 @@ MonoBehaviour:
   tutorielAuLancement: {fileID: 11400000, guid: 1709c36097e4b17418b2ed16bff04129, type: 2}
   aideCartes: {fileID: 0}
   aideChoix: {fileID: 0}
-  reinitialiserTutorielsPourTestAuDemarrage: 0
+  reinitialiserTutorielsPourTestAuDemarrage: 1
 --- !u!1 &1624962273
 GameObject:
   m_ObjectHideFlags: 0

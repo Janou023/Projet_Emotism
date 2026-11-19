@@ -318,6 +318,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2484024855855913547, guid: 9131860145ef5cd4d95bd51cbea51adc, type: 3}
+      propertyPath: reinitialiserTutorielsPourTestAuDemarrage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4495833525755860066, guid: 9131860145ef5cd4d95bd51cbea51adc, type: 3}
       propertyPath: m_text
       value: 
