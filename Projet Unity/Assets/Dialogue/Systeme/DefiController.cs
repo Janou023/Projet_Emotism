@@ -20,11 +20,14 @@ public class DefiController : MonoBehaviour
     public UIClasseur classeur;
     public CarteReponseUI interfaceCarte;
     public CardRewardPopup popupCarte;        // fenêtre « Nouvelle carte obtenue ! » (assignée par DialogueUIBootstrap)
+    public EcranReussiteDefi ecranReussite;
 
     [Header("Résultat")]
     public List<ReponseJoueur> historique = new List<ReponseJoueur>();
     public UnityEvent onDefiTermine = new UnityEvent();
-    public bool afficherAnimationVictoire = true;
+    public bool afficherAnimationVictoire;
+    public bool afficherEcranReussiteSimple;
+    public string idDefi;
     /// <summary>À brancher sur ProgressionManager.Enregistrer / FeedBackManager.AfficherRetourReponseJoueur.</summary>
     public event Action<ReponseJoueur> OnReponse;
 
@@ -178,7 +181,11 @@ public class DefiController : MonoBehaviour
 
         dialogueManager.Masquer();
         if (etapeActive.fin) Terminer();
-        else EtapeSuivante();
+        else
+        {
+            EcranReussiteDefi.JouerSonReussite();
+            EtapeSuivante();
+        }
         return true;
     }
 
@@ -242,7 +249,17 @@ public class DefiController : MonoBehaviour
         etapeActive = null;
         dialogueManager.FinConversation();
 
+        if (afficherVictoire && !string.IsNullOrWhiteSpace(idDefi) &&
+            ProgressManager.Instance != null)
+            ProgressManager.Instance.CompleteChallenge(idDefi);
+
         if (!afficherVictoire || !afficherAnimationVictoire) { NotifierFinDefi(); return; }
+
+        if (afficherEcranReussiteSimple)
+        {
+            AfficherEcranReussite();
+            return;
+        }
 
         VideoClip animation = Resources.Load<VideoClip>("Youpi_reussi");
         if (animation == null)
@@ -255,6 +272,28 @@ public class DefiController : MonoBehaviour
         JouerAnimationVictoire(animation);
     }
 
+    void AfficherEcranReussite()
+    {
+        if (animationVictoireEnCours) return;
+        animationVictoireEnCours = true;
+
+        if (ecranReussite == null)
+            ecranReussite = FindAnyObjectByType<EcranReussiteDefi>(FindObjectsInactive.Include);
+
+        if (ecranReussite == null)
+        {
+            Debug.LogError("DefiController : ajoute EcranReussiteDefi dans la scène Dialogue.");
+            animationVictoireEnCours = false;
+            NotifierFinDefi();
+            return;
+        }
+
+        ecranReussite.Afficher(() =>
+        {
+            animationVictoireEnCours = false;
+            NotifierFinDefi();
+        });
+    }
     void JouerAnimationVictoire(VideoClip animation)
     {
         if (animationVictoireEnCours) return;

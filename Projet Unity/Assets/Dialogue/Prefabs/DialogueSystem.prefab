@@ -47,6 +47,7 @@ MonoBehaviour:
   dialoguesJson: {fileID: 4900000, guid: 538d17585f4f97946974da6b1aa6312e, type: 3}
   fondScene: {fileID: 3055159045398532384, guid: 36c744124840baa469ade71ad3adcb59, type: 3}
   portraitManon: {fileID: -5054778891235105108, guid: 9ac49dcfd25e7964597932ad2bbfe849, type: 3}
+  fondEmplacementCarte: {fileID: 8816697145619603450, guid: e7e1717c4b5fcee49a5b4108af70bb79, type: 3}
   classeurPrefab: {fileID: 3550257505526808817, guid: 35c543195469ab54b8ad2796a3eb90af, type: 3}
   nomJoueur: Moi
   decalagePortraitSelection: {x: -450, y: 0}
