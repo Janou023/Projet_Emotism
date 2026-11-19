@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df4dc1e1f4ef43d888812367d31144c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialoguesJson: {fileID: 4900000, guid: 538d17585f4f97946974da6b1aa6312e, type: 3}
+  dialoguesJson: {fileID: 4900000, guid: 32f1ecf63e0547ca8af8ab0c372412f3, type: 3}
   fondScene: {fileID: 3055159045398532384, guid: 36c744124840baa469ade71ad3adcb59, type: 3}
   portraitManon: {fileID: -5054778891235105108, guid: 9ac49dcfd25e7964597932ad2bbfe849, type: 3}
   classeurPrefab: {fileID: 3550257505526808817, guid: 35c543195469ab54b8ad2796a3eb90af, type: 3}
@@ -54,12 +54,4 @@ MonoBehaviour:
   - nom: Julia
     cote: 1
     portraitNeutre: {fileID: -5054778891235105108, guid: 9ac49dcfd25e7964597932ad2bbfe849, type: 3}
-    portraits: []
-  - nom: Controleur
-    cote: 1
-    portraitNeutre: {fileID: -7669986044668637443, guid: a9d695db00790a246839e533ed6d4e43, type: 3}
-    portraits: []
-  - nom: joueur
-    cote: 1
-    portraitNeutre: {fileID: -9701754249557812, guid: a8b61e2de8d27d244a01fa0079401f23, type: 3}
     portraits: []

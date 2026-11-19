@@ -20,7 +20,7 @@ public class DialogueTrigger : MonoBehaviour
     public bool estUnDefi = true;
 
     [Header("Paramètres d'Interaction")]
-    public KeyCode interactKey = KeyCode.E;
+    public KeyCode interactKey = KeyCode.A;
     public Transform joueur;
     public float distanceInteraction = 1.5f;
     public float margeClic = 0.5f;
@@ -70,11 +70,8 @@ public class DialogueTrigger : MonoBehaviour
 #if ENABLE_INPUT_SYSTEM
         if (Keyboard.current != null)
         {
-            if (interactKey == KeyCode.E)
-                toucheInteraction |= Keyboard.current.eKey.wasPressedThisFrame;
-            else if (interactKey == KeyCode.A)
-                toucheInteraction |= Keyboard.current.aKey.wasPressedThisFrame;
-            toucheInteraction |= Keyboard.current.digit1Key.wasPressedThisFrame ||
+            toucheInteraction |= Keyboard.current.aKey.wasPressedThisFrame ||
+                Keyboard.current.digit1Key.wasPressedThisFrame ||
                 Keyboard.current.numpad1Key.wasPressedThisFrame;
         }
 #endif

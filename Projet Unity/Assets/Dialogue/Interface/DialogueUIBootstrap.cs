@@ -126,11 +126,6 @@ public class DialogueUIBootstrap : MonoBehaviour
         };
         if (autresPersonnages != null) listePersonnages.AddRange(autresPersonnages);
         defiController.personnages = listePersonnages.ToArray();
-        Personnage personnageJoueur = listePersonnages.Find(
-            p => p != null && EtapeDefi.Normaliser(p.nom) == "joueur");
-        dialogueManager.portraitPenseeJoueur = personnageJoueur != null
-            ? personnageJoueur.portraitNeutre
-            : portraitManon;
 
         classeur = FindAnyObjectByType<UIClasseur>();
         if (classeur == null && classeurPrefab != null)

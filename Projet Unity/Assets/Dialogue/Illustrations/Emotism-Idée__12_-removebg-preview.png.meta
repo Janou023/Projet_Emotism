@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: a8b61e2de8d27d244a01fa0079401f23
+guid: 9ac49dcfd25e7964597932ad2bbfe849
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9701754249557812
-    second: perso_princip_f_0
-  - first:
-      213: -1698515975742180208
-    second: perso_princip_f_1
-  - first:
-      213: -2043562756171273066
-    second: perso_princip_f_2
+      213: -5054778891235105108
+    second: "Emotism-Id\xE9e__12_-removebg-preview_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -62,9 +56,7 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationMethod: 0
   spriteTessellationDetail: -1
-  spriteGeometrySubdivision: -1
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -108,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: perso_princip_f_0
+      name: "Emotism-Id\xE9e__12_-removebg-preview_0"
       rect:
         serializedVersion: 2
-        x: 66
+        x: 435
         y: 0
-        width: 319
-        height: 916
+        width: 127
+        height: 310
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -123,52 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cc8c1405e488ddff0800000000000000
-      internalID: -9701754249557812
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: perso_princip_f_1
-      rect:
-        serializedVersion: 2
-        x: 191
-        y: 913
-        width: 13
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 094bf8c18b8ad68e0800000000000000
-      internalID: -1698515975742180208
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: perso_princip_f_2
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 760
-        width: 13
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 69c6132208ec3a3e0800000000000000
-      internalID: -2043562756171273066
+      spriteID: ca6e9c93161d9d9b0800000000000000
+      internalID: -5054778891235105108
       vertices: []
       indices: 
       edges: []
@@ -187,9 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      perso_princip_f_0: -9701754249557812
-      perso_princip_f_1: -1698515975742180208
-      perso_princip_f_2: -2043562756171273066
+      "Emotism-Id\xE9e__12_-removebg-preview_0": -5054778891235105108
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
