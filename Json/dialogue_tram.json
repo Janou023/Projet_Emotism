@@ -52,7 +52,7 @@
     "question": {
       "question": "Quelle émotion peux-tu ressentir dans cette situation ? Glisse la carte émotion correspondante dans la bulle."
     },
-    "indice": "",
+    "indice": "Hmmm pas vraiment, il y a une émotion qui devrait mieux correspondre... Réfléchis encore !",
     "carte_obtenue": "",
     "cartes": [
       "peur"
@@ -127,7 +127,7 @@
     "question": {
       "question": "Quelle émotion peux-tu ressentir dans cette situation ? Glisse la carte émotion correspondante dans la bulle."
     },
-    "indice": "",
+    "indice": "Hmmm pas vraiment, il y a une émotion qui devrait mieux correspondre... Réfléchis encore !",
     "carte_obtenue": "",
     "cartes": [
       "colere"
