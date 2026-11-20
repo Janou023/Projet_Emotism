@@ -2194,7 +2194,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
 --- !u!61 &7284043750986115003
@@ -2231,7 +2231,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 4.7772126, y: 0.061247826}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2241,7 +2241,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.5, y: 1.5}
+  m_Size: {x: 12.054427, y: 42.29004}
   m_EdgeRadius: 0
 --- !u!114 &7284043750986115004
 MonoBehaviour:
@@ -2259,8 +2259,11 @@ MonoBehaviour:
   jsonDialogue: {fileID: 4900000, guid: e9a3452adc0a103478f19bcb6bfbf63f, type: 3}
   ouvrirSceneDialogue: 1
   sceneDialogue: Dialogue
-  fondDialogue: {fileID: 3055159045398532384, guid: 36c744124840baa469ade71ad3adcb59, type: 3}
+  fondDialogue: {fileID: 21300000, guid: a5d379d83e0870b4b87db707e8871f5a, type: 3}
   estUnDefi: 0
+  afficherEcranReussiteSimple: 0
+  idDefi: 
+  sceneRetourDefi: 
   interactKey: 97
   joueur: {fileID: 6852574}
   distanceInteraction: 2
