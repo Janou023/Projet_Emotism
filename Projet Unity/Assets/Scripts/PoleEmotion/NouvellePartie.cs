@@ -53,6 +53,8 @@ public class NouvellePartie : MonoBehaviour
         else
             Debug.LogWarning("[NouvellePartie] Aucun ProgressManager dans la scène : rien n'a été effacé.");
 
+        GestionnaireTutoriels.Instance.ResetAll();
+
         if (confirmationPanel != null)
             confirmationPanel.SetActive(false);
 

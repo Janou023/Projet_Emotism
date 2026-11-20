@@ -8,6 +8,12 @@ public class TutorielPopUP : MonoBehaviour
     [SerializeField] private TMP_Text contenuText;
     private Action onClosed;
 
+    public void Configurer(TMP_Text titre, TMP_Text contenu)
+    {
+        titreText = titre;
+        contenuText = contenu;
+    }
+
     public bool ShowPopUp(ContenuTutoriel contenu)
     {
         return ShowPopUp(contenu, null);
