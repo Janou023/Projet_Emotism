@@ -35,6 +35,7 @@ public class EtapeDefi
     public List<string> indices = new List<string>();
     public string solution = "";
     public string carteObtenue = "";                 // id de la carte donnée à cette étape (ex. "colere")
+    public string imgPerso = "";                     // image du personnage pour cette étape (ex. "Julia_colere.png")
 
     public static Dictionary<int, EtapeDefi> Charger(string json)
     {
@@ -58,6 +59,7 @@ public class EtapeDefi
             e.indices = Textes(o["Indices"]);
             e.solution = (string)o["Solution"] ?? "";
             e.carteObtenue = (string)o["carte_obtenue"] ?? "";
+            e.imgPerso = (string)o["img_perso"] ?? "";
 
             List<string> cartes = Textes(o["cartes"]);
             List<ChoixReponse> paragraphes = new List<ChoixReponse>();
@@ -107,6 +109,13 @@ public class EtapeDefi
         return resultat;
     }
 
+    /// <summary>"Julia_colere.png" devient "Julia_colere" (nom du fichier, sans extension).</summary>
+    public static string NomSansExtension(string fichier)
+    {
+        if (string.IsNullOrWhiteSpace(fichier)) return "";
+        return System.IO.Path.GetFileNameWithoutExtension(fichier.Trim());
+    }
+
     static List<string> Textes(JToken t)
     {
         List<string> liste = new List<string>();
@@ -134,11 +143,11 @@ public class EtapeDefi
     {
         switch (Normaliser(brut))
         {
-            case "joie":      emotion = Emotion.Joie;      return true;
-            case "colere":    emotion = Emotion.Colere;    return true;
-            case "peur":      emotion = Emotion.Peur;      return true;
+            case "joie": emotion = Emotion.Joie; return true;
+            case "colere": emotion = Emotion.Colere; return true;
+            case "peur": emotion = Emotion.Peur; return true;
             case "tristesse": emotion = Emotion.Tristesse; return true;
-            case "stresse":   emotion = Emotion.Stresse;   return true;
+            case "stresse": emotion = Emotion.Stresse; return true;
         }
         emotion = Emotion.Joie;
         return false;

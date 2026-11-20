@@ -64,3 +64,7 @@ MonoBehaviour:
     cote: 1
     portraitNeutre: {fileID: -9701754249557812, guid: a8b61e2de8d27d244a01fa0079401f23, type: 3}
     portraits: []
+  - nom: Maman
+    cote: 1
+    portraitNeutre: {fileID: -3296794650159732587, guid: c7b5b70134995e34cba7d024522c2a6c, type: 3}
+    portraits: []

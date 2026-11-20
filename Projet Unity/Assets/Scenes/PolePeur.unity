@@ -2194,7 +2194,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
 --- !u!61 &7284043750986115003
@@ -2259,8 +2259,11 @@ MonoBehaviour:
   jsonDialogue: {fileID: 4900000, guid: 212b9fb2c4eda6d42896e9652a79ef49, type: 3}
   ouvrirSceneDialogue: 1
   sceneDialogue: Dialogue
-  fondDialogue: {fileID: 3055159045398532384, guid: 36c744124840baa469ade71ad3adcb59, type: 3}
+  fondDialogue: {fileID: 21300000, guid: 287161f38758f4c4d958c4e7f1f064b9, type: 3}
   estUnDefi: 0
+  afficherEcranReussiteSimple: 0
+  idDefi: 
+  sceneRetourDefi: 
   interactKey: 97
   joueur: {fileID: 6852574}
   distanceInteraction: 2
