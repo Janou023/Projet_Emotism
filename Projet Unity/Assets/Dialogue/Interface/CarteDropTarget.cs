@@ -17,6 +17,10 @@ public class CarteDropTarget : MonoBehaviour, IDropHandler
             : null;
 
         if (carte != null && carte.AppartientA(classeur) && classeur != null)
+        {
             classeur.AccepterDepotCarte();
+            if (SoundsManager.Instance != null)
+                SoundsManager.Instance.PlayCardPlacedSound();
+        }
     }
 }

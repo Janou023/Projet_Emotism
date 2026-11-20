@@ -9,6 +9,7 @@ public class SettingsData
 
     public float masterVolume = 0.8f;
     public float musicVolume = 0.5f;
+    public float ambienceVolume = 0.7f;
     public float sfxVolume = 0.7f;
     public bool muteMusic = false;
 
@@ -34,6 +35,7 @@ public class SettingsData
     {
         masterVolume = Mathf.Clamp01(masterVolume);
         musicVolume = Mathf.Clamp01(musicVolume);
+        ambienceVolume = Mathf.Clamp01(ambienceVolume);
         sfxVolume = Mathf.Clamp01(sfxVolume);
         lineSpacing = Mathf.Clamp01(lineSpacing);
         textSpeed = Mathf.Clamp01(textSpeed);

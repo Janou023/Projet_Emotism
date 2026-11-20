@@ -8,7 +8,8 @@ public enum SliderSetting
     MusicVolume,
     SfxVolume,
     TextSpeed,
-    LineSpacing
+    LineSpacing,
+    AmbienceVolume
 }
 
 /// <summary>
@@ -24,6 +25,8 @@ public class SettingSlider : MonoBehaviour
     [SerializeField] TMP_Text valueLabel; // optionnel : affiche "80 %"
 
     Slider slider;
+
+    public SliderSetting Setting => setting;
 
     void Awake()
     {
@@ -52,6 +55,12 @@ public class SettingSlider : MonoBehaviour
         UpdateLabel(value);
     }
 
+    public void Configure(SliderSetting newSetting)
+    {
+        setting = newSetting;
+        Refresh();
+    }
+
     void OnSliderChanged(float value)
     {
         Write(value);
@@ -75,6 +84,7 @@ public class SettingSlider : MonoBehaviour
             case SliderSetting.SfxVolume: return d.sfxVolume;
             case SliderSetting.TextSpeed: return d.textSpeed;
             case SliderSetting.LineSpacing: return d.lineSpacing;
+            case SliderSetting.AmbienceVolume: return d.ambienceVolume;
             default: return 0f;
         }
     }
@@ -89,6 +99,7 @@ public class SettingSlider : MonoBehaviour
             case SliderSetting.SfxVolume: d.sfxVolume = v; break;
             case SliderSetting.TextSpeed: d.textSpeed = v; break;
             case SliderSetting.LineSpacing: d.lineSpacing = v; break;
+            case SliderSetting.AmbienceVolume: d.ambienceVolume = v; break;
         }
     }
 }

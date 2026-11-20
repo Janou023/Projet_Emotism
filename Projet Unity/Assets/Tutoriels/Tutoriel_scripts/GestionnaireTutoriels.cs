@@ -245,27 +245,47 @@ public class GestionnaireTutoriels : MonoBehaviour
         Canvas canvas = canvasObjet.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.sortingOrder = 500;
-        canvasObjet.AddComponent<CanvasScaler>();
+        CanvasScaler scaler = canvasObjet.AddComponent<CanvasScaler>();
+        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+        scaler.referenceResolution = new Vector2(600f, 400f);
+        scaler.matchWidthOrHeight = 0.5f;
         canvasObjet.AddComponent<GraphicRaycaster>();
 
         RectTransform panelRect = CreerRect(canvasObjet.transform, "PanneauTutoriel",
-            new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(560f, 260f));
+            new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(400f, 270f));
         Image panelImage = panelRect.gameObject.AddComponent<Image>();
-        panelImage.color = new Color(0.12f, 0.12f, 0.12f, 0.98f);
+        ConfigurerFond(panelImage, new Color(0.88f, 0.98f, 0.99f, 0.92f));
 
-        RectTransform titleRect = CreerRect(panelRect, "Titre",
-            new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(500f, 60f));
-        titleRect.anchoredPosition = new Vector2(0f, -45f);
+        RectTransform titleBackground = CreerRect(panelRect, "FondTitre",
+            new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(128f, 32f));
+        titleBackground.anchoredPosition = new Vector2(18f, -17f);
+        ConfigurerFond(titleBackground.gameObject.AddComponent<Image>(),
+            new Color(0.66f, 0.89f, 0.91f, 0.96f));
+        RectTransform titleRect = CreerRect(titleBackground, "Titre",
+            Vector2.zero, Vector2.one, Vector2.zero);
+        titleRect.offsetMin = new Vector2(8f, 0f);
+        titleRect.offsetMax = new Vector2(-8f, 0f);
         TMP_Text title = titleRect.gameObject.AddComponent<TextMeshProUGUI>();
         title.alignment = TextAlignmentOptions.Center;
-        title.fontSize = 32f;
+        title.fontSize = 16f;
+        title.color = new Color(0.07f, 0.16f, 0.18f, 1f);
 
-        RectTransform textRect = CreerRect(panelRect, "Texte",
-            new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(500f, 120f));
-        textRect.anchoredPosition = new Vector2(0f, 5f);
+        RectTransform textBackground = CreerRect(panelRect, "FondDescription",
+            new Vector2(0f, 0.24f), new Vector2(1f, 0.78f), new Vector2(-28f, 0f));
+        textBackground.pivot = new Vector2(0.5f, 0.5f);
+        ConfigurerFond(textBackground.gameObject.AddComponent<Image>(),
+            new Color(0.70f, 0.95f, 0.97f, 0.94f));
+        RectTransform textRect = CreerRect(textBackground, "Texte",
+            Vector2.zero, Vector2.one, Vector2.zero);
+        textRect.offsetMin = new Vector2(10f, 8f);
+        textRect.offsetMax = new Vector2(-10f, -8f);
         TMP_Text text = textRect.gameObject.AddComponent<TextMeshProUGUI>();
         text.alignment = TextAlignmentOptions.Center;
-        text.fontSize = 24f;
+        text.fontSize = 18f;
+        text.fontSizeMin = 14f;
+        text.fontSizeMax = 18f;
+        text.enableAutoSizing = true;
+        text.color = new Color(0.07f, 0.16f, 0.18f, 1f);
 
         Button button = CreerBouton(panelRect);
 
@@ -290,19 +310,29 @@ public class GestionnaireTutoriels : MonoBehaviour
         return rect;
     }
 
+    private static void ConfigurerFond(Image image, Color couleur)
+    {
+        image.sprite = Resources.GetBuiltinResource<Sprite>("UI/Skin/UISprite.psd");
+        image.type = image.sprite != null ? Image.Type.Sliced : Image.Type.Simple;
+        image.color = couleur;
+    }
+
     private static Button CreerBouton(RectTransform parent)
     {
         RectTransform rect = CreerRect(parent, "BoutonContinuer",
-            new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(180f, 50f));
-        rect.anchoredPosition = new Vector2(0f, 25f);
+            new Vector2(1f, 0f), new Vector2(1f, 0f), new Vector2(150f, 42f));
+        rect.anchoredPosition = new Vector2(-14f, 14f);
         Image image = rect.gameObject.AddComponent<Image>();
-        image.color = new Color(0.25f, 0.55f, 0.8f, 1f);
+        ConfigurerFond(image, new Color(0.66f, 0.89f, 0.91f, 0.96f));
         RectTransform textRect = CreerRect(rect, "Texte",
             Vector2.zero, Vector2.one, Vector2.zero);
         TMP_Text text = textRect.gameObject.AddComponent<TextMeshProUGUI>();
         text.text = "Continuer";
         text.alignment = TextAlignmentOptions.Center;
-        text.fontSize = 24f;
-        return rect.gameObject.AddComponent<Button>();
+        text.fontSize = 16f;
+        text.color = new Color(0.07f, 0.16f, 0.18f, 1f);
+        Button button = rect.gameObject.AddComponent<Button>();
+        button.targetGraphic = image;
+        return button;
     }
 }

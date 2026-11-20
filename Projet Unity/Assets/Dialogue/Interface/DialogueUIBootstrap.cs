@@ -141,7 +141,7 @@ public class DialogueUIBootstrap : MonoBehaviour
         else if (classeur.binderPanel == null)
             Debug.LogError("DialogueUIBootstrap : le UIClasseur trouvé n'a pas de Binder Panel assigné.");
         else
-            classeur.Fermer();
+            classeur.FermerSilencieusement();
         defiController.classeur = classeur;
         interfaceCarte = GetComponent<CarteReponseUI>();
         if (interfaceCarte == null) interfaceCarte = gameObject.AddComponent<CarteReponseUI>();
