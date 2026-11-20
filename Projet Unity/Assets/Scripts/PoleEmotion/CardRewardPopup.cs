@@ -83,7 +83,9 @@ public class CardRewardPopup : MonoBehaviour
         group.alpha = 0f;
         cardTransform.localScale = Vector3.one * startScale;
 
-        if (audioSource != null && rewardClip != null)
+        bool sonCentralJoue = SoundsManager.Instance != null
+            && SoundsManager.Instance.HasNewCardSound;
+        if (!sonCentralJoue && audioSource != null && rewardClip != null)
             audioSource.PlayOneShot(rewardClip);
 
         // Temps non affecté par la pause (Time.timeScale = 0)

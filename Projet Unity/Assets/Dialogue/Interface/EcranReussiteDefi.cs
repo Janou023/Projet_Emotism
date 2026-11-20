@@ -29,7 +29,8 @@ public class EcranReussiteDefi : MonoBehaviour
         continuer = quandContinuer;
         gameObject.SetActive(true);
 
-        if (sourceAudio != null)
+        if (sourceAudio != null &&
+            (SoundsManager.Instance == null || !SoundsManager.Instance.HasChallengeSuccessSound))
         {
             float volumeSfx = SettingsManager.Instance != null
                 ? SettingsManager.Instance.Data.sfxVolume : 1f;

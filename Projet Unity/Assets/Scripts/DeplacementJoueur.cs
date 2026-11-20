@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class DeplacementJoueur : MonoBehaviour
 {
     private const string CleSceneSauvegardee = "SauvegardeJoueur_Scene";
@@ -12,6 +13,10 @@ public class DeplacementJoueur : MonoBehaviour
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     private Vector2 movement;
+    [SerializeField] private AudioClip clipDeplacement;
+    [SerializeField] private float intervalleEntrePas = 0.4f;
+    [SerializeField] private float volumePas = 0.1f;
+    private float prochainPas;
 
     void Awake()
     {
@@ -47,6 +52,18 @@ public class DeplacementJoueur : MonoBehaviour
             spriteRenderer.flipX = movement.x < 0;
             animator.SetFloat("Horizontal", movement.x);
             animator.SetFloat("Vertical", movement.y);
+
+            if (Time.time >= prochainPas)
+            {
+                if (clipDeplacement != null && SoundsManager.Instance != null)
+                    SoundsManager.Instance.PlaySound(clipDeplacement, transform.position, volumePas);
+
+                prochainPas = Time.time + Mathf.Max(0.05f, intervalleEntrePas);
+            }
+        }
+        else
+        {
+            prochainPas = 0f;
         }
     }
 

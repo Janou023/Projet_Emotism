@@ -222,7 +222,12 @@ public class DialogueManager : MonoBehaviour
         if (dialogueHistory != null)
             dialogueHistory.Add(pensee ? nomJoueur : d.personnage.nom, pensee ? "<i>" + d.texte + "</i>" : d.texte);
 
-        if (typingRoutine != null) StopCoroutine(typingRoutine);
+        if (typingRoutine != null)
+        {
+            StopCoroutine(typingRoutine);
+            if (SoundsManager.Instance != null)
+                SoundsManager.Instance.StopTypingSound();
+        }
         typingRoutine = StartCoroutine(Ecrire(d.texte));
     }
 
@@ -241,6 +246,9 @@ public class DialogueManager : MonoBehaviour
             FinishTyping();
             yield break;
         }
+
+        if (total > 0 && SoundsManager.Instance != null)
+            SoundsManager.Instance.StartTypingSound();
 
         float affiches = 0f;
         while (affiches < total)
@@ -268,6 +276,8 @@ public class DialogueManager : MonoBehaviour
         if (typingRoutine != null) StopCoroutine(typingRoutine);
         typingRoutine = null;
         typing = false;
+        if (SoundsManager.Instance != null)
+            SoundsManager.Instance.StopTypingSound();
         textDialogue.maxVisibleCharacters = int.MaxValue;
         if (continueIcon != null) continueIcon.SetActive(true);
     }
@@ -395,6 +405,8 @@ public class DialogueManager : MonoBehaviour
     public void Masquer()
     {
         if (typingRoutine != null) { StopCoroutine(typingRoutine); typingRoutine = null; }
+        if (SoundsManager.Instance != null)
+            SoundsManager.Instance.StopTypingSound();
         typing = false;
         lignes = null;
         surFin = null;

@@ -9,6 +9,7 @@ public class AudioSettingsApplier : MonoBehaviour
     [SerializeField] AudioMixer mixer;
     [SerializeField] string masterParam = "MasterVol";
     [SerializeField] string musicParam = "MusicVol";
+    [SerializeField] string ambienceParam = "AmbienceVol";
     [SerializeField] string sfxParam = "SfxVol";
 
     void OnEnable() => SettingsManager.Instance.OnSettingsChanged += Apply;
@@ -26,6 +27,7 @@ public class AudioSettingsApplier : MonoBehaviour
         var d = SettingsManager.Instance.Data;
         SetVolume(masterParam, d.masterVolume);
         SetVolume(musicParam, d.muteMusic ? 0f : d.musicVolume);
+        SetVolume(ambienceParam, d.ambienceVolume);
         SetVolume(sfxParam, d.sfxVolume);
     }
 

@@ -49,6 +49,7 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: 546abfc81617cb347816a8cfb466a16e, type: 2}
   masterParam: MasterVol
   musicParam: MusicVol
+  ambienceParam: AmbienceVol
   sfxParam: SfxVol
 --- !u!114 &6495100197964107804
 MonoBehaviour:

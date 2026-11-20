@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 /// <summary>
 /// Gère les boutons "Retour" et "Réinitialiser" du menu de paramètres.
@@ -26,13 +27,86 @@ public class SettingsMenuController : MonoBehaviour
             confirmResetPanel.SetActive(false);
     }
 
+    void Start()
+    {
+        DesactiverCameraLocaleSiMenuConserve();
+        AjouterCurseurAmbiance();
+    }
+
+    void DesactiverCameraLocaleSiMenuConserve()
+    {
+        Scene sceneRetour = SceneManager.GetSceneByName(sceneToReturnTo);
+        if (!sceneRetour.IsValid() || !sceneRetour.isLoaded || sceneRetour == gameObject.scene)
+            return;
+
+        foreach (Camera camera in FindObjectsByType<Camera>(
+            FindObjectsInactive.Include, FindObjectsSortMode.None))
+            if (camera.gameObject.scene == gameObject.scene)
+                camera.enabled = false;
+
+        foreach (AudioListener listener in FindObjectsByType<AudioListener>(
+            FindObjectsInactive.Include, FindObjectsSortMode.None))
+            if (listener.gameObject.scene == gameObject.scene)
+                listener.enabled = false;
+    }
+
+    void AjouterCurseurAmbiance()
+    {
+        SettingSlider[] curseurs = FindObjectsByType<SettingSlider>(
+            FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (SettingSlider curseur in curseurs)
+            if (curseur.Setting == SliderSetting.AmbienceVolume) return;
+
+        SettingSlider curseurMusique = null;
+        foreach (SettingSlider curseur in curseurs)
+            if (curseur.Setting == SliderSetting.MusicVolume)
+            {
+                curseurMusique = curseur;
+                break;
+            }
+        if (curseurMusique == null) return;
+
+        Transform ligneMusique = curseurMusique.transform;
+        while (ligneMusique.parent != null && ligneMusique.parent.name != "Content")
+            ligneMusique = ligneMusique.parent;
+        if (ligneMusique.parent == null) return;
+
+        GameObject ligneAmbiance = Instantiate(ligneMusique.gameObject, ligneMusique.parent, false);
+        ligneAmbiance.name = "Ligne_Ambiance";
+        ligneAmbiance.transform.SetSiblingIndex(ligneMusique.GetSiblingIndex() + 1);
+
+        foreach (TMP_Text texte in ligneAmbiance.GetComponentsInChildren<TMP_Text>(true))
+            if (texte.text == "Musique") texte.text = "Ambiance";
+
+        SettingSlider curseurAmbiance = ligneAmbiance.GetComponentInChildren<SettingSlider>(true);
+        if (curseurAmbiance != null)
+            curseurAmbiance.Configure(SliderSetting.AmbienceVolume);
+    }
+
     /// <summary>Bouton Retour.</summary>
     public void Back()
     {
         SettingsManager.Instance.Save();
 
         if (!string.IsNullOrEmpty(sceneToReturnTo))
-            SceneManager.LoadScene(sceneToReturnTo);
+        {
+            Scene sceneRetour = SceneManager.GetSceneByName(sceneToReturnTo);
+            if (sceneRetour.IsValid() && sceneRetour.isLoaded && sceneRetour != gameObject.scene)
+            {
+                MenuPrincipal menu = FindAnyObjectByType<MenuPrincipal>();
+                if (menu != null)
+                    menu.FermerParametres(gameObject.scene);
+                else
+                {
+                    SceneManager.SetActiveScene(sceneRetour);
+                    SceneManager.UnloadSceneAsync(gameObject.scene);
+                }
+            }
+            else
+            {
+                SceneManager.LoadScene(sceneToReturnTo);
+            }
+        }
         else if (menuRoot != null)
             menuRoot.SetActive(false);
     }

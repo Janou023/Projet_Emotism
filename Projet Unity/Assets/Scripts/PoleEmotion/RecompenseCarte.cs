@@ -86,6 +86,8 @@ public static class RecompenseCarte
             return false;
         }
         Debug.Log("[Recompense] 2/4 Carte « " + carte.id + " » débloquée (nouvelle).");
+        if (SoundsManager.Instance != null)
+            SoundsManager.Instance.PlayNewCardSound();
 
         // --- La fenêtre existe-t-elle ? On la cherche elle-même si elle n'est pas reliée ---
         if (popup == null)
