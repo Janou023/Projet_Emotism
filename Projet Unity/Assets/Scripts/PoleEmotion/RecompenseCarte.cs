@@ -6,6 +6,7 @@ using UnityEngine;
 /// Donne une carte émotion au joueur : l'ajoute au classeur (donc à la sauvegarde),
 /// puis affiche la fenêtre « Nouvelle carte obtenue ! » si la carte est nouvelle.
 /// Utilisé par le système de défis quand une étape du JSON contient "carte_obtenue".
+/// Chaque étape écrit un message [Recompense] dans la Console pour faciliter le diagnostic.
 /// </summary>
 public static class RecompenseCarte
 {
@@ -47,15 +48,28 @@ public static class RecompenseCarte
     /// <returns>true si la fenêtre d'obtention a été affichée.</returns>
     public static bool Accorder(UIClasseur classeur, CardRewardPopup popup, string idCarte, Action quandFini)
     {
+        Debug.Log("[Recompense] 1/4 Demande de la carte « " + idCarte + " ».");
+
+        // --- La carte existe-t-elle dans le classeur ? (problème de nom) ---
         CarteEmotion carte = classeur != null ? Trouver(classeur.toutesLesCartes, idCarte) : null;
         if (carte == null)
         {
-            Debug.LogWarning("[Recompense] Carte introuvable : « " + idCarte +
-                             " ». Vérifier la liste toutesLesCartes du classeur.");
+            if (classeur == null)
+            {
+                Debug.LogWarning("[Recompense] ÉCHEC : aucun UIClasseur n'est relié au DefiController.");
+            }
+            else
+            {
+                var ids = new List<string>();
+                foreach (var c in classeur.toutesLesCartes) ids.Add(c != null ? c.id : "(vide)");
+                Debug.LogWarning("[Recompense] ÉCHEC : carte « " + idCarte + " » introuvable. " +
+                                 "Identifiants des cartes du classeur : " + string.Join(", ", ids));
+            }
             quandFini?.Invoke();
             return false;
         }
 
+        // --- La carte est-elle nouvelle ? ---
         bool nouvelle;
         if (classeur.classeurData != null)
             nouvelle = classeur.classeurData.AjouterCarte(carte);
@@ -64,16 +78,34 @@ public static class RecompenseCarte
 
         classeur.RafraichirUI();
 
-        if (!nouvelle || popup == null)
+        if (!nouvelle)
         {
+            Debug.Log("[Recompense] 2/4 La carte « " + carte.id + " » était DÉJÀ débloquée : pas de fenêtre. " +
+                      "Soit la sauvegarde la contenait, soit un autre script l'a débloquée avant.");
             quandFini?.Invoke();
             return false;
         }
+        Debug.Log("[Recompense] 2/4 Carte « " + carte.id + " » débloquée (nouvelle).");
+
+        // --- La fenêtre existe-t-elle ? On la cherche elle-même si elle n'est pas reliée ---
+        if (popup == null)
+            popup = UnityEngine.Object.FindAnyObjectByType<CardRewardPopup>(FindObjectsInactive.Include);
+
+        if (popup == null)
+        {
+            Debug.LogWarning("[Recompense] ÉCHEC : la carte « " + carte.id + " » est débloquée mais AUCUN " +
+                             "CardRewardPopup (PopupCarte) n'existe dans la scène : pas de fenêtre.");
+            quandFini?.Invoke();
+            return false;
+        }
+
+        Debug.Log("[Recompense] 3/4 Fenêtre trouvée : « " + popup.name + " ».");
 
         Action fermeture = null;
         fermeture = () =>
         {
             popup.Closed -= fermeture;
+            Debug.Log("[Recompense] 4/4 Fenêtre fermée par le joueur.");
             quandFini?.Invoke();
         };
         popup.Closed += fermeture;

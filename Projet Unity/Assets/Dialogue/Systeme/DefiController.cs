@@ -21,6 +21,8 @@ public class DefiController : MonoBehaviour
     public CarteReponseUI interfaceCarte;
     public CardRewardPopup popupCarte;        // fenêtre « Nouvelle carte obtenue ! » (assignée par DialogueUIBootstrap)
     public EcranReussiteDefi ecranReussite;
+    [Tooltip("Sous-dossier d'un dossier Resources qui contient les images citées par img_perso dans le JSON.")]
+    public string dossierPortraits = "Portraits";
     [Header("Tutoriel")]
     [Tooltip("Cocher uniquement pour un vrai défi. Les dialogues de pôle émotion ne doivent pas afficher le tutoriel défi.")]
     public bool estDefi;
@@ -42,6 +44,7 @@ public class DefiController : MonoBehaviour
     bool attenteCarte;    // vrai quand on attend que le joueur place une carte
     bool animationVictoireEnCours;
     bool carteDejaDonnee; // vrai pendant qu'on traite le champ "carte_obtenue" de l'étape
+    readonly Dictionary<string, Sprite> cachePortraits = new Dictionary<string, Sprite>();
 
     public void Lancer()
     {
@@ -414,9 +417,14 @@ public class DefiController : MonoBehaviour
         {
             Personnage p = TrouverPersonnage(e.personnage);
 
+            // Image précise demandée par le JSON pour cette étape (champ "img_perso")
+            Sprite portraitEtape = ChargerPortrait(e.imgPerso);
+            if (p != null && portraitEtape != null)
+                p = AvecPortrait(p, portraitEtape);
+
             // Si l'étape pose une question d'émotion, le perso montre cette émotion pendant ses phrases.
             Emotion emo = Emotion.Joie;
-            bool expression = e.type == TypeQuestion.CarteEmotion && EtapeDefi.TryParseEmotion(e.emotionAttendue, out emo);
+            bool expression = portraitEtape == null && e.type == TypeQuestion.CarteEmotion && EtapeDefi.TryParseEmotion(e.emotionAttendue, out emo);
 
             foreach (string t in e.phrases)
             {
@@ -430,6 +438,35 @@ public class DefiController : MonoBehaviour
             }
         }
         return liste;
+    }
+
+    /// <summary>Copie du personnage qui affiche l'image demandée à la place de son portrait habituel.</summary>
+    static Personnage AvecPortrait(Personnage p, Sprite sprite)
+    {
+        Personnage copie = new Personnage();
+        copie.nom = p.nom;
+        copie.cote = p.cote;
+        copie.portraitNeutre = sprite;
+        copie.portraits = p.portraits;
+        return copie;
+    }
+
+    /// <summary>Charge l'image citée par img_perso (ex. "Julia_colere.png") depuis Resources.</summary>
+    Sprite ChargerPortrait(string imgPerso)
+    {
+        string nom = EtapeDefi.NomSansExtension(imgPerso);
+        if (nom == "") return null;
+
+        Sprite sprite;
+        if (cachePortraits.TryGetValue(nom, out sprite)) return sprite;
+
+        string chemin = string.IsNullOrEmpty(dossierPortraits) ? nom : dossierPortraits + "/" + nom;
+        sprite = Resources.Load<Sprite>(chemin);
+        if (sprite == null)
+            Debug.LogWarning("DefiController : portrait introuvable « " + nom + " ». Fichier attendu : Assets/Resources/"
+                             + chemin + ".png (importé en Sprite). Le portrait habituel du personnage est utilisé.");
+        cachePortraits[nom] = sprite;
+        return sprite;
     }
 
     Personnage TrouverPersonnage(string nom)

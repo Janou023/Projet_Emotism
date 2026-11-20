@@ -993,13 +993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32415e7d7336274fbcc8e44d6fbc0b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cartesPossedees:
-  - id: Peur
-    emotion: 2
-    illustration: {fileID: 0}
-    lockedSprite: {fileID: 0}
-    illustrationExplicative: {fileID: 0}
-    texteExplicatif: 
+  cartesPossedees: []
 --- !u!1 &3852304943013205072
 GameObject:
   m_ObjectHideFlags: 0
