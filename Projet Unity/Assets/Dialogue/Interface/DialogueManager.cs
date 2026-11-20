@@ -177,6 +177,7 @@ public class DialogueManager : MonoBehaviour
     void Update()
     {
         if (lignes == null || Time.frameCount == startFrame) return;
+        if (PauseMenu.EstEnPause) return;   // Espace / Entrée n'avancent pas le dialogue pendant la pause
         if (dialogueHistory != null && dialogueHistory.IsOpen) return;   // on lit l'historique : on n'avance pas
         if (panneauxBloquants != null)
             foreach (GameObject g in panneauxBloquants)
@@ -245,6 +246,7 @@ public class DialogueManager : MonoBehaviour
         float affiches = 0f;
         while (affiches < total)
         {
+            if (PauseMenu.EstEnPause) { yield return null; continue; }   // le texte cesse de s'écrire pendant la pause
             float vitesse = typingSpeed;
             if (SettingsManager.Instance != null)
             {

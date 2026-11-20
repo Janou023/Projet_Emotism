@@ -116,6 +116,7 @@ public class DialogueTrigger : MonoBehaviour
 
     void Launch()
     {
+        if (PauseMenu.EstEnPause) return;   // pas de dialogue lancé pendant la pause
         if (lancementEnCours) return;
         // Un DialogueManager détruit lors d'un changement de scène ne doit pas
         // laisser son ancien état statique bloquer les interactions suivantes.
