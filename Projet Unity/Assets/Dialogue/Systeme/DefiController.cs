@@ -198,10 +198,14 @@ public class DefiController : MonoBehaviour
             dialogueManager.AjouterAuHistorique(dialogueManager.nomJoueur, "<i>(carte " + carte.id + ")</i>");
 
         dialogueManager.Masquer();
+        bool sonCarteCorrecteJoue = SoundsManager.Instance != null
+            && SoundsManager.Instance.PlayCorrectCardSound();
+        if (!sonCarteCorrecteJoue && !etapeActive.fin)
+            EcranReussiteDefi.JouerSonReussite();
+
         if (etapeActive.fin) Terminer();
         else
         {
-            EcranReussiteDefi.JouerSonReussite();
             EtapeSuivante();
         }
         return true;
@@ -265,6 +269,8 @@ public class DefiController : MonoBehaviour
         enCours = false;
         attenteCarte = false;
         etapeActive = null;
+        if (afficherVictoire && estDefi && SoundsManager.Instance != null)
+            SoundsManager.Instance.PlayChallengeSuccessSound();
         dialogueManager.FinConversation();
 
         if (afficherVictoire && !string.IsNullOrWhiteSpace(idDefi) &&

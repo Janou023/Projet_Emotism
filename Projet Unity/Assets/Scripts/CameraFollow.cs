@@ -10,6 +10,7 @@ public class CameraFollow : MonoBehaviour
     public Vector3 posOffset;
     private Vector3 velocity;
     private bool changementSceneEnCours;
+    public Collider2D cameraBounds;
 
     void Awake()
     {
@@ -68,12 +69,17 @@ public class CameraFollow : MonoBehaviour
 
     Vector3 ClampToBackground(Vector3 position)
     {
-        if (backgroundBounds == null) return position;
+        Bounds limites;
+        if (cameraBounds != null)
+            limites = cameraBounds.bounds;
+        else if (backgroundBounds != null)
+            limites = backgroundBounds.bounds;
+        else
+            return position;
 
         Camera camera = GetComponent<Camera>();
         if (camera == null || !camera.orthographic) return position;
 
-        Bounds limites = backgroundBounds.bounds;
         float demiHauteurVue = camera.orthographicSize;
         float demiLargeurVue = demiHauteurVue * camera.aspect;
 

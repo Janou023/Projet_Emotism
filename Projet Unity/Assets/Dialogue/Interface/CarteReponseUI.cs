@@ -298,6 +298,8 @@ public class CarteReponseUI : MonoBehaviour
             return;
         }
 
+        if (SoundsManager.Instance != null)
+            SoundsManager.Instance.PlayWrongCardSound();
         carteSelectionnee = null;
         AfficherErreur();
     }

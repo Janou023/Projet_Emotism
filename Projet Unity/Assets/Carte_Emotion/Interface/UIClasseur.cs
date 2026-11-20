@@ -208,12 +208,26 @@ public class UIClasseur : MonoBehaviour
         }
         if (fondAssombrissant != null)
             fondAssombrissant.SetActive(modeSelection && !compacte);
+        if (!binderPanel.activeSelf && SoundsManager.Instance != null)
+            SoundsManager.Instance.PlayBinderOpenSound();
         binderPanel.SetActive(true);
         RafraichirUI();
     }
 
     public void Fermer()
     {
+        Fermer(true);
+    }
+
+    public void FermerSilencieusement()
+    {
+        Fermer(false);
+    }
+
+    void Fermer(bool jouerSon)
+    {
+        if (jouerSon && binderPanel != null && binderPanel.activeSelf && SoundsManager.Instance != null)
+            SoundsManager.Instance.PlayBinderCloseSound();
         modeSelection = false;
         surCarteChoisie = null;
         if (binderRect != null)
