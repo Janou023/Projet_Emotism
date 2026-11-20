@@ -56,8 +56,11 @@ public class EtapeDefi
             e.fin = fin != null && (bool)fin;
             JToken reussite = o["reussite"];
             e.reussite = reussite == null || (bool)reussite;
-            e.indices = Textes(o["Indices"]);
-            e.solution = (string)o["Solution"] ?? "";
+            // Les dialogues existants utilisent « indice » (singulier, minuscule).
+            // Garder aussi les anciens noms pour ne pas casser les JSON déjà migrés.
+            JToken indices = o["indice"] ?? o["indices"] ?? o["Indices"];
+            e.indices = Textes(indices);
+            e.solution = (string)(o["solution"] ?? o["Solution"]) ?? "";
             e.carteObtenue = (string)o["carte_obtenue"] ?? "";
             e.imgPerso = (string)o["img_perso"] ?? "";
 
