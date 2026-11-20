@@ -187,6 +187,7 @@ public class DialogueUIBootstrap : MonoBehaviour
         }
 
         defiController.afficherAnimationVictoire = estDefi;
+        defiController.estDefi = estDefi;
         defiController.afficherEcranReussiteSimple = afficherEcranReussiteSimple;
         defiController.idDefi = idDefi;
         if (!string.IsNullOrEmpty(sceneRetour))

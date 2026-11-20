@@ -12,7 +12,7 @@ public class ClasseurEmotions : MonoBehaviour
     // Laisser vide si le joueur ne doit avoir aucune carte au départ.
     [SerializeField] private List<CarteEmotion> cartesPossedees = new List<CarteEmotion>();
 
-    void Awake()
+    private void Awake()
     {
         InitialiserCartesDeDepart();
     }
@@ -97,6 +97,16 @@ public class ClasseurEmotions : MonoBehaviour
     public List<CarteEmotion> GetCartes()
     {
         return cartesPossedees;
+    }
+
+    /// <summary>
+    /// Compatibilité avec les anciens appels de sauvegarde.
+    /// ProgressManager reste l'unique écrivain du fichier de progression.
+    /// </summary>
+    public static void SauvegarderProgression()
+    {
+        if (ProgressManager.Instance != null)
+            ProgressManager.Instance.Save();
     }
 
     // Compare les identifiants sans tenir compte des majuscules ni des accents.

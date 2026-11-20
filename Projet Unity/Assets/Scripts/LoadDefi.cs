@@ -10,7 +10,6 @@ public class LoadDefi : MonoBehaviour
     [Header("Cartes requises pour entrer")]
     [SerializeField] private string[] requiredEmotions;
     [SerializeField] private Color lockedColor = new Color(0.55f, 0.55f, 0.55f, 1f);
-    [SerializeField] private string requiredChallenge;
 
     private SpriteRenderer spriteRenderer;
     private Color unlockedColor = Color.white;
@@ -44,19 +43,34 @@ public class LoadDefi : MonoBehaviour
     {
         if (requiredEmotions != null && requiredEmotions.Length > 0)
         {
-            if (ProgressManager.Instance == null ||
-                !ProgressManager.Instance.HasAllEmotions(requiredEmotions))
+            if (ProgressManager.Instance == null)
                 return false;
-        }
 
-        if (!string.IsNullOrWhiteSpace(requiredChallenge))
-        {
-            if (ProgressManager.Instance == null ||
-                ProgressManager.Instance.IsChallengeCompleted(requiredChallenge))
-                return false;
+            foreach (string idEmotion in requiredEmotions)
+            {
+                if (!ProgressManager.Instance.IsEmotionUnlocked(idEmotion))
+                    return false;
+            }
         }
 
         return true;
+    }
+
+    [ContextMenu("Afficher les cartes requises")]
+    void AfficherCartesRequises()
+    {
+        if (requiredEmotions == null || requiredEmotions.Length == 0)
+        {
+            Debug.Log("[LoadDefi] Aucun prérequis émotionnel.", this);
+            return;
+        }
+
+        foreach (string id in requiredEmotions)
+        {
+            bool possede = ProgressManager.Instance != null &&
+                ProgressManager.Instance.IsEmotionUnlocked(id);
+            Debug.Log($"[LoadDefi] {id} : {(possede ? "possédée" : "manquante")}", this);
+        }
     }
 
     void ActualiserDisponibilite()

@@ -1,7 +1,11 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DeplacementJoueur : MonoBehaviour
 {
+    private const string CleSceneSauvegardee = "SauvegardeJoueur_Scene";
+    private static bool verificationSceneInitialeEffectuee;
+
     public float moveSpeed = 3f;
     public bool freeMovement;
     public Rigidbody2D rigidbody;
@@ -21,6 +25,11 @@ public class DeplacementJoueur : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            SauvegarderProgression();
+        }
+
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
@@ -44,5 +53,25 @@ public class DeplacementJoueur : MonoBehaviour
     void FixedUpdate()
     {
         rigidbody.linearVelocity = movement * moveSpeed;
+    }
+
+    public void SauvegarderProgression()
+    {
+        if (DialogueManager.IsActive)
+        {
+            Debug.LogWarning("Sauvegarde ignoree : impossible de sauvegarder pendant un dialogue.", this);
+            return;
+        }
+
+        PlayerPrefs.SetString(CleSceneSauvegardee, SceneManager.GetActiveScene().name);
+        ClasseurEmotions.SauvegarderProgression();
+
+        if (SettingsManager.Instance != null)
+        {
+            SettingsManager.Instance.Save();
+        }
+
+        PlayerPrefs.Save();
+        Debug.Log("Sauvegarde effectuee : scene, cartes, tutoriels et preferences.", this);
     }
 }

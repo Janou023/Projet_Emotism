@@ -44,6 +44,7 @@ public class UIClasseur : MonoBehaviour
     CanvasGroup groupeCanvas;
     CarteEmotion carteGlissee;
     bool depotAccepte;
+    bool tutorielCarnetTraite;
 
     void Awake()
     {
@@ -158,6 +159,14 @@ public class UIClasseur : MonoBehaviour
 
     void Ouvrir(bool modeSelection, System.Action<CarteEmotion> onChoisie, bool compacte)
     {
+        if (!modeSelection && !tutorielCarnetTraite)
+        {
+            tutorielCarnetTraite = true;
+            bool popupAffiche = GestionnaireTutoriels.Instance.AfficherAideCarnet(
+                () => Ouvrir(false, null, compacte));
+            if (popupAffiche) return;
+        }
+
         if (binderPanel == null)
         {
             Debug.LogError("UIClasseur : Binder Panel n'est pas assigné dans l'Inspector.");

@@ -23,6 +23,9 @@ public class DefiController : MonoBehaviour
     public EcranReussiteDefi ecranReussite;
     [Tooltip("Sous-dossier d'un dossier Resources qui contient les images citées par img_perso dans le JSON.")]
     public string dossierPortraits = "Portraits";
+    [Header("Tutoriel")]
+    [Tooltip("Cocher uniquement pour un vrai défi. Les dialogues de pôle émotion ne doivent pas afficher le tutoriel défi.")]
+    public bool estDefi;
 
     [Header("Résultat")]
     public List<ReponseJoueur> historique = new List<ReponseJoueur>();
@@ -64,7 +67,10 @@ public class DefiController : MonoBehaviour
         enCours = true;
         attenteCarte = false;
         carteDejaDonnee = false;
-        JouerEtape();
+        bool tutorielAffiche = estDefi &&
+            GestionnaireTutoriels.Instance.AfficherTutorielDefi(JouerEtape);
+        if (!tutorielAffiche)
+            JouerEtape();
     }
 
     void PreparerPersonnages()
@@ -134,10 +140,10 @@ public class DefiController : MonoBehaviour
                         Debug.LogError("DefiController : assigne le UIClasseur et l'interface de réponse pour afficher le carnet pendant la question.");
                         break;
                     }
-                    interfaceCarte.OuvrirSelectionCompacte(classeur, ProposerCarte,
-                        dialogueManager != null ? dialogueManager.portraitGauche : null,
-                        dialogueManager != null ? dialogueManager.portraitDroit : null,
-                        TexteIndices(e.indices), e.solution, ContinuerApresSolution);
+                    bool tutorielAffiche = GestionnaireTutoriels.Instance.AfficherDemandeCarte(
+                        () => OuvrirQuestionCarte(e));
+                    if (!tutorielAffiche)
+                        OuvrirQuestionCarte(e);
                     break;
                 }
             default:
@@ -155,6 +161,16 @@ public class DefiController : MonoBehaviour
         dialogueManager.AjouterAuHistorique(dialogueManager.nomJoueur, c.texte);
         etapeCourante = c.suivant;
         JouerEtape();
+    }
+
+    void OuvrirQuestionCarte(EtapeDefi etape)
+    {
+        if (classeur == null || interfaceCarte == null || etape == null) return;
+
+        interfaceCarte.OuvrirSelectionCompacte(classeur, ProposerCarte,
+            dialogueManager != null ? dialogueManager.portraitGauche : null,
+            dialogueManager != null ? dialogueManager.portraitDroit : null,
+            TexteIndices(etape.indices), etape.solution, ContinuerApresSolution);
     }
 
     /// <summary>Appelée quand le joueur choisit une carte dans le classeur (mode sélection).</summary>
@@ -175,7 +191,6 @@ public class DefiController : MonoBehaviour
         r.estCorrecte = carte != null && carte.emotion == attendue;
         historique.Add(r);
         if (OnReponse != null) OnReponse(r);
-
         if (!r.estCorrecte) return false;
 
         attenteCarte = false;
