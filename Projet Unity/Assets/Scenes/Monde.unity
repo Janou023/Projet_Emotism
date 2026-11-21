@@ -1375,25 +1375,9 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 7518524169257803246}
-    - target: {fileID: 1305451564924372234, guid: c38d2ab0d0c5c4d4c83d2a88a3adbc7f, type: 3}
-      propertyPath: m_RenderMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1552991529236914217, guid: c38d2ab0d0c5c4d4c83d2a88a3adbc7f, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988738728242599285, guid: c38d2ab0d0c5c4d4c83d2a88a3adbc7f, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 7819391640897383809, guid: c38d2ab0d0c5c4d4c83d2a88a3adbc7f, type: 3}
       propertyPath: m_Name
       value: Pause
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819391640897383809, guid: c38d2ab0d0c5c4d4c83d2a88a3adbc7f, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2647,9 +2631,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1529823757205044664, guid: 82fdb3ae00c628347aa16b51a4536cbd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5171789627192893855, guid: 82fdb3ae00c628347aa16b51a4536cbd, type: 3}
       propertyPath: m_Name
       value: Arbre (72)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500950207181510797, guid: 82fdb3ae00c628347aa16b51a4536cbd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13463,6 +13455,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1529823757205044664, guid: 82fdb3ae00c628347aa16b51a4536cbd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5171789627192893855, guid: 82fdb3ae00c628347aa16b51a4536cbd, type: 3}
       propertyPath: m_Name
       value: Arbre
@@ -14130,7 +14126,6 @@ SceneRoots:
   - {fileID: 2141095691}
   - {fileID: 1180333584}
   - {fileID: 896097175}
-  - {fileID: 1256589735}
   - {fileID: 212920846}
   - {fileID: 1169452846}
   - {fileID: 354654408414340201}
