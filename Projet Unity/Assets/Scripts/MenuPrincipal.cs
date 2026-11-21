@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 public class MenuPrincipal : MonoBehaviour
 {
     public string sceneGame;
+    public string sceneDialogue;
+    public TextAsset texte;
+    public Sprite sprite;
     public string sceneParametres;
     public GameObject menuPrincipalUI;
 
@@ -15,12 +18,27 @@ public class MenuPrincipal : MonoBehaviour
 
     public void Jouer()
     {
-        if(FadeManager.Instance != null)
+        if (ProgressManager.Instance != null && !ProgressManager.Instance.IsEmotionUnlocked("peur"))
         {
-            FadeManager.Instance.LoadSceneWithFade(sceneGame);
-        } else
+            DialogueLaunchContext.Preparer(texte, sprite, false, sceneGame);
+            if (FadeManager.Instance != null)
+            {
+                FadeManager.Instance.LoadSceneWithFade(sceneDialogue);
+            } else
+            {
+                SceneManager.LoadScene(sceneDialogue);
+            }
+        }
+        else
         {
-            SceneManager.LoadScene(sceneGame);
+            if (FadeManager.Instance != null)
+            {
+                FadeManager.Instance.LoadSceneWithFade(sceneGame);
+            }
+            else
+            {
+                SceneManager.LoadScene(sceneGame);
+            }
         }
     }
 
