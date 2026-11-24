@@ -15,11 +15,12 @@ public class AccessibleText : MonoBehaviour
     static readonly float[] Scales = { 0.85f, 1f, 1.25f, 1.5f };
 
     // Espacement de lignes ajouté quand le slider est au maximum
-    const float MaxExtraLineSpacing = 40f;
+    const float MaxExtraLineSpacing = 8f;
 
     TMP_Text label;
     float baseFontSize;
     float baseLineSpacing;
+    bool baseValuesCaptured;
 
     /// <summary>Utile à l'équipe : multiplicateur de taille pour un niveau donné.</summary>
     public static float ScaleFor(int level) =>
@@ -28,8 +29,7 @@ public class AccessibleText : MonoBehaviour
     void Awake()
     {
         label = GetComponent<TMP_Text>();
-        baseFontSize = label.fontSize;
-        baseLineSpacing = label.lineSpacing;
+        CapturerValeursInitiales();
     }
 
     void OnEnable()
@@ -52,9 +52,33 @@ public class AccessibleText : MonoBehaviour
 
     void Apply()
     {
+        RafraichirDepuisReglages();
+    }
+
+    public void RafraichirDepuisReglages()
+    {
+        if (label == null) label = GetComponent<TMP_Text>();
+        if (label == null || SettingsManager.Instance == null) return;
+        CapturerValeursInitiales();
         var d = SettingsManager.Instance.Data;
 
         label.fontSize = baseFontSize * ScaleFor(d.textSizeLevel);
         label.lineSpacing = baseLineSpacing + d.lineSpacing * MaxExtraLineSpacing;
+    }
+
+    public static void RafraichirTous()
+    {
+        AccessibleText[] textes = FindObjectsByType<AccessibleText>(
+            FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (AccessibleText texte in textes)
+            if (texte != null) texte.RafraichirDepuisReglages();
+    }
+
+    void CapturerValeursInitiales()
+    {
+        if (baseValuesCaptured || label == null) return;
+        baseFontSize = label.fontSize;
+        baseLineSpacing = label.lineSpacing;
+        baseValuesCaptured = true;
     }
 }

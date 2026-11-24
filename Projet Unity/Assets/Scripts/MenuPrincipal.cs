@@ -31,13 +31,25 @@ public class MenuPrincipal : MonoBehaviour
         }
         else
         {
+            string sceneAReprendre = sceneGame;
+            if (ProgressManager.Instance != null && ProgressManager.Instance.Data.position != null)
+            {
+                string sceneSauvegardee = ProgressManager.Instance.Data.position.carte;
+                bool sceneValide = !string.IsNullOrWhiteSpace(sceneSauvegardee)
+                    && sceneSauvegardee != "MenuPrincipal"
+                    && sceneSauvegardee != "MenuParametres"
+                    && sceneSauvegardee != "Dialogue"
+                    && Application.CanStreamedLevelBeLoaded(sceneSauvegardee);
+                if (sceneValide) sceneAReprendre = sceneSauvegardee;
+            }
+
             if (FadeManager.Instance != null)
             {
-                FadeManager.Instance.LoadSceneWithFade(sceneGame);
+                FadeManager.Instance.LoadSceneWithFade(sceneAReprendre);
             }
             else
             {
-                SceneManager.LoadScene(sceneGame);
+                SceneManager.LoadScene(sceneAReprendre);
             }
         }
     }

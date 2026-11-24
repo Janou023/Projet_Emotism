@@ -138,7 +138,11 @@ public class UIClasseur : MonoBehaviour
 
     // --- Mode sélection (question « quelle émotion ? » dans un défi) ---
     private bool modeSelection;
+    private bool selectionCompacte;
     private System.Action<CarteEmotion> surCarteChoisie;
+
+    public bool EstOuvert { get { return binderPanel != null && binderPanel.activeSelf; } }
+    public bool EstEnModeSelection { get { return modeSelection; } }
 
     // Ouverture simple (boutons de la scène) : consultation des cartes
     public void Ouvrir()
@@ -157,8 +161,22 @@ public class UIClasseur : MonoBehaviour
         Ouvrir(true, onChoisie, true);
     }
 
+    public void BasculerTailleSelection()
+    {
+        if (!modeSelection || binderPanel == null || !binderPanel.activeSelf) return;
+        Ouvrir(true, surCarteChoisie, !selectionCompacte);
+    }
+
     void Ouvrir(bool modeSelection, System.Action<CarteEmotion> onChoisie, bool compacte)
     {
+        // Une demande d'ouverture en consultation pendant un placement agrandit le
+        // carnet déjà ouvert sans perdre son callback ni son mode glisser-déposer.
+        if (this.modeSelection && binderPanel != null && binderPanel.activeSelf && !modeSelection)
+        {
+            Ouvrir(true, surCarteChoisie, false);
+            return;
+        }
+
         if (!modeSelection && !tutorielCarnetTraite)
         {
             tutorielCarnetTraite = true;
@@ -174,7 +192,14 @@ public class UIClasseur : MonoBehaviour
         }
 
         this.modeSelection = modeSelection;
+        selectionCompacte = modeSelection && compacte;
         surCarteChoisie = onChoisie;
+        if (canvasCarnet == null) canvasCarnet = GetComponent<Canvas>();
+        if (canvasCarnet != null)
+        {
+            canvasCarnet.overrideSorting = true;
+            canvasCarnet.sortingOrder = modeSelection ? 20 : 35;
+        }
         if (binderRect == null && binderPanel != null)
             binderRect = binderPanel.GetComponent<RectTransform>();
         if (binderRect != null)
@@ -216,6 +241,17 @@ public class UIClasseur : MonoBehaviour
 
     public void Fermer()
     {
+        // En mode placement, le bouton X replie le carnet mais garde le choix actif.
+        if (modeSelection && binderPanel != null && binderPanel.activeSelf)
+        {
+            Ouvrir(true, surCarteChoisie, true);
+            return;
+        }
+        Fermer(true);
+    }
+
+    public void FermerSelectionDefinitivement()
+    {
         Fermer(true);
     }
 
@@ -229,7 +265,9 @@ public class UIClasseur : MonoBehaviour
         if (jouerSon && binderPanel != null && binderPanel.activeSelf && SoundsManager.Instance != null)
             SoundsManager.Instance.PlayBinderCloseSound();
         modeSelection = false;
+        selectionCompacte = false;
         surCarteChoisie = null;
+        if (canvasCarnet != null) canvasCarnet.sortingOrder = 20;
         if (binderRect != null)
         {
             binderRect.anchorMin = ancreMinInitiale;
@@ -304,7 +342,7 @@ public class UIClasseur : MonoBehaviour
 
         if (!valide || carte == null) return;
         System.Action<CarteEmotion> callback = surCarteChoisie;
-        Fermer();
+        FermerSelectionDefinitivement();
         if (callback != null) callback(carte);
     }
 

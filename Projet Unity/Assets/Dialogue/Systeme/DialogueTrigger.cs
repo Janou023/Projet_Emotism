@@ -14,6 +14,8 @@ public class DialogueTrigger : MonoBehaviour
     [Header("Source des Données")]
     public DefiController defi;
     public TextAsset jsonDialogue;            // Glisse 'dialogues_tram.json' ici (sinon celui du DefiController)
+    public TextAsset jsonDialogueApresEmotion;
+    public string sceneApresEmotionDebloquee;
     public bool ouvrirSceneDialogue;
     public string sceneDialogue = "Dialogue";
     public Sprite fondDialogue;
@@ -21,6 +23,8 @@ public class DialogueTrigger : MonoBehaviour
     public bool afficherEcranReussiteSimple;
     public string idDefi;
     public string sceneRetourDefi;
+    public bool definirPositionJoueurAuRetour;
+    public Vector3 positionJoueurAuRetour;
 
     [Header("Paramètres d'Interaction")]
     public KeyCode interactKey = KeyCode.E;
@@ -29,11 +33,14 @@ public class DialogueTrigger : MonoBehaviour
     public float margeClic = 0.5f;
     public bool startAutomatically = false;   // true : démarre dès que le joueur entre dans la zone
     public bool onlyOnce = false;
+    public bool ignorerSiEmotionDebloquee;
+    public string emotionDejaDebloquee;
     public GameObject hint;                   // Indicateur d'interaction optionnel
 
     private bool done;
     private bool lancementEnCours;
     static readonly HashSet<string> completedTriggers = new HashSet<string>();
+    static readonly HashSet<string> ignorerProchaineEntree = new HashSet<string>();
 
     void Start()
     {
@@ -50,7 +57,10 @@ public class DialogueTrigger : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        if (hint != null && !startAutomatically) hint.SetActive(true);
+        // Le joueur revient parfois exactement sur le déclencheur après le dialogue.
+        // Ignore seulement cette collision de retour pour éviter de relancer en boucle.
+        if (ignorerProchaineEntree.Remove(CleDeclencheur())) return;
+        if (hint != null && !startAutomatically && !DialogueDejaTermine()) hint.SetActive(true);
         if (startAutomatically) Launch();
     }
 
@@ -121,12 +131,73 @@ public class DialogueTrigger : MonoBehaviour
         // Un DialogueManager détruit lors d'un changement de scène ne doit pas
         // laisser son ancien état statique bloquer les interactions suivantes.
         if (DialogueManager.IsActive && DialogueManager.Instance != null) return;
+        if (EmotionDejaDebloquee() && !string.IsNullOrWhiteSpace(sceneApresEmotionDebloquee))
+        {
+            // Si un déclencheur configuré avec une scène d'entrée possède aussi un
+            // dialogue alternatif, jouer ce dialogue sans ouvrir cette scène.
+            if (ouvrirSceneDialogue && jsonDialogueApresEmotion != null)
+            {
+                if (!Application.CanStreamedLevelBeLoaded(sceneDialogue))
+                {
+                    Debug.LogError("DialogueTrigger : scène de dialogue absente des scènes de build.");
+                    return;
+                }
+
+                string sceneRetour = gameObject.scene.name;
+                if (PauseMenu.Instance != null)
+                    PauseMenu.Instance.DefinirSceneOrigineDialogue(sceneRetour);
+                if (joueur == null)
+                {
+                    GameObject joueurObjet = GameObject.FindGameObjectWithTag("Player");
+                    if (joueurObjet != null) joueur = joueurObjet.transform;
+                }
+                if (joueur != null)
+                    LoadDefi.DefinirPositionRetour(sceneRetour, joueur.position);
+                ignorerProchaineEntree.Add(CleDeclencheur());
+                DialogueLaunchContext.Preparer(jsonDialogueApresEmotion, fondDialogue, estUnDefi,
+                    sceneRetour, afficherEcranReussiteSimple, idDefi);
+                done = true;
+                lancementEnCours = true;
+                if (hint != null) hint.SetActive(false);
+                if (FadeManager.Instance != null)
+                    FadeManager.Instance.LoadSceneWithFade(sceneDialogue);
+                else
+                    SceneManager.LoadScene(sceneDialogue);
+                return;
+            }
+
+            if (!Application.CanStreamedLevelBeLoaded(sceneApresEmotionDebloquee))
+            {
+                Debug.LogError("DialogueTrigger : scène d'entrée absente des scènes de build : " + sceneApresEmotionDebloquee);
+                return;
+            }
+
+            if (PauseMenu.Instance != null)
+                PauseMenu.Instance.ConfigurerPositionRetourDialogue(sceneApresEmotionDebloquee, "Monde");
+            done = true;
+            if (hint != null) hint.SetActive(false);
+            if (FadeManager.Instance != null)
+                FadeManager.Instance.LoadSceneWithFade(sceneApresEmotionDebloquee);
+            else
+                SceneManager.LoadScene(sceneApresEmotionDebloquee);
+            return;
+        }
+        if (DialogueDejaTermine())
+        {
+            done = true;
+            if (hint != null) hint.SetActive(false);
+            return;
+        }
         string triggerKey = CleDeclencheur();
         if (onlyOnce && (done || completedTriggers.Contains(triggerKey))) return;
 
         if (ouvrirSceneDialogue)
         {
-            TextAsset jsonDialogueLancement = jsonDialogue;
+            bool utiliserDialogueApresEmotion = EmotionDejaDebloquee()
+                && jsonDialogueApresEmotion != null;
+            TextAsset jsonDialogueLancement = utiliserDialogueApresEmotion
+                ? jsonDialogueApresEmotion
+                : jsonDialogue;
             if (jsonDialogueLancement == null && defi == null) defi = FindAnyObjectByType<DefiController>();
             if (jsonDialogueLancement == null && defi != null) jsonDialogueLancement = defi.dialoguesJson;
             if (jsonDialogueLancement == null)
@@ -140,8 +211,26 @@ public class DialogueTrigger : MonoBehaviour
                 return;
             }
 
-            string sceneRetour = string.IsNullOrEmpty(sceneRetourDefi)
-                ? gameObject.scene.name : sceneRetourDefi;
+            string sceneRetour = utiliserDialogueApresEmotion
+                ? gameObject.scene.name
+                : string.IsNullOrEmpty(sceneRetourDefi) ? gameObject.scene.name : sceneRetourDefi;
+            bool positionRetourConfiguree = false;
+            if (PauseMenu.Instance != null)
+            {
+                PauseMenu.Instance.DefinirSceneOrigineDialogue(gameObject.scene.name);
+                if (!utiliserDialogueApresEmotion)
+                    positionRetourConfiguree = PauseMenu.Instance.ConfigurerPositionRetourDialogue(
+                        gameObject.scene.name, sceneRetour);
+            }
+            if (utiliserDialogueApresEmotion && joueur != null)
+                LoadDefi.DefinirPositionRetour(sceneRetour, joueur.position);
+            else if (!positionRetourConfiguree && definirPositionJoueurAuRetour)
+                LoadDefi.DefinirPositionRetour(sceneRetour, positionJoueurAuRetour);
+            else if (!positionRetourConfiguree && sceneRetour == gameObject.scene.name && joueur != null)
+                LoadDefi.DefinirPositionRetour(sceneRetour, joueur.position);
+            if (startAutomatically && utiliserDialogueApresEmotion
+                && string.Equals(sceneRetour, gameObject.scene.name, System.StringComparison.OrdinalIgnoreCase))
+                ignorerProchaineEntree.Add(triggerKey);
             DialogueLaunchContext.Preparer(jsonDialogueLancement, fondDialogue, estUnDefi,
                 sceneRetour, afficherEcranReussiteSimple, idDefi);
             done = true;
@@ -168,6 +257,20 @@ public class DialogueTrigger : MonoBehaviour
 
         TextAsset json = jsonDialogue != null ? jsonDialogue : defi.dialoguesJson;
         defi.Lancer(json, 0);
+    }
+
+    bool DialogueDejaTermine()
+    {
+        return EmotionDejaDebloquee() && jsonDialogueApresEmotion == null
+            && string.IsNullOrWhiteSpace(sceneApresEmotionDebloquee);
+    }
+
+    bool EmotionDejaDebloquee()
+    {
+        return ignorerSiEmotionDebloquee
+            && !string.IsNullOrWhiteSpace(emotionDejaDebloquee)
+            && ProgressManager.Instance != null
+            && ProgressManager.Instance.IsEmotionUnlocked(emotionDejaDebloquee);
     }
 
     string CleDeclencheur()
