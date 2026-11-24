@@ -1351,7 +1351,7 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
@@ -1359,7 +1359,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 200
+  m_SortingOrder: 32767
   m_TargetDisplay: 0
 --- !u!114 &5743580616119994269
 MonoBehaviour:
@@ -3644,7 +3644,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 20
   m_Viewport: {fileID: 4887509632992419631}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 2576398315984581514}
@@ -3908,7 +3908,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 20
   m_Viewport: {fileID: 8107339097495526650}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1208664814525724316}
@@ -4389,7 +4389,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 20
   m_Viewport: {fileID: 9000762891322957767}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 6946445969914145512}
@@ -8914,7 +8914,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 20
   m_Viewport: {fileID: 1327096734213965369}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 845519056758064285}
@@ -9877,6 +9877,15 @@ MonoBehaviour:
   boutonNonQuitter: {fileID: 7064730405332224440}
   boutonOuiQuitter: {fileID: 2082593505053829765}
   couperLeSonEnPause: 1
+  sceneMenuPrincipal: MenuPrincipal
+  sceneMonde: Monde
+  positionRetourMonde: {x: 1.8, y: 13.12, z: 0}
+  positionRetourPolePeur: {x: -1.96, y: 17.04, z: 0}
+  positionsRetourParScene:
+  - sceneSource: PolePeur
+    positionDansMonde: {x: -1.96, y: 17.04, z: 0}
+  - sceneSource: PoleColere
+    positionDansMonde: {x: -13.02, y: 7.3, z: 0}
   scenesSansPause:
   - MenuPrincipal
   - MenuParametres

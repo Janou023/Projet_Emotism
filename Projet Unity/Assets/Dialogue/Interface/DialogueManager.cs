@@ -45,6 +45,10 @@ public class DialogueManager : MonoBehaviour
     public RectTransform choicesContainer;
     public TextMeshProUGUI questionText;
     public Button[] choiceButtons;
+    Canvas canvasChoix;
+    Canvas canvasInvite;
+    RectTransform dialoguePanelRect;
+    Vector2 tailleDialogueInitiale;
 
     [Header("Réglages")]
     public float typingSpeed = 0.03f;       // secondes par caractère (0 = instantané)
@@ -73,6 +77,11 @@ public class DialogueManager : MonoBehaviour
         }
         Instance = this;
         IsActive = false;
+        if (dialoguePanel != null)
+        {
+            dialoguePanelRect = dialoguePanel.GetComponent<RectTransform>();
+            if (dialoguePanelRect != null) tailleDialogueInitiale = dialoguePanelRect.sizeDelta;
+        }
         if (dialoguePanel != null) dialoguePanel.SetActive(false);
         AfficherElements(false);
 
@@ -120,7 +129,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (style.Key == null) continue;
             style.Key.fontSize = style.Value.size * AccessibleText.ScaleFor(reglages.textSizeLevel);
-            style.Key.lineSpacing = style.Value.spacing + reglages.lineSpacing * 40f;
+            style.Key.lineSpacing = style.Value.spacing + reglages.lineSpacing * 8f;
         }
 
         if (reglages.instantText && typing)
@@ -298,6 +307,7 @@ public class DialogueManager : MonoBehaviour
     public void AfficherInvite(string texte)
     {
         Masquer();
+        MettreInviteAuPremierPlan();
         AppliquerReglages();
         IsActive = true;
         if (dialoguePanel != null) dialoguePanel.SetActive(!string.IsNullOrEmpty(texte));
@@ -309,6 +319,17 @@ public class DialogueManager : MonoBehaviour
         textDialogue.maxVisibleCharacters = int.MaxValue;
         if (dialogueHistory != null && !string.IsNullOrEmpty(texte))
             dialogueHistory.Add("", texte);
+    }
+
+    void MettreInviteAuPremierPlan()
+    {
+        if (dialoguePanel == null) return;
+        canvasInvite = dialoguePanel.GetComponent<Canvas>();
+        if (canvasInvite == null) canvasInvite = dialoguePanel.AddComponent<Canvas>();
+        canvasInvite.overrideSorting = true;
+        canvasInvite.sortingOrder = 25;
+        if (dialoguePanel.GetComponent<GraphicRaycaster>() == null)
+            dialoguePanel.AddComponent<GraphicRaycaster>();
     }
 
     public void AfficherChoix(string invite, IList<string> textes, Action<int> onChoix)
@@ -336,6 +357,8 @@ public class DialogueManager : MonoBehaviour
             dialogueHistory.Add("", invite);
 
         choicesContainer.gameObject.SetActive(true);
+        MettreChoixAuPremierPlan();
+        ConfigurerDispositionChoix(textes.Count);
         for (int i = 0; i < choiceButtons.Length; i++)
         {
             Button button = choiceButtons[i];
@@ -365,6 +388,102 @@ public class DialogueManager : MonoBehaviour
         AppliquerReglages();
         Canvas.ForceUpdateCanvases();
         LayoutRebuilder.ForceRebuildLayoutImmediate(choicesContainer);
+    }
+
+    void ConfigurerDispositionChoix(int nombreChoix)
+    {
+        if (choicesContainer == null || choiceButtons == null || choiceButtons.Length == 0) return;
+        RectTransform panneau = choicesContainer.parent as RectTransform;
+        RectTransform reponses = choiceButtons[0] != null
+            ? choiceButtons[0].transform.parent as RectTransform
+            : null;
+        if (panneau == null || reponses == null) return;
+
+        VerticalLayoutGroup dispositionGenerale = choicesContainer.GetComponent<VerticalLayoutGroup>();
+        if (dispositionGenerale != null) dispositionGenerale.enabled = false;
+
+        float hauteurBouton = 80f;
+        float espacementBoutons = 8f;
+        float hauteurSouhaitee = nombreChoix * hauteurBouton
+            + Mathf.Max(0, nombreChoix - 1) * espacementBoutons + 40f;
+        RectTransform canvasRect = dialoguePanelRect != null
+            ? dialoguePanelRect.root as RectTransform
+            : null;
+        float hauteurMax = canvasRect != null ? canvasRect.rect.height * 0.52f : hauteurSouhaitee;
+        float hauteurPanneau = Mathf.Min(Mathf.Max(panneau.rect.height, hauteurSouhaitee), hauteurMax);
+        if (dialoguePanelRect != null)
+            dialoguePanelRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, hauteurPanneau);
+
+        float largeurPanneau = panneau.rect.width;
+        float largeurQuestion = largeurPanneau * 0.36f;
+        float largeurReponses = Mathf.Min(760f, largeurPanneau * 0.60f);
+
+        RectTransform questionRect = questionText != null ? questionText.rectTransform : null;
+        if (questionRect != null)
+        {
+            questionRect.anchorMin = new Vector2(0f, 1f);
+            questionRect.anchorMax = new Vector2(0f, 1f);
+            questionRect.pivot = new Vector2(0f, 1f);
+            questionRect.anchoredPosition = new Vector2(24f, -20f);
+            questionRect.sizeDelta = new Vector2(largeurQuestion, Mathf.Min(100f, hauteurPanneau * 0.42f));
+            questionText.textWrappingMode = TextWrappingModes.Normal;
+            questionText.enableAutoSizing = true;
+            questionText.fontSizeMin = 18f;
+            questionText.fontSizeMax = 25f;
+            questionText.alignment = TextAlignmentOptions.TopLeft;
+        }
+
+        reponses.anchorMin = new Vector2(1f, 0f);
+        reponses.anchorMax = new Vector2(1f, 0f);
+        reponses.pivot = new Vector2(1f, 0f);
+        reponses.anchoredPosition = new Vector2(-18f, 10f);
+        reponses.sizeDelta = new Vector2(largeurReponses, Mathf.Max(0f, hauteurPanneau - 36f));
+
+        VerticalLayoutGroup dispositionReponses = reponses.GetComponent<VerticalLayoutGroup>();
+        if (dispositionReponses != null)
+        {
+            dispositionReponses.childAlignment = TextAnchor.MiddleCenter;
+            dispositionReponses.childForceExpandWidth = false;
+            dispositionReponses.childControlWidth = true;
+            dispositionReponses.spacing = espacementBoutons;
+        }
+
+        foreach (Button button in choiceButtons)
+        {
+            if (button == null) continue;
+            LayoutElement taille = button.GetComponent<LayoutElement>();
+            if (taille == null) taille = button.gameObject.AddComponent<LayoutElement>();
+            taille.preferredWidth = largeurReponses;
+            taille.preferredHeight = hauteurBouton;
+            taille.flexibleWidth = 0f;
+
+            TMP_Text etiquette = button.GetComponentInChildren<TMP_Text>(true);
+            if (etiquette == null) continue;
+            RectTransform etiquetteRect = etiquette.rectTransform;
+            etiquetteRect.anchorMin = Vector2.zero;
+            etiquetteRect.anchorMax = Vector2.one;
+            etiquetteRect.pivot = new Vector2(0.5f, 0.5f);
+            etiquetteRect.anchoredPosition = Vector2.zero;
+            etiquetteRect.sizeDelta = new Vector2(-24f, -8f);
+            etiquette.textWrappingMode = TextWrappingModes.Normal;
+            etiquette.enableAutoSizing = false;
+            etiquette.fontSize = 28f;
+            baseStyles[etiquette] = (28f, etiquette.lineSpacing);
+            etiquette.alignment = TextAlignmentOptions.Center;
+        }
+    }
+
+    void MettreChoixAuPremierPlan()
+    {
+        if (choicesContainer == null) return;
+
+        canvasChoix = choicesContainer.GetComponent<Canvas>();
+        if (canvasChoix == null) canvasChoix = choicesContainer.gameObject.AddComponent<Canvas>();
+        canvasChoix.overrideSorting = true;
+        canvasChoix.sortingOrder = 30;
+
+        if (choicesContainer.GetComponent<GraphicRaycaster>() == null)
+            choicesContainer.gameObject.AddComponent<GraphicRaycaster>();
     }
 
     void Choisir(int i)
@@ -406,6 +525,7 @@ public class DialogueManager : MonoBehaviour
     /// <summary>Cache la boîte, les choix et la question (les sprites restent).</summary>
     public void Masquer()
     {
+        RestaurerTailleDialogue();
         if (typingRoutine != null) { StopCoroutine(typingRoutine); typingRoutine = null; }
         if (SoundsManager.Instance != null)
             SoundsManager.Instance.StopTypingSound();
@@ -420,6 +540,12 @@ public class DialogueManager : MonoBehaviour
         if (dialoguePanel != null) dialoguePanel.SetActive(false);
         if (continueIcon != null) continueIcon.SetActive(false);
         IsActive = false;
+    }
+
+    void RestaurerTailleDialogue()
+    {
+        if (dialoguePanelRect != null)
+            dialoguePanelRect.sizeDelta = tailleDialogueInitiale;
     }
 
     /// <summary>Fin de toute la conversation : on retire aussi les sprites.</summary>

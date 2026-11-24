@@ -25,6 +25,17 @@ public class DeplacementJoueur : MonoBehaviour
             transform.position = position;
             if (rigidbody != null)
                 rigidbody.position = position;
+            return;
+        }
+
+        if (ProgressManager.Instance != null && ProgressManager.Instance.Data.position != null
+            && ProgressManager.Instance.Data.position.carte == SceneManager.GetActiveScene().name)
+        {
+            Vector2 positionSauvegardee = new Vector2(
+                ProgressManager.Instance.Data.position.x,
+                ProgressManager.Instance.Data.position.y);
+            transform.position = positionSauvegardee;
+            if (rigidbody != null) rigidbody.position = positionSauvegardee;
         }
     }
 
@@ -81,6 +92,7 @@ public class DeplacementJoueur : MonoBehaviour
         }
 
         PlayerPrefs.SetString(CleSceneSauvegardee, SceneManager.GetActiveScene().name);
+        SauvegarderPosition();
         ClasseurEmotions.SauvegarderProgression();
 
         if (SettingsManager.Instance != null)
@@ -90,5 +102,30 @@ public class DeplacementJoueur : MonoBehaviour
 
         PlayerPrefs.Save();
         Debug.Log("Sauvegarde effectuee : scene, cartes, tutoriels et preferences.", this);
+    }
+
+    void OnApplicationPause(bool enPause)
+    {
+        if (enPause) SauvegarderPosition();
+    }
+
+    void OnApplicationQuit()
+    {
+        SauvegarderPosition();
+    }
+
+    void OnDestroy()
+    {
+        if (Application.isPlaying) SauvegarderPosition();
+    }
+
+    void SauvegarderPosition()
+    {
+        if (ProgressManager.Instance == null) return;
+        Vector3 position = transform.position;
+        string sceneJoueur = gameObject.scene.name;
+        ProgressManager.Instance.SavePosition(sceneJoueur, position.x, position.y);
+        PlayerPrefs.SetString(CleSceneSauvegardee, sceneJoueur);
+        PlayerPrefs.Save();
     }
 }

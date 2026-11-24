@@ -1,0 +1,16 @@
+[
+  {
+    "num": 0,
+    "phrases": [
+      "Oh ma chérie, tu ne devais pas aller voir la cabane."
+    ],
+    "pensees": [],
+    "question": {},
+    "indice": "",
+    "carte_obtenue": "",
+    "cartes": [],
+    "personnage": "Maman",
+    "img_perso": "maman_neutre.png",
+    "fin": true
+  }
+]

@@ -15,6 +15,7 @@ public class DialogueUIBootstrap : MonoBehaviour
     public UIClasseur classeurPrefab;
     public string nomJoueur = "Moi";
     public Vector2 decalagePortraitSelection = new Vector2(-450f, 0f);
+    [SerializeField] string sceneCredits = "Credits";
 
     [Tooltip("Autres personnages des dialogues (ex. Julia). Le nom doit correspondre au champ \"personnage\" du JSON.")]
     public Personnage[] autresPersonnages;
@@ -197,6 +198,15 @@ public class DialogueUIBootstrap : MonoBehaviour
 
     void RetournerScene(string sceneRetour)
     {
+        if (defiController != null && defiController.estDefi
+            && string.Equals(defiController.idDefi, "tram", System.StringComparison.OrdinalIgnoreCase)
+            && ProgressManager.Instance != null
+            && ProgressManager.Instance.IsChallengeCompleted(defiController.idDefi)
+            && Application.CanStreamedLevelBeLoaded(sceneCredits))
+        {
+            sceneRetour = sceneCredits;
+        }
+
         if (!Application.CanStreamedLevelBeLoaded(sceneRetour))
         {
             Debug.LogError("DialogueUIBootstrap : scène de retour absente des scènes de build : " + sceneRetour);
@@ -219,6 +229,8 @@ public class DialogueUIBootstrap : MonoBehaviour
         }
 
         bouton.onClick.RemoveAllListeners();
+        defiController.boutonClasseur = bouton;
+        bouton.interactable = true;
         if (classeur == null)
         {
             return;

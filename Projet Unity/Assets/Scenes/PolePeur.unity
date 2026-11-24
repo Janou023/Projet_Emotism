@@ -2257,19 +2257,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
   defi: {fileID: 0}
   jsonDialogue: {fileID: 4900000, guid: 212b9fb2c4eda6d42896e9652a79ef49, type: 3}
+  jsonDialogueApresEmotion: {fileID: 4900000, guid: 48b4d6db31b94fc69a817b829f03d3c1, type: 3}
   ouvrirSceneDialogue: 1
   sceneDialogue: Dialogue
   fondDialogue: {fileID: 21300000, guid: 287161f38758f4c4d958c4e7f1f064b9, type: 3}
   estUnDefi: 0
   afficherEcranReussiteSimple: 0
   idDefi: 
-  sceneRetourDefi: 
+  sceneRetourDefi: Monde
+  definirPositionJoueurAuRetour: 1
+  positionJoueurAuRetour: {x: 1.8, y: 13.12, z: 0}
   interactKey: 97
   joueur: {fileID: 6852574}
   distanceInteraction: 2
   margeClic: 0.5
   startAutomatically: 0
   onlyOnce: 0
+  ignorerSiEmotionDebloquee: 1
+  emotionDejaDebloquee: peur
   hint: {fileID: 0}
 --- !u!114 &7284043750986115005
 MonoBehaviour:

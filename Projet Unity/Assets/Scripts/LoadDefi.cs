@@ -9,9 +9,11 @@ public class LoadDefi : MonoBehaviour
 
     [Header("Cartes requises pour entrer")]
     [SerializeField] private string[] requiredEmotions;
+    [SerializeField] private string idDefiBloqueApresReussite;
     [SerializeField] private Color lockedColor = new Color(0.55f, 0.55f, 0.55f, 1f);
 
     private SpriteRenderer spriteRenderer;
+    private Collider2D colliderEntree;
     private Color unlockedColor = Color.white;
 
     private static Vector3 returnPosition;
@@ -19,9 +21,19 @@ public class LoadDefi : MonoBehaviour
     private static bool hasReturnPosition;
     private static bool ecouteRetourActive;
 
+    public static void DefinirPositionRetour(string scene, Vector3 position)
+    {
+        if (string.IsNullOrWhiteSpace(scene)) return;
+        returnPosition = position;
+        returnSceneName = scene;
+        hasReturnPosition = true;
+        EcouterChargementScene();
+    }
+
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        colliderEntree = GetComponent<Collider2D>();
         if (spriteRenderer != null)
             unlockedColor = spriteRenderer.color;
     }
@@ -41,6 +53,8 @@ public class LoadDefi : MonoBehaviour
 
     bool DefiAccessible()
     {
+        if (DefiTermine()) return false;
+
         if (requiredEmotions != null && requiredEmotions.Length > 0)
         {
             if (ProgressManager.Instance == null)
@@ -54,6 +68,13 @@ public class LoadDefi : MonoBehaviour
         }
 
         return true;
+    }
+
+    bool DefiTermine()
+    {
+        return !string.IsNullOrWhiteSpace(idDefiBloqueApresReussite)
+            && ProgressManager.Instance != null
+            && ProgressManager.Instance.IsChallengeCompleted(idDefiBloqueApresReussite);
     }
 
     [ContextMenu("Afficher les cartes requises")]
@@ -77,6 +98,11 @@ public class LoadDefi : MonoBehaviour
     {
         if (spriteRenderer != null)
             spriteRenderer.color = DefiAccessible() ? unlockedColor : lockedColor;
+
+        // Après réussite, le collider d'entrée devient solide : le joueur ne peut
+        // plus traverser l'entrée ni relancer le défi.
+        if (colliderEntree != null && !string.IsNullOrWhiteSpace(idDefiBloqueApresReussite))
+            colliderEntree.isTrigger = !DefiTermine();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -85,10 +111,7 @@ public class LoadDefi : MonoBehaviour
         {
             if (rememberPlayerPositionOnReturn)
             {
-                returnPosition = playerReturnPosition;
-                returnSceneName = SceneManager.GetActiveScene().name;
-                hasReturnPosition = true;
-                EcouterChargementScene();
+                DefinirPositionRetour(SceneManager.GetActiveScene().name, other.transform.position);
             }
 
             if (FadeManager.Instance != null)

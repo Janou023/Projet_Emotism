@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -19,6 +21,13 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PauseMenu : MonoBehaviour
 {
+    [Serializable]
+    class PositionRetourScene
+    {
+        public string sceneSource;
+        public Vector3 positionDansMonde;
+    }
+
     public static PauseMenu Instance { get; private set; }
 
     /// <summary>Vrai pendant la pause (et une image après, pour ne pas laisser passer la touche de fermeture).</summary>
@@ -34,6 +43,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] Button boutonContinuer;
     [SerializeField] Button boutonParametres;
     [SerializeField] Button boutonQuitter;
+    Button boutonQuitterScene;
 
     [Header("Paramètres (facultatif)")]
     [Tooltip("Racine du menu de paramètres, DÉSACTIVÉE dans le prefab. Vide = le bouton Paramètres est masqué.")]
@@ -47,6 +57,15 @@ public class PauseMenu : MonoBehaviour
 
     [Header("Options")]
     [SerializeField] bool couperLeSonEnPause = true;
+    [SerializeField] string sceneMenuPrincipal = "MenuPrincipal";
+    [SerializeField] string sceneMonde = "Monde";
+    [SerializeField] Vector3 positionRetourMonde = new Vector3(1.8f, 13.12f, 0f);
+    [SerializeField] Vector3 positionRetourPolePeur = new Vector3(-1.96f, 17.04f, 0f);
+    [SerializeField] PositionRetourScene[] positionsRetourParScene =
+    {
+        new PositionRetourScene { sceneSource = "PolePeur", positionDansMonde = new Vector3(-1.96f, 17.04f, 0f) },
+        new PositionRetourScene { sceneSource = "PoleColere", positionDansMonde = new Vector3(-13.02f, 7.3f, 0f) }
+    };
     [Tooltip("Scènes où la pause est indisponible (ex. écran-titre) : bouton masqué, Échap sans effet. Noms exacts.")]
     [SerializeField] string[] scenesSansPause;
 
@@ -56,6 +75,7 @@ public class PauseMenu : MonoBehaviour
     GameObject cibleFocus;
     DialogueHistory historique;
     bool historiqueOuvertAvant;
+    string sceneOrigineDialogue;
     Coroutine relachement;
 
     // ---------------------------------------------------------------- cycle de vie
@@ -75,6 +95,7 @@ public class PauseMenu : MonoBehaviour
         Brancher(boutonContinuer, Continuer);
         Brancher(boutonParametres, OuvrirParametres);
         Brancher(boutonQuitter, DemanderQuitter);
+        CreerBoutonQuitterScene();
         Brancher(boutonNonQuitter, AnnulerQuitter);
         Brancher(boutonOuiQuitter, ConfirmerQuitter);
 
@@ -134,7 +155,109 @@ public class PauseMenu : MonoBehaviour
         }
 
         MettreAJourBoutonPause();
+        if (boutonQuitterScene != null)
+            boutonQuitterScene.gameObject.SetActive(EstScenePoleOuDefi(scene.name));
         historique = FindAnyObjectByType<DialogueHistory>();
+    }
+
+    static bool EstScenePoleOuDefi(string nomScene)
+    {
+        return !string.IsNullOrEmpty(nomScene)
+            && (nomScene.StartsWith("Pole", StringComparison.OrdinalIgnoreCase)
+                || nomScene.StartsWith("Defi", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(nomScene, "Dialogue", StringComparison.OrdinalIgnoreCase));
+    }
+
+    public void DefinirSceneOrigineDialogue(string nomScene)
+    {
+        sceneOrigineDialogue = nomScene;
+    }
+
+    public bool ConfigurerPositionRetourDialogue(string sceneSource, string sceneDestination)
+    {
+        if (TryGetPositionRetourConfiguree(sceneSource, out Vector3 position))
+        {
+            LoadDefi.DefinirPositionRetour(sceneDestination, position);
+            return true;
+        }
+
+        if (string.Equals(sceneSource, "PolePeur", StringComparison.OrdinalIgnoreCase))
+        {
+            LoadDefi.DefinirPositionRetour(sceneDestination, positionRetourPolePeur);
+            return true;
+        }
+
+        return false;
+    }
+
+    bool TryGetPositionRetourConfiguree(string sceneSource, out Vector3 position)
+    {
+        if (positionsRetourParScene != null)
+        {
+            foreach (PositionRetourScene config in positionsRetourParScene)
+            {
+                if (config == null || !string.Equals(config.sceneSource, sceneSource,
+                    StringComparison.OrdinalIgnoreCase)) continue;
+                position = config.positionDansMonde;
+                return true;
+            }
+        }
+
+        position = default;
+        return false;
+    }
+
+    void CreerBoutonQuitterScene()
+    {
+        if (boutonQuitterScene != null || boutonContinuer == null) return;
+        boutonQuitterScene = Instantiate(boutonContinuer, boutonContinuer.transform.parent);
+        boutonQuitterScene.name = "Bouton_QuitterScene";
+        if (boutonQuitter != null)
+            boutonQuitterScene.transform.SetSiblingIndex(boutonQuitter.transform.GetSiblingIndex());
+        boutonQuitterScene.onClick.RemoveAllListeners();
+        TMP_Text etiquette = boutonQuitterScene.GetComponentInChildren<TMP_Text>(true);
+        if (etiquette != null) etiquette.text = "Quitter la scène";
+        AppliquerCouleurBouton(boutonQuitterScene, new Color(0.9098039f, 0.6392157f, 0.23921569f));
+        AppliquerCouleurBouton(boutonQuitter, new Color(0.8784314f, 0.3529412f, 0.30980393f));
+        Brancher(boutonQuitterScene, QuitterScenePoleOuDefi);
+        boutonQuitterScene.gameObject.SetActive(false);
+    }
+
+    static void AppliquerCouleurBouton(Button bouton, Color couleur)
+    {
+        if (bouton == null) return;
+        Graphic fond = bouton.targetGraphic;
+        if (fond != null) fond.color = couleur;
+    }
+
+    void QuitterScenePoleOuDefi()
+    {
+        Scene sceneActuelle = SceneManager.GetActiveScene();
+        if (!EstScenePoleOuDefi(sceneActuelle.name)) return;
+        if (!Application.CanStreamedLevelBeLoaded(sceneMonde))
+        {
+            Debug.LogError("PauseMenu : scène de retour absente des scènes de build : " + sceneMonde);
+            return;
+        }
+
+        if (ProgressManager.Instance != null) ProgressManager.Instance.Save();
+        string sceneSource = string.Equals(sceneActuelle.name, "Dialogue", StringComparison.OrdinalIgnoreCase)
+            && !string.IsNullOrEmpty(sceneOrigineDialogue)
+            ? sceneOrigineDialogue
+            : sceneActuelle.name;
+        Vector3 position = positionRetourMonde;
+        if (TryGetPositionRetourConfiguree(sceneSource, out Vector3 positionConfiguree))
+            position = positionConfiguree;
+        else if (string.Equals(sceneSource, "PolePeur", StringComparison.OrdinalIgnoreCase))
+            position = positionRetourPolePeur;
+        else if (!LoadDefi.TryGetReturnPosition(sceneMonde, out position))
+            position = positionRetourMonde;
+        LoadDefi.DefinirPositionRetour(sceneMonde, position);
+        if (etat != Etat.Ferme) Continuer();
+        // La sortie depuis un pôle/défi doit toujours charger le monde explicitement.
+        // Le FadeManager peut encore être occupé par une transition précédente et
+        // ignorer la demande, ce qui laisse croire que la scène actuelle redémarre.
+        SceneManager.LoadScene(sceneMonde);
     }
 
     void VerifierEventSystem()
@@ -170,10 +293,19 @@ public class PauseMenu : MonoBehaviour
         switch (etat)
         {
             case Etat.Ferme:
+            {
                 // Échap sert d'abord à fermer l'historique des dialogues
                 if (historiqueOuvertAvant || (historique != null && historique.IsOpen)) return;
+                UIClasseur classeurOuvert = FindAnyObjectByType<UIClasseur>();
+                if (classeurOuvert != null && classeurOuvert.EstOuvert
+                    && !classeurOuvert.EstEnModeSelection)
+                {
+                    classeurOuvert.Fermer();
+                    return;
+                }
                 OuvrirPause();
                 break;
+            }
             case Etat.Pause:
                 Continuer();
                 break;
@@ -259,11 +391,13 @@ public class PauseMenu : MonoBehaviour
         // Les réglages se sauvegardent à chaque changement ; on force aussi la progression
         if (ProgressManager.Instance != null) ProgressManager.Instance.Save();
 
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        if (etat != Etat.Ferme) Continuer();
+        if (FadeManager.Instance != null)
+            FadeManager.Instance.LoadSceneWithFade(sceneMenuPrincipal);
+        else if (Application.CanStreamedLevelBeLoaded(sceneMenuPrincipal))
+            SceneManager.LoadScene(sceneMenuPrincipal);
+        else
+            Debug.LogError("PauseMenu : scÃ¨ne du menu principal absente des scÃ¨nes de build : " + sceneMenuPrincipal);
     }
 
     // ---------------------------------------------------------------- interne
