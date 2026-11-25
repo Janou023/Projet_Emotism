@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Defi
   m_EditorClassIdentifier: Assembly-CSharp::ContenuTutoriel
   id: defi
-  titre: "Entrer dans un d\u00e9fi"
-  texte: "Dans ce d\u00e9fi, lis les situations et utilise tes cartes \u00c9motions pour choisir les bonnes r\u00e9ponses."
+  titre: "D\u00e9fi du tram"
+  texte: "Lis attentivement les situations. Quand une \u00e9motion est demand\u00e9e, ouvre ton carnet et choisis la carte \u00c9motion qui correspond. Tu peux consulter les indices avant de r\u00e9pondre."

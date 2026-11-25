@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
 using UnityEngine.EventSystems;
 
 public class GestionnaireTutoriels : MonoBehaviour
@@ -14,6 +13,8 @@ public class GestionnaireTutoriels : MonoBehaviour
     public static GestionnaireTutoriels Instance => instance != null ? instance : TrouverOuCreer();
 
     [SerializeField] private TutorielPopUP panneauTutoriel;
+    [Tooltip("Prefab visuel du pop-up. Si vide, Resources/Tutoriels/PanneauTutoriel est utilisé.")]
+    [SerializeField] private GameObject prefabPanneauTutoriel;
     [SerializeField] private ContenuTutoriel tutorielAuLancement;
     [SerializeField] private ContenuTutoriel aideCartes;
     [SerializeField] private ContenuTutoriel aideChoix;
@@ -76,19 +77,43 @@ public class GestionnaireTutoriels : MonoBehaviour
 
     public void AfficherTutoriel(ContenuTutoriel contenu)
     {
-        AfficherTutorielPrive(contenu, null);
+        AfficherTutorielPrive(contenu, null, true);
     }
 
     public bool AfficherTutoriel(ContenuTutoriel contenu, Action onClosed)
     {
-        return AfficherTutorielPrive(contenu, onClosed);
+        return AfficherTutorielPrive(contenu, onClosed, true);
     }
 
-    private bool AfficherTutorielPrive(ContenuTutoriel contenu, Action onClosed)
+    public bool AfficherMessage(ContenuTutoriel contenu, Action onClosed = null)
+    {
+        return AfficherTutorielPrive(contenu, onClosed, false);
+    }
+
+    private bool AfficherTutorielPrive(ContenuTutoriel contenu, Action onClosed, bool enregistrerCommeVu)
     {
         if (contenu == null)
         {
             Debug.LogWarning("Aucun contenu de tutoriel n'a ete fourni.", this);
+            return false;
+        }
+
+        if (string.IsNullOrWhiteSpace(contenu.id))
+        {
+            Debug.LogError("Chaque tutoriel doit avoir un identifiant unique.", contenu);
+            return false;
+        }
+
+        if (string.IsNullOrWhiteSpace(contenu.titre) || string.IsNullOrWhiteSpace(contenu.texte))
+        {
+            Debug.LogError("Chaque tutoriel doit avoir un titre et un texte.", contenu);
+            return false;
+        }
+
+        string cleSauvegarde = PrefixeCleSauvegarde + contenu.id;
+        if (enregistrerCommeVu && PlayerPrefs.GetInt(cleSauvegarde, 0) == 1)
+        {
+            Debug.LogWarning("Tutoriel deja enregistre comme vu : " + contenu.id, this);
             return false;
         }
 
@@ -98,27 +123,17 @@ public class GestionnaireTutoriels : MonoBehaviour
             if (panneauTutoriel == null) return false;
         }
 
-        if (string.IsNullOrWhiteSpace(contenu.id))
-        {
-            Debug.LogError("Chaque tutoriel doit avoir un identifiant unique.", contenu);
-            return false;
-        }
-
-        string cleSauvegarde = PrefixeCleSauvegarde + contenu.id;
-        if (PlayerPrefs.GetInt(cleSauvegarde, 0) == 1)
-        {
-            Debug.LogWarning("Tutoriel deja enregistre comme vu : " + contenu.id, this);
-            return false;
-        }
-
         Debug.Log("Contenu envoye au panneau - titre: '" + contenu.titre + "', texte: '" + contenu.texte + "'.", this);
         if (!panneauTutoriel.ShowPopUp(contenu, onClosed))
         {
             return false;
         }
 
-        PlayerPrefs.SetInt(cleSauvegarde, 1);
-        PlayerPrefs.Save();
+        if (enregistrerCommeVu)
+        {
+            PlayerPrefs.SetInt(cleSauvegarde, 1);
+            PlayerPrefs.Save();
+        }
         return true;
     }
 
@@ -237,6 +252,21 @@ public class GestionnaireTutoriels : MonoBehaviour
     {
         if (panneauTutoriel != null) return;
 
+        GameObject prefab = prefabPanneauTutoriel != null
+            ? prefabPanneauTutoriel
+            : Resources.Load<GameObject>("Tutoriels/PanneauTutoriel");
+        if (prefab == null)
+        {
+            Debug.LogError("Assigne un prefab de pop-up tutoriel ou ajoute-le dans Resources/Tutoriels/PanneauTutoriel.", this);
+            return;
+        }
+
+        if (prefab.GetComponent<TutorielPopUP>() == null)
+        {
+            Debug.LogError("Le prefab du pop-up doit avoir TutorielPopUP sur son objet racine.", prefab);
+            return;
+        }
+
         if (FindAnyObjectByType<EventSystem>() == null)
             new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
 
@@ -251,88 +281,8 @@ public class GestionnaireTutoriels : MonoBehaviour
         scaler.matchWidthOrHeight = 0.5f;
         canvasObjet.AddComponent<GraphicRaycaster>();
 
-        RectTransform panelRect = CreerRect(canvasObjet.transform, "PanneauTutoriel",
-            new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(400f, 270f));
-        Image panelImage = panelRect.gameObject.AddComponent<Image>();
-        ConfigurerFond(panelImage, new Color(0.88f, 0.98f, 0.99f, 0.92f));
-
-        RectTransform titleBackground = CreerRect(panelRect, "FondTitre",
-            new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(128f, 32f));
-        titleBackground.anchoredPosition = new Vector2(18f, -17f);
-        ConfigurerFond(titleBackground.gameObject.AddComponent<Image>(),
-            new Color(0.66f, 0.89f, 0.91f, 0.96f));
-        RectTransform titleRect = CreerRect(titleBackground, "Titre",
-            Vector2.zero, Vector2.one, Vector2.zero);
-        titleRect.offsetMin = new Vector2(8f, 0f);
-        titleRect.offsetMax = new Vector2(-8f, 0f);
-        TMP_Text title = titleRect.gameObject.AddComponent<TextMeshProUGUI>();
-        title.alignment = TextAlignmentOptions.Center;
-        title.fontSize = 16f;
-        title.color = new Color(0.07f, 0.16f, 0.18f, 1f);
-
-        RectTransform textBackground = CreerRect(panelRect, "FondDescription",
-            new Vector2(0f, 0.24f), new Vector2(1f, 0.78f), new Vector2(-28f, 0f));
-        textBackground.pivot = new Vector2(0.5f, 0.5f);
-        ConfigurerFond(textBackground.gameObject.AddComponent<Image>(),
-            new Color(0.70f, 0.95f, 0.97f, 0.94f));
-        RectTransform textRect = CreerRect(textBackground, "Texte",
-            Vector2.zero, Vector2.one, Vector2.zero);
-        textRect.offsetMin = new Vector2(10f, 8f);
-        textRect.offsetMax = new Vector2(-10f, -8f);
-        TMP_Text text = textRect.gameObject.AddComponent<TextMeshProUGUI>();
-        text.alignment = TextAlignmentOptions.Center;
-        text.fontSize = 18f;
-        text.fontSizeMin = 14f;
-        text.fontSizeMax = 18f;
-        text.enableAutoSizing = true;
-        text.color = new Color(0.07f, 0.16f, 0.18f, 1f);
-
-        Button button = CreerBouton(panelRect);
-
-        TutorielPopUP popup = panelRect.gameObject.AddComponent<TutorielPopUP>();
-        popup.Configurer(title, text);
-        button.onClick.AddListener(popup.ClosePopUp);
-        panelRect.gameObject.SetActive(false);
-        panneauTutoriel = popup;
-    }
-
-    private static RectTransform CreerRect(Transform parent, string nom,
-        Vector2 anchorMin, Vector2 anchorMax, Vector2 size)
-    {
-        GameObject objet = new GameObject(nom, typeof(RectTransform));
-        objet.transform.SetParent(parent, false);
-        RectTransform rect = objet.GetComponent<RectTransform>();
-        rect.anchorMin = anchorMin;
-        rect.anchorMax = anchorMax;
-        rect.pivot = anchorMin;
-        rect.anchoredPosition = Vector2.zero;
-        rect.sizeDelta = size;
-        return rect;
-    }
-
-    private static void ConfigurerFond(Image image, Color couleur)
-    {
-        image.sprite = Resources.GetBuiltinResource<Sprite>("UI/Skin/UISprite.psd");
-        image.type = image.sprite != null ? Image.Type.Sliced : Image.Type.Simple;
-        image.color = couleur;
-    }
-
-    private static Button CreerBouton(RectTransform parent)
-    {
-        RectTransform rect = CreerRect(parent, "BoutonContinuer",
-            new Vector2(1f, 0f), new Vector2(1f, 0f), new Vector2(150f, 42f));
-        rect.anchoredPosition = new Vector2(-14f, 14f);
-        Image image = rect.gameObject.AddComponent<Image>();
-        ConfigurerFond(image, new Color(0.66f, 0.89f, 0.91f, 0.96f));
-        RectTransform textRect = CreerRect(rect, "Texte",
-            Vector2.zero, Vector2.one, Vector2.zero);
-        TMP_Text text = textRect.gameObject.AddComponent<TextMeshProUGUI>();
-        text.text = "Continuer";
-        text.alignment = TextAlignmentOptions.Center;
-        text.fontSize = 16f;
-        text.color = new Color(0.07f, 0.16f, 0.18f, 1f);
-        Button button = rect.gameObject.AddComponent<Button>();
-        button.targetGraphic = image;
-        return button;
+        GameObject instancePanneau = Instantiate(prefab, canvasObjet.transform, false);
+        panneauTutoriel = instancePanneau.GetComponent<TutorielPopUP>();
+        instancePanneau.SetActive(false);
     }
 }

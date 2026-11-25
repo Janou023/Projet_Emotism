@@ -2887,18 +2887,46 @@ PrefabInstance:
     - target: {fileID: 1336543115854680855, guid: dddb0789034e9e74d99882b9ef17e153, type: 3}
       propertyPath: sonSurvolBouton
       value: 
+      objectReference: {fileID: 8300000, guid: cf30b716314dc1344ad900fe5c40545a, type: 3}
+    - target: {fileID: 1336543115854680855, guid: dddb0789034e9e74d99882b9ef17e153, type: 3}
+      propertyPath: volumeClicBouton
+      value: 0.407
       objectReference: {fileID: 0}
     - target: {fileID: 1336543115854680855, guid: dddb0789034e9e74d99882b9ef17e153, type: 3}
       propertyPath: volumeDefiReussi
-      value: 0.127
+      value: 0.085
       objectReference: {fileID: 0}
     - target: {fileID: 1336543115854680855, guid: dddb0789034e9e74d99882b9ef17e153, type: 3}
       propertyPath: sonCarteIncorrecte
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1336543115854680855, guid: dddb0789034e9e74d99882b9ef17e153, type: 3}
+      propertyPath: volumeCarteDeposee
+      value: 0.545
+      objectReference: {fileID: 0}
+    - target: {fileID: 1336543115854680855, guid: dddb0789034e9e74d99882b9ef17e153, type: 3}
+      propertyPath: volumeSurvolBouton
+      value: 0.048
+      objectReference: {fileID: 0}
+    - target: {fileID: 1336543115854680855, guid: dddb0789034e9e74d99882b9ef17e153, type: 3}
+      propertyPath: volumeCarteCorrecte
+      value: 0.519
+      objectReference: {fileID: 0}
+    - target: {fileID: 1336543115854680855, guid: dddb0789034e9e74d99882b9ef17e153, type: 3}
+      propertyPath: volumeClasseurFerme
+      value: 0.566
+      objectReference: {fileID: 0}
+    - target: {fileID: 1336543115854680855, guid: dddb0789034e9e74d99882b9ef17e153, type: 3}
       propertyPath: volumeNouvelleCarte
-      value: 0.196
+      value: 0.069
+      objectReference: {fileID: 0}
+    - target: {fileID: 1336543115854680855, guid: dddb0789034e9e74d99882b9ef17e153, type: 3}
+      propertyPath: volumeClasseurOuvert
+      value: 0.476
+      objectReference: {fileID: 0}
+    - target: {fileID: 1336543115854680855, guid: dddb0789034e9e74d99882b9ef17e153, type: 3}
+      propertyPath: volumeCarteIncorrecte
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1336543115854680855, guid: dddb0789034e9e74d99882b9ef17e153, type: 3}
       propertyPath: musiquesParScene.Array.size

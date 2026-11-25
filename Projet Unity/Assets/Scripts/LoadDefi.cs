@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,7 @@ public class LoadDefi : MonoBehaviour
     [SerializeField] private string[] requiredEmotions;
     [SerializeField] private string idDefiBloqueApresReussite;
     [SerializeField] private Color lockedColor = new Color(0.55f, 0.55f, 0.55f, 1f);
+    [SerializeField] private ContenuTutoriel messageCartesManquantes;
 
     private SpriteRenderer spriteRenderer;
     private Collider2D colliderEntree;
@@ -60,14 +62,26 @@ public class LoadDefi : MonoBehaviour
             if (ProgressManager.Instance == null)
                 return false;
 
-            foreach (string idEmotion in requiredEmotions)
-            {
-                if (!ProgressManager.Instance.IsEmotionUnlocked(idEmotion))
-                    return false;
-            }
+            if (CartesManquantes().Count > 0)
+                return false;
         }
 
         return true;
+    }
+
+    List<string> CartesManquantes()
+    {
+        List<string> manquantes = new List<string>();
+        if (ProgressManager.Instance == null || requiredEmotions == null)
+            return manquantes;
+
+        foreach (string idEmotion in requiredEmotions)
+        {
+            if (!ProgressManager.Instance.IsEmotionUnlocked(idEmotion))
+                manquantes.Add(idEmotion);
+        }
+
+        return manquantes;
     }
 
     bool DefiTermine()
@@ -107,18 +121,39 @@ public class LoadDefi : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && DefiAccessible())
-        {
-            if (rememberPlayerPositionOnReturn)
-            {
-                DefinirPositionRetour(SceneManager.GetActiveScene().name, other.transform.position);
-            }
+        if (!other.CompareTag("Player")) return;
 
-            if (FadeManager.Instance != null)
-                FadeManager.Instance.LoadSceneWithFade(sceneName);
-            else
-                SceneManager.LoadScene(sceneName);
+        if (!DefiAccessible())
+        {
+            if (!DefiTermine() && ProgressManager.Instance != null && CartesManquantes().Count > 0)
+                AfficherMessageCartesManquantes();
+            return;
         }
+
+        if (rememberPlayerPositionOnReturn)
+        {
+            DefinirPositionRetour(SceneManager.GetActiveScene().name, other.transform.position);
+        }
+
+        if (FadeManager.Instance != null)
+            FadeManager.Instance.LoadSceneWithFade(sceneName);
+        else
+            SceneManager.LoadScene(sceneName);
+    }
+
+    void AfficherMessageCartesManquantes()
+    {
+        ContenuTutoriel contenu = messageCartesManquantes != null
+            ? messageCartesManquantes
+            : Resources.Load<ContenuTutoriel>("Tutoriels/CartesManquantesTram");
+
+        if (contenu == null)
+        {
+            Debug.LogError("[LoadDefi] Le tutoriel des cartes manquantes est introuvable.", this);
+            return;
+        }
+
+        GestionnaireTutoriels.Instance.AfficherMessage(contenu);
     }
 
     static void EcouterChargementScene()

@@ -3881,6 +3881,7 @@ GameObject:
   - component: {fileID: 799031863}
   - component: {fileID: 799031864}
   - component: {fileID: 799031865}
+  - component: {fileID: 799031866}
   m_Layer: 0
   m_Name: Tram
   m_TagString: Untagged
@@ -3983,6 +3984,7 @@ MonoBehaviour:
   - colere
   idDefiBloqueApresReussite: tram
   lockedColor: {r: 0.55, g: 0.55, b: 0.55, a: 1}
+  messageCartesManquantes: {fileID: 11400000, guid: a20d1c9a7ebe4f119b579d8758406c5b, type: 2}
 --- !u!61 &799031865
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4029,6 +4031,72 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 16.142113, y: 2.9507356}
   m_EdgeRadius: 0
+--- !u!60 &799031866
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799031861}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 16.142113, y: 2.8700001}
+    newSize: {x: 16.142113, y: 2.8700001}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 7.901407, y: 0.4186572}
+      - {x: 7.901407, y: 1.4213276}
+      - {x: 7.866832, y: 1.4328526}
+      - {x: -6.458678, y: 1.4328526}
+      - {x: -6.643077, y: 1.3982778}
+      - {x: -6.9312005, y: 1.2484534}
+      - {x: -7.253899, y: 1.0525293}
+      - {x: -7.6111727, y: 0.7183058}
+      - {x: -7.9840393, y: -0.012239546}
+      - {x: -8.037596, y: -0.01929078}
+      - {x: -8.07217, y: -0.20368993}
+      - {x: -8.07217, y: -0.7107876}
+      - {x: -8.015616, y: -0.4774127}
+      - {x: -8.031764, y: -0.5224422}
+      - {x: -8.077527, y: -0.43962348}
+      - {x: -7.37853, y: -0.47597122}
+      - {x: -6.46541, y: -0.4490223}
+      - {x: 7.933853, y: -0.42826784}
+      - {x: 7.8898816, y: 0.40713227}
+  m_UseDelaunayMesh: 1
 --- !u!1001 &804229640
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5243,6 +5311,7 @@ MonoBehaviour:
   defi: {fileID: 0}
   jsonDialogue: {fileID: 4900000, guid: e9a3452adc0a103478f19bcb6bfbf63f, type: 3}
   jsonDialogueApresEmotion: {fileID: 4900000, guid: f82d99b703cd4c538944239855d8f111, type: 3}
+  sceneApresEmotionDebloquee: 
   ouvrirSceneDialogue: 1
   sceneDialogue: Dialogue
   fondDialogue: {fileID: -8216677591290309347, guid: 42dbea86f42768748839efa0b365bacf, type: 3}
@@ -8925,6 +8994,7 @@ MonoBehaviour:
   defi: {fileID: 0}
   jsonDialogue: {fileID: 4900000, guid: 212b9fb2c4eda6d42896e9652a79ef49, type: 3}
   jsonDialogueApresEmotion: {fileID: 4900000, guid: 48b4d6db31b94fc69a817b829f03d3c1, type: 3}
+  sceneApresEmotionDebloquee: 
   ouvrirSceneDialogue: 1
   sceneDialogue: Dialogue
   fondDialogue: {fileID: 5646021317661710079, guid: cba78b4fafeac6d45a7849fb6e7905bc, type: 3}
