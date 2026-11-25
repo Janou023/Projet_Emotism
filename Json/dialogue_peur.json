@@ -112,7 +112,7 @@
     "carte_obtenue": "",
     "cartes": [],
     "personnage": "joueur",
-    "img_perso": "",
+    "img_perso": "personnage_principal.png",
     "fin": false
   },
   {
