@@ -450,6 +450,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   sceneGame: Monde
+  sceneDialogue: Dialogue
+  texte: {fileID: 4900000, guid: 212b9fb2c4eda6d42896e9652a79ef49, type: 3}
+  sprite: {fileID: 5646021317661710079, guid: cba78b4fafeac6d45a7849fb6e7905bc, type: 3}
   sceneParametres: MenuParametres
   menuPrincipalUI: {fileID: 160206453}
 --- !u!4 &354181335
@@ -479,7 +482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97624f0afcbe33c41a766a95d9120a29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NouvellePartie
-  sceneDepart: Monde
+  sceneDepart: 
   confirmationPanel: {fileID: 1582581618}
   boutonNon: {fileID: 1351671483}
   boutonNouvellePartie: {fileID: 1567437628}
@@ -881,7 +884,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &932378296
@@ -1583,7 +1586,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 390}
+  m_AnchoredPosition: {x: 0, y: 370}
   m_SizeDelta: {x: 491.8159, y: 105.2682}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1352066772
@@ -2814,6 +2817,18 @@ MonoBehaviour:
       - m_Target: {fileID: 354181336}
         m_TargetAssemblyTypeName: NouvellePartie, Assembly-CSharp
         m_MethodName: Confirmer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 354181334}
+        m_TargetAssemblyTypeName: MenuPrincipal, Assembly-CSharp
+        m_MethodName: Jouer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

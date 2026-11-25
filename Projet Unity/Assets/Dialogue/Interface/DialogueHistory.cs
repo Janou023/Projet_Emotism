@@ -35,6 +35,7 @@ public class DialogueHistory : MonoBehaviour
             Debug.LogError("DialogueHistory : History Panel n'est pas assigné.");
             return;
         }
+        MettreHistoriqueAuPremierPlan();
         historyPanel.SetActive(!historyPanel.activeSelf);
         if (!historyPanel.activeSelf) return;
 
@@ -42,6 +43,16 @@ public class DialogueHistory : MonoBehaviour
         Transform historyButton = historyPanel.transform.parent.Find("BtnHistorique");
         if (historyButton != null) historyButton.SetAsLastSibling();
         ScrollToBottom();
+    }
+
+    void MettreHistoriqueAuPremierPlan()
+    {
+        Canvas canvas = historyPanel.GetComponent<Canvas>();
+        if (canvas == null) canvas = historyPanel.AddComponent<Canvas>();
+        canvas.overrideSorting = true;
+        canvas.sortingOrder = short.MaxValue;
+        if (historyPanel.GetComponent<GraphicRaycaster>() == null)
+            historyPanel.AddComponent<GraphicRaycaster>();
     }
 
     public void Add(string speaker, string text)

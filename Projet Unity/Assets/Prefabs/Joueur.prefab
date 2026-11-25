@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3c78465971bd94b8c9c80793dbc14b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeplacementJoueur
-  moveSpeed: 3
+  moveSpeed: 5
   freeMovement: 0
   rigidbody: {fileID: 3313370110034947943}
   animator: {fileID: 6321514462284199307}

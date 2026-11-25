@@ -19,6 +19,7 @@ public class DefiController : MonoBehaviour
     public DialogueManager dialogueManager;
     public UIClasseur classeur;
     public CarteReponseUI interfaceCarte;
+    public Button boutonClasseur;
     public CardRewardPopup popupCarte;        // fenêtre « Nouvelle carte obtenue ! » (assignée par DialogueUIBootstrap)
     public EcranReussiteDefi ecranReussite;
     [Tooltip("Sous-dossier d'un dossier Resources qui contient les images citées par img_perso dans le JSON.")]
@@ -67,6 +68,7 @@ public class DefiController : MonoBehaviour
         enCours = true;
         attenteCarte = false;
         carteDejaDonnee = false;
+        ReglerBoutonClasseur(true);
         bool tutorielAffiche = estDefi &&
             GestionnaireTutoriels.Instance.AfficherTutorielDefi(JouerEtape);
         if (!tutorielAffiche)
@@ -171,6 +173,7 @@ public class DefiController : MonoBehaviour
             dialogueManager != null ? dialogueManager.portraitGauche : null,
             dialogueManager != null ? dialogueManager.portraitDroit : null,
             TexteIndices(etape.indices), etape.solution, ContinuerApresSolution);
+        ReglerBoutonClasseur(false);
     }
 
     /// <summary>Appelée quand le joueur choisit une carte dans le classeur (mode sélection).</summary>
@@ -194,6 +197,7 @@ public class DefiController : MonoBehaviour
         if (!r.estCorrecte) return false;
 
         attenteCarte = false;
+        ReglerBoutonClasseur(true);
         if (carte != null)
             dialogueManager.AjouterAuHistorique(dialogueManager.nomJoueur, "<i>(carte " + carte.id + ")</i>");
 
@@ -216,6 +220,7 @@ public class DefiController : MonoBehaviour
         if (etapeActive == null || !attenteCarte) return;
 
         attenteCarte = false;
+        ReglerBoutonClasseur(true);
         dialogueManager.Masquer();
         if (etapeActive.fin) Terminer();
         else EtapeSuivante();
@@ -240,6 +245,7 @@ public class DefiController : MonoBehaviour
         }
         if (attenteCarte)
         {
+            if (classeur.EstOuvert && classeur.EstEnModeSelection) return;
             if (interfaceCarte == null)
             {
                 Debug.LogError("DefiController : l'interface de confirmation des cartes est manquante.");
@@ -268,6 +274,7 @@ public class DefiController : MonoBehaviour
     {
         enCours = false;
         attenteCarte = false;
+        ReglerBoutonClasseur(true);
         etapeActive = null;
         if (afficherVictoire && estDefi && SoundsManager.Instance != null)
             SoundsManager.Instance.PlayChallengeSuccessSound();
@@ -489,5 +496,11 @@ public class DefiController : MonoBehaviour
         p.nom = nom;
         cachePersonnages[cle] = p;
         return p;
+    }
+
+    void ReglerBoutonClasseur(bool actif)
+    {
+        if (boutonClasseur != null)
+            boutonClasseur.interactable = actif;
     }
 }

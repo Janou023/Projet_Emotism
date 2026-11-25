@@ -171,6 +171,8 @@ public class CarteReponseUI : MonoBehaviour
         portraitDroit = droite;
 
         if (fondSelection != null) fondSelection.SetActive(true);
+        MettreElementAuPremierPlan(confirmationPanel, 1000);
+        MettreElementAuPremierPlan(emplacementCarte != null ? emplacementCarte.gameObject : null, 1000);
         if (portraitGauche != null) portraitGauche.SetLayoutOffset(decalagePortraitSelection);
         if (portraitDroit != null) portraitDroit.SetLayoutOffset(decalagePortraitSelection);
         classeur.Ouvrir(true, AfficherConfirmation);
@@ -202,6 +204,20 @@ public class CarteReponseUI : MonoBehaviour
             return;
         }
 
+        // Le bouton du carnet reste disponible pendant une question de carte. Si la
+        // sélection compacte est déjà ouverte pour ce même défi, ne la ferme pas et
+        // ne réinitialise pas la carte déposée / la confirmation en cours.
+        if (this.classeur == classeur && classeur.binderPanel.activeSelf
+            && emplacementCarte.gameObject.activeSelf)
+        {
+            if (classeur.EstEnModeSelection)
+                classeur.BasculerTailleSelection();
+            else
+                classeur.OuvrirSelectionCompacte(AfficherConfirmation);
+            GarderZoneDepotVisible(classeur);
+            return;
+        }
+
         FermerSelection();
         this.classeur = classeur;
         surConfirmation = onConfirmee;
@@ -211,6 +227,8 @@ public class CarteReponseUI : MonoBehaviour
         portraitGauche = gauche;
         portraitDroit = droite;
         if (fondSelection != null) fondSelection.SetActive(false);
+        MettreElementAuPremierPlan(confirmationPanel, 1000);
+        MettreElementAuPremierPlan(emplacementCarte != null ? emplacementCarte.gameObject : null, 1000);
         if (portraitGauche != null) portraitGauche.SetLayoutOffset(decalagePortraitSelection);
         if (portraitDroit != null) portraitDroit.SetLayoutOffset(decalagePortraitSelection);
         if (cadreEmplacement != null) emplacementCarte.sprite = cadreEmplacement;
@@ -221,15 +239,35 @@ public class CarteReponseUI : MonoBehaviour
         }
         emplacementCarte.raycastTarget = true;
         emplacementCarte.gameObject.SetActive(true);
-        CarteDropTarget cibleDepot = emplacementCarte.GetComponent<CarteDropTarget>();
-        cibleDepot.Configurer(classeur);
+        GarderZoneDepotVisible(classeur);
         classeur.OuvrirSelectionCompacte(AfficherConfirmation);
+    }
+
+    void GarderZoneDepotVisible(UIClasseur classeurActif)
+    {
+        if (emplacementCarte == null) return;
+        emplacementCarte.gameObject.SetActive(true);
+        emplacementCarte.raycastTarget = true;
+        MettreElementAuPremierPlan(emplacementCarte.gameObject, 1000);
+        CarteDropTarget cibleDepot = emplacementCarte.GetComponent<CarteDropTarget>();
+        if (cibleDepot != null) cibleDepot.Configurer(classeurActif);
+    }
+
+    static void MettreElementAuPremierPlan(GameObject element, int ordre)
+    {
+        if (element == null) return;
+        Canvas canvas = element.GetComponent<Canvas>();
+        if (canvas == null) canvas = element.AddComponent<Canvas>();
+        canvas.overrideSorting = true;
+        canvas.sortingOrder = ordre;
+        if (element.GetComponent<GraphicRaycaster>() == null)
+            element.AddComponent<GraphicRaycaster>();
     }
 
     public void FermerSelection()
     {
         CancelInvoke(nameof(ContinuerApresSolution));
-        if (classeur != null) classeur.Fermer();
+        if (classeur != null) classeur.FermerSelectionDefinitivement();
         if (confirmationPanel != null) confirmationPanel.SetActive(false);
         if (texteConfirmation != null) texteConfirmation.text = MessageConfirmation;
         ConfigurerBoutonsConfirmation(EtatConfirmation.Validation);
