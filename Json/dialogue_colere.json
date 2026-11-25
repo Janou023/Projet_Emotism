@@ -14,7 +14,7 @@
     "carte_obtenue": "",
     "cartes": [],
     "personnage": "Julia",
-    "img_perso": "Julia_colere.png",
+    "img_perso": "Julia_soulee.png",
     "fin": false
   },
   {
@@ -61,7 +61,7 @@
     "carte_obtenue": "",
     "cartes": [],
     "personnage": "joueur",
-    "img_perso": "",
+    "img_perso": "personnage_principal.png",
     "fin": false
   },
   {
