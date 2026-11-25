@@ -2873,6 +2873,34 @@ PrefabInstance:
       propertyPath: sonSurvolBouton
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1336543115854680855, guid: dddb0789034e9e74d99882b9ef17e153, type: 3}
+      propertyPath: volumeDefiReussi
+      value: 0.127
+      objectReference: {fileID: 0}
+    - target: {fileID: 1336543115854680855, guid: dddb0789034e9e74d99882b9ef17e153, type: 3}
+      propertyPath: sonCarteIncorrecte
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1336543115854680855, guid: dddb0789034e9e74d99882b9ef17e153, type: 3}
+      propertyPath: volumeNouvelleCarte
+      value: 0.196
+      objectReference: {fileID: 0}
+    - target: {fileID: 1336543115854680855, guid: dddb0789034e9e74d99882b9ef17e153, type: 3}
+      propertyPath: musiquesParScene.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1336543115854680855, guid: dddb0789034e9e74d99882b9ef17e153, type: 3}
+      propertyPath: musiquesParScene.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 23612fb456dabd24b8972221343e28e4, type: 3}
+    - target: {fileID: 1336543115854680855, guid: dddb0789034e9e74d99882b9ef17e153, type: 3}
+      propertyPath: musiquesParScene.Array.data[0].volume
+      value: 0.754
+      objectReference: {fileID: 0}
+    - target: {fileID: 1336543115854680855, guid: dddb0789034e9e74d99882b9ef17e153, type: 3}
+      propertyPath: musiquesParScene.Array.data[0].nomScene
+      value: MenuPrincipal
+      objectReference: {fileID: 0}
     - target: {fileID: 6041412137538967950, guid: dddb0789034e9e74d99882b9ef17e153, type: 3}
       propertyPath: m_Name
       value: SoundEffectManager
