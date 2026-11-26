@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -58,10 +59,25 @@ public class NouvellePartie : MonoBehaviour
         if (confirmationPanel != null)
             confirmationPanel.SetActive(false);
 
+        Action commencerPartie = DemarrerNouvellePartie;
+        if (!GestionnaireTutoriels.Instance.AfficherTutorielNouvellePartie(commencerPartie))
+            Debug.LogError("[NouvellePartie] Impossible d'afficher le tutoriel d'introduction. " +
+                           "La nouvelle partie ne sera pas lancée.");
+    }
+
+    void DemarrerNouvellePartie()
+    {
         if (string.IsNullOrEmpty(sceneDepart))
         {
-            Debug.LogWarning("[NouvellePartie] Aucune scène de départ indiquée : la progression est effacée, " +
-                             "mais la scène actuelle n'est pas rechargée.");
+            MenuPrincipal menu = FindAnyObjectByType<MenuPrincipal>();
+            if (menu != null)
+            {
+                menu.Jouer();
+                return;
+            }
+
+            Debug.LogWarning("[NouvellePartie] Aucune scène de départ indiquée et aucun MenuPrincipal trouvé : " +
+                             "la progression est effacée, mais la scène actuelle n'est pas rechargée.");
             return;
         }
 

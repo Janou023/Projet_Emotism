@@ -40,11 +40,16 @@ public class CarteReponseUI : MonoBehaviour
     Vector2 tailleSolutionInitiale;
     Vector2 tailleTexteInitiale;
     float taillePoliceInitiale;
+    bool descriptionCarteOuverte;
+    bool historiqueOuvert;
+    bool etatEmplacementMemorise;
+    bool emplacementActifAvantOverlay;
 
     const string MessageConfirmation = "Confirmer cette carte ?";
     const string MessageErreur = "Erreur, voulez-vous recommencer ?";
     const string MessageSansIndice = "Aucun indice n’est disponible pour cette question.";
     const string MessageSansSolution = "La solution n’est pas encore renseignée dans le JSON.";
+    const int OrdreCanvasEmplacementCarte = 110;
 
     public void Configurer()
     {
@@ -172,7 +177,9 @@ public class CarteReponseUI : MonoBehaviour
 
         if (fondSelection != null) fondSelection.SetActive(true);
         MettreElementAuPremierPlan(confirmationPanel, 1000);
-        MettreElementAuPremierPlan(emplacementCarte != null ? emplacementCarte.gameObject : null, 1000);
+        MettreElementAuPremierPlan(
+            emplacementCarte != null ? emplacementCarte.gameObject : null,
+            OrdreCanvasEmplacementCarte);
         if (portraitGauche != null) portraitGauche.SetLayoutOffset(decalagePortraitSelection);
         if (portraitDroit != null) portraitDroit.SetLayoutOffset(decalagePortraitSelection);
         classeur.Ouvrir(true, AfficherConfirmation);
@@ -228,7 +235,9 @@ public class CarteReponseUI : MonoBehaviour
         portraitDroit = droite;
         if (fondSelection != null) fondSelection.SetActive(false);
         MettreElementAuPremierPlan(confirmationPanel, 1000);
-        MettreElementAuPremierPlan(emplacementCarte != null ? emplacementCarte.gameObject : null, 1000);
+        MettreElementAuPremierPlan(
+            emplacementCarte != null ? emplacementCarte.gameObject : null,
+            OrdreCanvasEmplacementCarte);
         if (portraitGauche != null) portraitGauche.SetLayoutOffset(decalagePortraitSelection);
         if (portraitDroit != null) portraitDroit.SetLayoutOffset(decalagePortraitSelection);
         if (cadreEmplacement != null) emplacementCarte.sprite = cadreEmplacement;
@@ -248,9 +257,41 @@ public class CarteReponseUI : MonoBehaviour
         if (emplacementCarte == null) return;
         emplacementCarte.gameObject.SetActive(true);
         emplacementCarte.raycastTarget = true;
-        MettreElementAuPremierPlan(emplacementCarte.gameObject, 1000);
+        MettreElementAuPremierPlan(emplacementCarte.gameObject, OrdreCanvasEmplacementCarte);
         CarteDropTarget cibleDepot = emplacementCarte.GetComponent<CarteDropTarget>();
         if (cibleDepot != null) cibleDepot.Configurer(classeurActif);
+    }
+
+    public void DefinirDescriptionCarteOuverte(bool ouverte)
+    {
+        descriptionCarteOuverte = ouverte;
+        ActualiserVisibiliteEmplacement();
+    }
+
+    public void DefinirHistoriqueOuvert(bool ouvert)
+    {
+        historiqueOuvert = ouvert;
+        ActualiserVisibiliteEmplacement();
+    }
+
+    void ActualiserVisibiliteEmplacement()
+    {
+        if (emplacementCarte == null) return;
+
+        if (descriptionCarteOuverte || historiqueOuvert)
+        {
+            if (!etatEmplacementMemorise)
+            {
+                emplacementActifAvantOverlay = emplacementCarte.gameObject.activeSelf;
+                etatEmplacementMemorise = true;
+            }
+            emplacementCarte.gameObject.SetActive(false);
+            return;
+        }
+
+        if (!etatEmplacementMemorise) return;
+        emplacementCarte.gameObject.SetActive(emplacementActifAvantOverlay);
+        etatEmplacementMemorise = false;
     }
 
     static void MettreElementAuPremierPlan(GameObject element, int ordre)

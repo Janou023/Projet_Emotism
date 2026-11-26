@@ -159,10 +159,16 @@ public class DefiController : MonoBehaviour
 
     void ChoixFait(int i)
     {
-        ChoixReponse c = etapeActive.choix[i];
+        EtapeDefi etapeAvecChoix = etapeActive;
+        ChoixReponse c = etapeAvecChoix.choix[i];
         dialogueManager.AjouterAuHistorique(dialogueManager.nomJoueur, c.texte);
         etapeCourante = c.suivant;
-        JouerEtape();
+
+        List<Dialogue> pensees = ConstruirePensees(etapeAvecChoix.pensees);
+        if (pensees.Count > 0)
+            dialogueManager.Demarrer(pensees, JouerEtape);
+        else
+            JouerEtape();
     }
 
     void OuvrirQuestionCarte(EtapeDefi etape)
@@ -418,14 +424,6 @@ public class DefiController : MonoBehaviour
     {
         List<Dialogue> liste = new List<Dialogue>();
 
-        foreach (string t in e.pensees)
-        {
-            Dialogue d = new Dialogue();
-            d.texte = t;
-            d.pensee = true;
-            liste.Add(d);
-        }
-
         if (e.phrases.Count > 0)
         {
             Personnage p = TrouverPersonnage(e.personnage);
@@ -449,6 +447,23 @@ public class DefiController : MonoBehaviour
                 d.expression = emo;
                 liste.Add(d);
             }
+        }
+
+        if (e.type != TypeQuestion.Choix)
+            liste.AddRange(ConstruirePensees(e.pensees));
+
+        return liste;
+    }
+
+    static List<Dialogue> ConstruirePensees(List<string> textes)
+    {
+        List<Dialogue> liste = new List<Dialogue>();
+        foreach (string t in textes)
+        {
+            Dialogue d = new Dialogue();
+            d.texte = t;
+            d.pensee = true;
+            liste.Add(d);
         }
         return liste;
     }

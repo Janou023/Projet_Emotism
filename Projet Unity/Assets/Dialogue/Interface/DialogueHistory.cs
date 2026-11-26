@@ -36,8 +36,12 @@ public class DialogueHistory : MonoBehaviour
             return;
         }
         MettreHistoriqueAuPremierPlan();
-        historyPanel.SetActive(!historyPanel.activeSelf);
-        if (!historyPanel.activeSelf) return;
+        bool ouvrir = !historyPanel.activeSelf;
+        historyPanel.SetActive(ouvrir);
+        CarteReponseUI interfaceCarte = FindAnyObjectByType<CarteReponseUI>();
+        if (interfaceCarte != null)
+            interfaceCarte.DefinirHistoriqueOuvert(ouvrir);
+        if (!ouvrir) return;
 
         historyPanel.transform.SetAsLastSibling();
         Transform historyButton = historyPanel.transform.parent.Find("BtnHistorique");

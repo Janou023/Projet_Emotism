@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Monde
   m_EditorClassIdentifier: Assembly-CSharp::ContenuTutoriel
   id: monde
-  titre: "Le monde"
-  texte: "Bienvenue dans le monde. Explore les P\u00f4les \u00c9motions pour progresser, puis acc\u00e8de aux d\u00e9fis disponibles."
+  titre: Le monde
+  texte: "Te voici dans le Monde ! tu peux te balader librement, le d\xE9fi se trouve en bas de la carte, mais tu ne peux y acc\xE9der seulement si a d\xE9bloqu\xE9 2 cartes \xE9motions."

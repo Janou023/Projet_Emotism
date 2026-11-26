@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CartesManquantesTram
   m_EditorClassIdentifier: Assembly-CSharp::ContenuTutoriel
   id: tram_cartes_manquantes
-  titre: "Cartes \u00c9motion manquantes"
-  texte: "Il te manque des cartes \u00c9motion pour monter dans le tram. Va les chercher dans les P\u00f4les \u00c9motion, puis reviens ici."
+  titre: "Cartes \xC9motion manquantes"
+  texte: "Il te manque des cartes \xE9motions pour acc\xE9der \xE0 ce d\xE9fi ! "

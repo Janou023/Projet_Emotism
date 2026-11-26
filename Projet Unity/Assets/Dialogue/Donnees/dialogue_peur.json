@@ -4,9 +4,7 @@
     "phrases": [
       "Salut ! Je suis en ville en ce moment, n’hésite pas à venir me voir pour qu’on passe un peu de temps ensemble !"
     ],
-    "pensees": [
-      "J’aime bien passer du temps avec Alice. Mais je ne sais pas toujours comment expliquer ce que je ressens. Je sais que quelque chose se passe en moi, sans réussir à lui donner un nom."
-    ],
+    "pensees": [],
     "question": {},
     "indice": "",
     "carte_obtenue": "",
@@ -20,7 +18,9 @@
     "phrases": [
       "J’espère que tu vas bien !"
     ],
-    "pensees": [],
+    "pensees": [
+      "J’aime bien passer du temps avec Alice. Mais je ne sais pas toujours comment expliquer ce que je ressens. Je sais que quelque chose se passe en moi, sans réussir à lui donner un nom."
+    ],
     "question": {
       "question": "Que signifie ce message ?",
       "reponse_1": "Alice est heureuse",

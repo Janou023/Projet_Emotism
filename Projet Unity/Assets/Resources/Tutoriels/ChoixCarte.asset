@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ChoixCarte
   m_EditorClassIdentifier: Assembly-CSharp::ContenuTutoriel
   id: choix_carte
-  titre: "Choisir une carte"
-  texte: "Choisis dans le carnet la carte qui correspond le mieux \u00e0 l\u2019\u00e9motion demand\u00e9e, puis confirme ton choix."
+  titre: Choisir une carte
+  texte: "Choisis maintenant la carte \xE9motions qui correspond \xE0 celle qui est ressentie "

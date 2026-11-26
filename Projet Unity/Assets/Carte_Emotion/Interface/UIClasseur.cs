@@ -4,6 +4,8 @@ using UnityEngine.EventSystems;
 
 public class UIClasseur : MonoBehaviour
 {
+    const int OrdreCanvasInspection = 120;
+
     [Header("Données")]
     public ClasseurEmotions classeurData;
 
@@ -279,7 +281,11 @@ public class UIClasseur : MonoBehaviour
         if (groupeCanvas != null) groupeCanvas.blocksRaycasts = true;
         if (fondAssombrissant != null) fondAssombrissant.SetActive(true);
         if (binderPanel != null) binderPanel.SetActive(false);
-        if (inspectionPanel != null) inspectionPanel.SetActive(false);
+        if (inspectionPanel != null)
+        {
+            inspectionPanel.SetActive(false);
+            DefinirDescriptionCarteOuverte(false);
+        }
     }
 
     public bool CommencerGlisserCarte(int index, PointerEventData eventData)
@@ -421,17 +427,34 @@ public class UIClasseur : MonoBehaviour
                         ? carte.illustrationExplicative
                         : carte.illustration;
 
+                    Canvas canvasInspection = inspectionPanel.GetComponent<Canvas>();
+                    if (canvasInspection == null)
+                        canvasInspection = inspectionPanel.AddComponent<Canvas>();
+                    canvasInspection.overrideSorting = true;
+                    canvasInspection.sortingOrder = OrdreCanvasInspection;
+                    if (inspectionPanel.GetComponent<GraphicRaycaster>() == null)
+                        inspectionPanel.AddComponent<GraphicRaycaster>();
+
+                    DefinirDescriptionCarteOuverte(true);
                     inspectionPanel.SetActive(true);
                 }
             }
         }
     }
     // Ferme uniquement la vue agrandie (zoom) sans fermer le classeur
-public void FermerInspection()
-{
-    if (inspectionPanel != null)
+    public void FermerInspection()
     {
-        inspectionPanel.SetActive(false);
+        if (inspectionPanel != null)
+        {
+            inspectionPanel.SetActive(false);
+            DefinirDescriptionCarteOuverte(false);
+        }
     }
-}
+
+    void DefinirDescriptionCarteOuverte(bool ouverte)
+    {
+        CarteReponseUI interfaceCarte = FindAnyObjectByType<CarteReponseUI>();
+        if (interfaceCarte != null)
+            interfaceCarte.DefinirDescriptionCarteOuverte(ouverte);
+    }
 }

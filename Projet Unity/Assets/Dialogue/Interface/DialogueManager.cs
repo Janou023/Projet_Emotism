@@ -459,12 +459,6 @@ public class DialogueManager : MonoBehaviour
 
             TMP_Text etiquette = button.GetComponentInChildren<TMP_Text>(true);
             if (etiquette == null) continue;
-            RectTransform etiquetteRect = etiquette.rectTransform;
-            etiquetteRect.anchorMin = Vector2.zero;
-            etiquetteRect.anchorMax = Vector2.one;
-            etiquetteRect.pivot = new Vector2(0.5f, 0.5f);
-            etiquetteRect.anchoredPosition = Vector2.zero;
-            etiquetteRect.sizeDelta = new Vector2(-24f, -8f);
             etiquette.textWrappingMode = TextWrappingModes.Normal;
             etiquette.enableAutoSizing = false;
             etiquette.fontSize = 28f;

@@ -67,7 +67,7 @@
   {
     "num": 4,
     "phrases": [
-      "D'accord j'y vais."
+      "D'accord j'y vais ! D'ailleurs, si tu dois partir, j'ai entendu le tram arriver, vas y vite avant qu'il parte !."
     ],
     "pensees": [],
     "question": {},
@@ -75,7 +75,7 @@
     "carte_obtenue": "",
     "cartes": [],
     "personnage": "Julia",
-    "img_perso": "julia_souffle.png",
+    "img_perso": "julia_neutre.png",
     "fin": true
   }
 ]

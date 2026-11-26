@@ -209,6 +209,11 @@ public class GestionnaireTutoriels : MonoBehaviour
         return AfficherTutoriel(contenu, onClosed);
     }
 
+    public bool AfficherTutorielNouvellePartie(Action onClosed = null)
+    {
+        return AfficherMessage(Ressource("IntroductionJeu"), onClosed);
+    }
+
     public void ResetAll()
     {
         Reinitialiser(tutorielAuLancement);

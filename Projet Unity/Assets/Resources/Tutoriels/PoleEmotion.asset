@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PoleEmotion
   m_EditorClassIdentifier: Assembly-CSharp::ContenuTutoriel
   id: pole_emotion
-  titre: "P\u00f4le \u00c9motion"
-  texte: "Bienvenue dans ce P\u00f4le \u00c9motion. Suis les dialogues et les activit\u00e9s pour d\u00e9bloquer une nouvelle carte."
+  titre: "P\xF4le \xC9motion"
+  texte: "Bienvenue dans ce P\xF4le \xC9motion. C'est ici que tu vas d\xE9bloquer des Cartes Emotions \xE0 utiliser dans ton futur d\xE9fi ! "
