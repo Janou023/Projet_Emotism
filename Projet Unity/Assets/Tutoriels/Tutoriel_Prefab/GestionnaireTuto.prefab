@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GestionnaireTutoriels
   panneauTutoriel: {fileID: 0}
-  tutorielAuLancement: {fileID: 11400000, guid: 4713abc6625c4dc4982385a7f1a9f69d, type: 2}
+  prefabPanneauTutoriel: {fileID: 1175866185590339539, guid: 18abc0da20497f64d9fb14ffa46134cc, type: 3}

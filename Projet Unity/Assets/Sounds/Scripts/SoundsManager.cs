@@ -57,6 +57,7 @@ public class SoundsManager : MonoBehaviour
    private AudioSource sourceClavier;
    private AudioSource sourceEntreePolePeur;
    private AudioSource sourceClicBouton;
+   private AudioSource sourceSurvolBouton;
    private int frameSonClasseur = -1;
    private readonly HashSet<Button> boutonsAvecSons = new HashSet<Button>();
 
@@ -203,10 +204,16 @@ public class SoundsManager : MonoBehaviour
    public bool PlayCorrectCardSound() => PlayInterfaceSound(sonCarteCorrecte, volumeCarteCorrecte) != null;
    public void PlayWrongCardSound() => PlayInterfaceSound(sonCarteIncorrecte, volumeCarteIncorrecte);
    public bool PlayChallengeSuccessSound() => PlayInterfaceSound(sonDefiReussi, volumeDefiReussi) != null;
-   public void PlayButtonHoverSound() => PlayInterfaceSound(sonSurvolBouton, volumeSurvolBouton);
+   public void PlayButtonHoverSound()
+   {
+      if (sourceSurvolBouton != null && sourceSurvolBouton.isPlaying) return;
+      sourceSurvolBouton = PlayInterfaceSound(sonSurvolBouton, volumeSurvolBouton);
+   }
+
    public void PlayButtonClickSound()
    {
       if (Time.frameCount == frameSonClasseur) return;
+      if (sourceClicBouton != null && sourceClicBouton.isPlaying) return;
       sourceClicBouton = PlayInterfaceSound(sonClicBouton, volumeClicBouton);
    }
    public bool PlayNewCardSound() => PlayInterfaceSound(sonNouvelleCarte, volumeNouvelleCarte) != null;
@@ -214,14 +221,8 @@ public class SoundsManager : MonoBehaviour
    void PlayBinderSound(AudioClip clip, float volume)
    {
       frameSonClasseur = Time.frameCount;
-      if (sourceClicBouton != null)
-      {
-         sourceClicBouton.Stop();
-         Destroy(sourceClicBouton.gameObject);
-         sourceClicBouton = null;
-      }
-
-      PlayInterfaceSound(clip, volume);
+      if (sourceClicBouton != null && sourceClicBouton.isPlaying) return;
+      sourceClicBouton = PlayInterfaceSound(clip, volume);
    }
 
    AudioSource PlayInterfaceSound(AudioClip clip, float volume)
@@ -229,6 +230,7 @@ public class SoundsManager : MonoBehaviour
       if (clip == null) return null;
 
       AudioSource source = new GameObject("SonInterface").AddComponent<AudioSource>();
+      source.transform.SetParent(transform, false);
       source.playOnAwake = false;
       source.spatialBlend = 0f;
       source.outputAudioMixerGroup = groupeSfx;
@@ -294,6 +296,8 @@ public class SoundsManager : MonoBehaviour
       if (clip == null || SoundFxObject == null) return;
 
     AudioSource audioSource = Instantiate(SoundFxObject, position, Quaternion.identity);
+    audioSource.transform.SetParent(transform, true);
+    audioSource.playOnAwake = false;
     audioSource.clip = clip;
     audioSource.volume = volume;
    audioSource.outputAudioMixerGroup = groupeSfx;

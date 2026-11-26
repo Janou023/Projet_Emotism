@@ -474,7 +474,16 @@ public class DefiController : MonoBehaviour
         if (cachePortraits.TryGetValue(nom, out sprite)) return sprite;
 
         string chemin = string.IsNullOrEmpty(dossierPortraits) ? nom : dossierPortraits + "/" + nom;
-        sprite = Resources.Load<Sprite>(chemin);
+        Sprite[] sprites = Resources.LoadAll<Sprite>(chemin);
+        foreach (Sprite candidat in sprites)
+        {
+            if (candidat != null &&
+                (sprite == null || candidat.rect.width * candidat.rect.height > sprite.rect.width * sprite.rect.height))
+            {
+                sprite = candidat;
+            }
+        }
+
         if (sprite == null)
             Debug.LogWarning("DefiController : portrait introuvable « " + nom + " ». Fichier attendu : Assets/Resources/"
                              + chemin + ".png (importé en Sprite). Le portrait habituel du personnage est utilisé.");

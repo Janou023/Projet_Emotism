@@ -11,8 +11,8 @@
     "indice": "",
     "carte_obtenue": "",
     "cartes": [],
-    "personnage": "tel_Alice",
-    "img_perso": "tel_Alice_1.png",
+    "personnage": "Alice",
+    "img_perso": "Alice_telephone_neutre.png",
     "fin": false
   },
   {
@@ -30,8 +30,8 @@
     "indice": "Les réponses A et B sont des possibilités mais pour l'instant, on ne peut pas vraiment savoir",
     "carte_obtenue": "",
     "cartes": [],
-    "personnage": "tel_Alice",
-    "img_perso": "tel_Alice_1.png",
+    "personnage": "Alice",
+    "img_perso": "Alice_telephone_neutre.png",
     "fin": false
   },
   {
