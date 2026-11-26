@@ -14,7 +14,7 @@
     "carte_obtenue": "",
     "cartes": [],
     "personnage": "Julia",
-    "img_perso": "Julia_colere.png",
+    "img_perso": "julia_colere.png",
     "fin": false
   },
   {
@@ -32,7 +32,7 @@
     "carte_obtenue": "",
     "cartes": [],
     "personnage": "Julia",
-    "img_perso": "Julia_colere.png",
+    "img_perso": "julia_colere.png",
     "fin": false
   },
   {
@@ -47,7 +47,7 @@
     "carte_obtenue": "colere",
     "cartes": [],
     "personnage": "Julia",
-    "img_perso": "Julia_colere.png",
+    "img_perso": "julia_colere.png",
     "fin": false
   },
   {
@@ -75,7 +75,7 @@
     "carte_obtenue": "",
     "cartes": [],
     "personnage": "Julia",
-    "img_perso": "Julia_souffle.png",
+    "img_perso": "julia_souffle.png",
     "fin": true
   }
 ]
